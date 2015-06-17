@@ -53,7 +53,7 @@
 					<ul class="off-canvas-list">
 						<li><a href="">Home</a></li>
 						<li><label>Categories</label></li>
-							<li ><a href="/category/blogging.html">blogging</a></li>
+							<li class="active"><a href="/category/blogging.html">blogging</a></li>
 							<li ><a href="/category/test.html">Test</a></li>
 
 						<li><label>Links</label></li>
@@ -79,7 +79,7 @@
 
 					<section class="top-bar-section">
 						<ul class="left">
-								<li ><a href="/category/blogging.html">blogging</a></li>
+								<li class="active"><a href="/category/blogging.html">blogging</a></li>
 								<li ><a href="/category/test.html">Test</a></li>
 						</ul>
                         <ul class="right">                                                                                                                                           
@@ -93,33 +93,68 @@
 					<div class="row">
 						<!-- Main Content -->
 						<div class="medium-9 small-12 columns" role="content">
-
 <article>
-	<h3><a href="/just-test-pelican-again.html">Hello World !</a></h3>
-	<h6>Written by <a href="/author/levi-g.html">Levi G</a> in <a href="/category/blogging.html">blogging</a> on 一 15 六月 2015. Tags: <a href="/tag/try.html">try</a>, <a href="/tag/pelican.html">pelican</a>, <a href="/tag/test.html">test</a>, </h6>
-	<p>再试一下水</p>
-		<p class="continue"><a href="/just-test-pelican-again.html">Continue reading &raquo;</a></p>
-</article>
-<hr />
-<article>
-	<h3><a href="/empty-test.html">Anot`her 测`试 $e^x$ !</a></h3>
-	<h6>Written by <a href="/author/levi-g.html">Levi G</a> in <a href="/category/test.html">Test</a> on 一 15 六月 2015. Tags: <a href="/tag/pelican.html">pelican</a>, <a href="/tag/publishing.html">publishing</a>, <a href="/tag/test.html">test</a>, <a href="/tag/server.html">server</a>, </h6>
-	<h2>测试</h2>
+	<h2>Hello World !</h2>
+	<p>[TOC]</p>
+<h1><a href="id:try">试水</a></h1>
+<p>正文文字。
+断行同段落。</p>
+<p>新段落。</p>
 <ul>
-<li>Markdown 语法</li>
+<li>item 1, 公式 $E=mc^2$ 。</li>
+<li>item 2, 嵌入代码 <code>onFileReadable()</code> 。</li>
 </ul>
-		<p class="continue"><a href="/empty-test.html">Continue reading &raquo;</a></p>
-</article>
-<hr />
-<article>
-	<h3><a href="/just-test-pelican.html">你好，世界</a></h3>
-	<h6>Written by <a href="/author/levi-g.html">Levi G</a> in <a href="/category/blogging.html">blogging</a> on 日 14 六月 2015. Tags: <a href="/tag/try.html">try</a>, <a href="/tag/pelican.html">pelican</a>, <a href="/tag/test.html">test</a>, </h6>
-	<p>试一下水</p>
-		<p class="continue"><a href="/just-test-pelican.html">Continue reading &raquo;</a></p>
-</article>
-<hr />
+<blockquote>
+<p>引用文字。</p>
+</blockquote>
+<ol>
+<li>numbered 1</li>
+<li>numbered 2</li>
+</ol>
+<p>$$E=mc^2$$</p>
+<div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;stylesheets/stylesheet.css&quot;</span> <span class="na">media=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;stylesheets/github-dark.css&quot;</span> <span class="na">media=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;stylesheets/print.css&quot;</span> <span class="na">media=</span><span class="s">&quot;print&quot;</span><span class="nt">&gt;</span>
+</pre></div>
 
 
+<div class="highlight"><pre>
+</pre></div>
+
+
+<hr />
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C</td>
+<td>D</td>
+</tr>
+<tr>
+<td>E</td>
+<td>F</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#try">跳转到小标题</a><sup id="fnref:split"><a class="footnote-ref" href="#fn:split" rel="footnote">1</a></sup></p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:split">
+<p>分割线&#160;<a class="footnote-backref" href="#fnref:split" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+	<hr/>
+	<h6>Written by <a href="/author/levi-g.html">Levi G</a> in <a href="/category/blogging.html">blogging</a> on 一 15 六月 2015. Tags: <a href="/tag/try.html">try</a>, <a href="/tag/pelican.html">pelican</a>, <a href="/tag/test.html">test</a>, </h6>
+</article>
+
+<hr/>
 						</div>
 						<!-- End Main Content -->
 						<!-- Sidebar -->

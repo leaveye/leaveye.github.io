@@ -1,0 +1,268 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>Happy Coding</title>
+		<meta name="description" content="">
+		<meta name="author" content="Levi G.">
+
+		<link rel="stylesheet" href="/theme/css/foundation.css" />
+		<link rel="stylesheet" href="/theme/css/pygment/monokai.css" />
+		<link rel="stylesheet" href="/theme/css/custom.css" />
+
+
+		<script src="/theme/js/modernizr.js"></script>
+
+		<!-- Feeds -->
+
+
+		<!-- mathjax config similar to math.stackexchange -->
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			jax: ["input/TeX", "output/HTML-CSS"],
+			tex2jax: {
+				inlineMath: [ ['$', '$'] ],
+				displayMath: [ ['$$', '$$']],
+				processEscapes: true,
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+			},
+			messageStyle: "none",
+			"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+		});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+	<body>
+		<div class="off-canvas-wrap">
+			<div class="inner-wrap">
+				<!-- mobile top bar to activate nav -->
+				<nav class="tab-bar show-for-small">
+					<section class="left-small">
+						<a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+					</section>
+
+					<section class="middle tab-bar-section">
+						<h1 class="title">Happy&nbsp;Coding</h1>
+					</section>
+				</nav>
+
+				<!-- mobile side bar nav -->
+				<aside class="left-off-canvas-menu">
+					<ul class="off-canvas-list">
+						<li><a href="">Home</a></li>
+						<li><label>Categories</label></li>
+							<li class="active"><a href="/category/blogging.html">blogging</a></li>
+							<li ><a href="/category/test.html">Test</a></li>
+
+						<li><label>Links</label></li>
+							<li><a href="https://chou.it">Lex Chow的博客</a></li>
+							<li><a href="http://getpelican.com/">Pelican</a></li>
+							<li><a href="http://python.org/">Python.org</a></li>
+							<li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+							<li><a href="#">You can modify those links in your config file</a></li>
+
+
+
+						<li><label>Social</label></li>
+					</ul>	
+				</aside>
+
+				<!-- top bar nav -->
+				<nav class="top-bar hide-for-small-only" data-topbar>
+					<ul class="title-area">
+						<li class="name">
+							<h1><a href="/">Happy Coding</a></h1>
+						</li>
+					</ul>
+
+					<section class="top-bar-section">
+						<ul class="left">
+								<li class="active"><a href="/category/blogging.html">blogging</a></li>
+								<li ><a href="/category/test.html">Test</a></li>
+						</ul>
+                        <ul class="right">                                                                                                                                           
+                                                                                                                                             
+                        </ul>  
+					</section>
+				</nav>
+
+				<!-- Main Page Content and Sidebar -->
+				<section class="main-section">
+					<div class="row">
+						<!-- Main Content -->
+						<div class="medium-9 small-12 columns" role="content">
+<article>
+	<h2>你好，世界</h2>
+	<p>[TOC]</p>
+<h1><a href="id:try">试水</a></h1>
+<p>正文文字。
+断行同段落。</p>
+<p>新段落。</p>
+<ul>
+<li>item 1, 公式 $E=mc^2$ 。</li>
+<li>item 2, 嵌入代码 <code>onFileReadable()</code> 。</li>
+</ul>
+<blockquote>
+<p>引用文字。</p>
+</blockquote>
+<ol>
+<li>numbered 1</li>
+<li>numbered 2</li>
+</ol>
+<p>$$E=mc^2$$</p>
+<div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;stylesheets/stylesheet.css&quot;</span> <span class="na">media=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;stylesheets/github-dark.css&quot;</span> <span class="na">media=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;stylesheets/print.css&quot;</span> <span class="na">media=</span><span class="s">&quot;print&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="cp">#define _IDENT_JOIN(PACKAGENAME, FUNCTIONNAME) PACKAGENAME##FUNCTIONNAME</span>
+<span class="cp">#define JavaIdent(FUNCTIONNAME) _IDENT_JOIN(Java_com_abc_abc_JniUtils_, FUNCTIONNAME)</span>
+
+<span class="k">class</span> <span class="nc">sigslot_connection</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">sigslot_connection</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">()</span><span class="o">&gt;</span> <span class="n">func</span><span class="p">)</span> <span class="o">:</span> <span class="n">disconnect_</span><span class="p">(</span><span class="n">func</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="kt">void</span> <span class="n">disconnect</span><span class="p">()</span> <span class="p">{</span> <span class="n">disconnect_</span><span class="p">();</span> <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">()</span><span class="o">&gt;</span> <span class="n">disconnect_</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">F</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">sigslot</span><span class="p">;</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">RET</span><span class="p">,</span> <span class="k">typename</span><span class="p">...</span> <span class="n">Args</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">sigslot</span> <span class="o">&lt;</span> <span class="n">RET</span><span class="p">(</span><span class="n">Args</span><span class="p">...)</span> <span class="o">&gt;</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">sigslot</span><span class="p">()</span> <span class="o">:</span> <span class="n">ret_handler_</span><span class="p">(</span><span class="k">nullptr</span><span class="p">),</span> <span class="n">next_id_</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">F</span><span class="o">&gt;</span>
+    <span class="n">sigslot_connection</span> <span class="n">connect</span><span class="p">(</span><span class="n">F</span><span class="o">&amp;&amp;</span> <span class="n">f</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="n">next_id_</span><span class="o">++</span><span class="p">;</span>
+        <span class="n">slots_</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">F</span><span class="o">&gt;</span><span class="p">(</span><span class="n">f</span><span class="p">)));</span>
+        <span class="k">return</span> <span class="nf">sigslot_connection</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sigslot</span><span class="o">::</span><span class="n">disconnect</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="n">id</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="n">RET</span> <span class="k">operator</span><span class="p">()(</span><span class="n">Args</span><span class="p">...</span> <span class="n">args</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">RET</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">ret_init_</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="nl">f</span> <span class="p">:</span> <span class="n">slots_</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">RET</span> <span class="n">ret2</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">second</span><span class="p">(</span><span class="n">args</span><span class="p">...);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">ret_handler_</span><span class="p">)</span>
+                <span class="n">ret</span> <span class="o">=</span> <span class="n">ret_handler_</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">ret2</span><span class="p">);</span>
+            <span class="k">else</span>
+                <span class="n">ret</span> <span class="o">=</span> <span class="n">ret2</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">size_t</span> <span class="n">size</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">slots_</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">set_init_return_code</span><span class="p">(</span><span class="n">RET</span> <span class="n">ret</span><span class="p">)</span> <span class="p">{</span> <span class="n">ret_init_</span> <span class="o">=</span> <span class="n">ret</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">set_return_code_handler</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="n">RET</span><span class="p">(</span><span class="n">RET</span><span class="p">,</span> <span class="n">RET</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">ret_handler</span><span class="p">)</span> <span class="p">{</span> <span class="n">ret_handler_</span> <span class="o">=</span> <span class="n">ret_handler</span><span class="p">;</span> <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">disconnect</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">slots_</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="n">RET</span><span class="p">(</span><span class="n">Args</span><span class="p">...)</span><span class="o">&gt;</span> <span class="n">TFunc</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">TFunc</span><span class="o">&gt;</span> <span class="n">slots_</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="n">RET</span><span class="p">(</span><span class="n">RET</span><span class="p">,</span> <span class="n">RET</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">ret_handler_</span><span class="p">;</span>
+    <span class="n">RET</span> <span class="n">ret_init_</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">next_id_</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+
+
+<hr />
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C</td>
+<td>D</td>
+</tr>
+<tr>
+<td>E</td>
+<td>F</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#try">跳转到小标题</a><sup id="fnref:split"><a class="footnote-ref" href="#fn:split" rel="footnote">1</a></sup></p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:split">
+<p>分割线&#160;<a class="footnote-backref" href="#fnref:split" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+	<hr/>
+	<h6>Written by <a href="/author/levi-g.html">Levi G</a> in <a href="/category/blogging.html">blogging</a> on 日 14 六月 2015. Tags: <a href="/tag/try.html">try</a>, <a href="/tag/pelican.html">pelican</a>, <a href="/tag/test.html">test</a>, </h6>
+</article>
+
+<hr/>
+						</div>
+						<!-- End Main Content -->
+						<!-- Sidebar -->
+						<aside class="medium-3 hide-for-small-only columns">
+							<div class="panel">
+								<h5>Links</h5>
+								<ul class="side-nav">
+									<li><a href="https://chou.it">Lex Chow的博客</a></li>
+									<li><a href="http://getpelican.com/">Pelican</a></li>
+									<li><a href="http://python.org/">Python.org</a></li>
+									<li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+									<li><a href="#">You can modify those links in your config file</a></li>
+								</ul>
+							</div>
+
+							<div class="panel">
+								<h5>Tags</h5>
+								<ul class="tag-cloud">
+									<li><a href="/tag/publishing.html" class="tag-4">publishing</a></li>
+									<li><a href="/tag/server.html" class="tag-4">server</a></li>
+									<li><a href="/tag/try.html" class="tag-2">try</a></li>
+									<li><a href="/tag/test.html" class="tag-1">test</a></li>
+									<li><a href="/tag/pelican.html" class="tag-1">pelican</a></li>
+								</ul>
+							</div>
+
+
+							<div class="panel">
+								<h5>Social</h5>
+								<ul class="side-nav">
+								</ul>
+							</div>
+						</aside>
+						<!-- End Sidebar -->
+					</div>
+
+					<!-- Footer -->
+					<footer class="row">
+						<div class="medium-9 small-12">
+							<hr/>
+							<p class="text-center">Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://foundation.zurb.com/">Zurb Foundation</a>. Theme by <a href="http://hamaluik.com">Kenton Hamaluik</a>.</p>
+						</div>
+					</footer>
+					<!-- End Footer -->
+				</section>
+				<a class="exit-off-canvas"></a>
+			</div><!--off-canvas inner-->
+		</div><!--off-canvas wrap-->
+
+		<script src="/theme/js/jquery.js"></script>
+		<script src="/theme/js/foundation.min.js"></script>
+		<script>
+			$(document).foundation();
+		</script>
+	</body>
+</html>
