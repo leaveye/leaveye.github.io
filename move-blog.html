@@ -102,7 +102,7 @@
 </blockquote>
 <h2>选择</h2>
 <p>三天前决定并开始动手，把 blog 放 Github 上面。用了半天的时间，比较过 jekyll 和 pelican 后，还是选择了 pelican 。毕竟 python 在安装上还是要比 Ruby 方便许多的。这对于我这样时不时换工作机的人还是个很大的优势。</p>
-<p>我对 blog 的需求其实还挺烦人的。语法高亮、主题定制是基本的，$Latex$ 是必须的，要是有 graphviz 、序列图的支持就更好了。</p>
+<p>我对 blog 的需求其实还挺烦人的。语法高亮、主题定制是基本的，$\LaTeX$ 是必须的，要是有 graphviz 、序列图的支持就更好了。</p>
 <p>现在的各种工具，语法高亮、主题定制都是必备功能了，产生差异的就只是配套内容的多寡了。粗略看了下 <a href="https://github.com/getpelican/pelican-themes" title="pelican 主题包">pelican-themes</a> 虽然没有 <a href="http://jekyllthemes.org" title="Jekyll 主题包">Jekyll Themes</a> 看上去那么完整，不过基本样子上还是够用了。毕竟这些『小众』平台比起大 Wordpress 还是差远了。</p>
 <h2>安装</h2>
 <p>安装、配置过程其实是非常简单的。即使如此，我也踩了进坑里了。</p>
@@ -114,7 +114,7 @@
 —— <a href="/author/levi-g.html">Levi G.</a></p>
 </blockquote>
 <ul>
-<li>眼下 <code>brew</code> 安装的 pelican 版本是 3.5.0 ，有个 bug 。文章作者的值不能以 <code>.</code> 字符结尾。因为对于 San Z. 这个作者，生成的作者页面文件命名是 <code>san-z.html</code>，但是页面中作者链接的 URL 写的却是 <code>san-z..html</code> 。于是产生坏链了。</li>
+<li>眼下 <code>pip</code> 安装的 pelican 版本是 3.5.0 ，有个 bug 。文章作者的值不能以 <code>.</code> 字符结尾。因为对于 San Z. 这个作者，生成的作者页面文件命名是 <code>san-z.html</code>，但是页面中作者链接的 URL 写的却是 <code>san-z..html</code> 。于是产生坏链了。</li>
 </ul>
 <p>这里是安装过程中参考的资源：</p>
 <ul>
@@ -137,15 +137,15 @@
 </thead>
 <tbody>
 <tr>
-<td align="center">$Latex$</td>
-<td>MathJax (是这名吧)</td>
+<td align="center">$\LaTeX$</td>
+<td><a href="http://www.mathjax.org/">MathJax</a></td>
 </tr>
 <tr>
 <td align="center">SyntaxHighlight</td>
 <td>主题帮助里有</td>
 </tr>
 <tr>
-<td align="center">graphviz</td>
+<td align="center"><a href="http://www.graphviz.org/">graphviz</a></td>
 <td>见到过有人开源了编译成 js 的 graphviz ，回头可以考虑试试</td>
 </tr>
 <tr>
@@ -162,7 +162,7 @@
 <p>『这动态效果是怎么实现的？状态保存在哪儿？怎么调整的？』</p>
 </blockquote>
 <p>觉得还是不花时间弄这个了。简单选择了一个完成度比较高的现成主题 <a href="https://github.com/getpelican/pelican-themes/tree/master/foundation-default-colours">foundation-default-colours</a> 。</p>
-<p>选这个主题是因为它已经有了正确的排版并且支持了 $Latex$ 。虽然回头一点点弄的时候再换吧。</p>
+<p>选这个主题是因为它已经有了正确的排版并且支持了 $\LaTeX$ 。回头一点点弄的时候再换吧。</p>
 <hr />
 <blockquote>
 <p>待续……</p>
@@ -190,11 +190,11 @@
 							<div class="panel">
 								<h5>Tags</h5>
 								<ul class="tag-cloud">
-									<li><a href="/tag/test.html" class="tag-1">test</a></li>
-									<li><a href="/tag/server.html" class="tag-2">server</a></li>
 									<li><a href="/tag/try.html" class="tag-2">try</a></li>
 									<li><a href="/tag/pelican.html" class="tag-1">pelican</a></li>
 									<li><a href="/tag/publishing.html" class="tag-4">publishing</a></li>
+									<li><a href="/tag/test.html" class="tag-1">test</a></li>
+									<li><a href="/tag/server.html" class="tag-2">server</a></li>
 								</ul>
 							</div>
 
