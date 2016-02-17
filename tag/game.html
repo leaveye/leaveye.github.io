@@ -54,7 +54,7 @@
 						<li><a href="">Home</a></li>
 						<li><label>Categories</label></li>
 							<li ><a href="/category/blogging.html">blogging</a></li>
-							<li class="active"><a href="/category/system.html">system</a></li>
+							<li ><a href="/category/system.html">system</a></li>
 							<li ><a href="/category/test.html">Test</a></li>
 
 						<li><label>Links</label></li>
@@ -81,7 +81,7 @@
 					<section class="top-bar-section">
 						<ul class="left">
 								<li ><a href="/category/blogging.html">blogging</a></li>
-								<li class="active"><a href="/category/system.html">system</a></li>
+								<li ><a href="/category/system.html">system</a></li>
 								<li ><a href="/category/test.html">Test</a></li>
 						</ul>
                         <ul class="right">                                                                                                                                           
@@ -97,21 +97,91 @@
 						<div class="medium-9 small-12 columns" role="content">
 							<div class="row">
 								<div class="small-12 columns">
-									<h2>Category: system</h2>
+									<h2>Posts Tagged With 'game'</h2>
 								</div>
 							</div>
 
 <article>
-	<h3><a href="/upgrade-to-el-capitan.html">升级 OS X El Capitan</a></h3>
-	<h6>Written by <a href="/author/levi-g.html">Levi G</a> in <a href="/category/system.html">system</a> on 六 03 十月 2015. Tags: <a href="/tag/os-x.html">os x</a>, <a href="/tag/el-capitan.html">el capitan</a>, <a href="/tag/kernel_task.html">kernel_task</a>, <a href="/tag/sip.html">sip</a>, </h6>
-	<p>10 月 1 日发现 Apple 推送了 El Capitan 的更新。第一时间点击升级，准备体验一下。</p>
-<p>几小时后，升级包终于下载完成了，在电脑上多了个『安装 El Capitan』的软件。果断打开。</p>
-<p>回答确认了安装程序的一系列问题，并且第一次重启电脑后，进度条走的非常慢，最后卡在 30% 左右不动了。</p>
-<p>担心了 1 个小时变砖的问题，决定还是强行关机。重启后没有继续安装，而是自动进入到升级前的系统。庆幸了一下。再次点击安装软件，重启进入安装过程。</p>
-<p>这次虽然进度条依旧很慢，但是顺利完成了安装过程。登录系统后，发现又再次出现了一年前修复的 <code>kernel_task</code> 进程 CPU 占用率暴高的问题。搜索到了<a href="http://www.zhihu.com/question/19611376">结果</a>，准备照此办理。</p>
-<p>查询到我的设备型号是 <code>MacBookPro8,2</code>，要删除的文件没有权限：</p>
-<div class="highlight"><pre><span class="nv">$ </span><span class="nb">pwd ...</span></pre></div>
-		<p class="continue"><a href="/upgrade-to-el-capitan.html">Continue reading &raquo;</a></p>
+	<h3><a href="/the-witness-puzzles.html">见证者游戏谜题解析</a></h3>
+	<h6>Written by <a href="/author/levi-g.html">Levi G</a> in <a href="/category/blogging.html">blogging</a> on 三 17 二月 2016. Tags: <a href="/tag/game.html">game</a>, <a href="/tag/puzzle.html">puzzle</a>, <a href="/tag/math.html">math</a>, </h6>
+	<p><img alt="image" src="images/the-witness-puzzles_maze.png" /></p>
+<h1>略作定义</h1>
+<p>所有谜题都可以这样描述：</p>
+<ul>
+<li>谜题题板是在一个平面或空间曲面上的格线阵列。</li>
+<li>谜题解答是无交叉的一笔画图形。</li>
+<li>一笔画轨迹必须在题板给出的格线上。以圆点为起点，以方格阵列凸点为终点。</li>
+<li>一笔画轨迹本身必须满足阵列中图形的约束条件。</li>
+<li>一笔画轨迹将题板划分成一个或多个联通区域，每个联通区域必须满足阵列中图形的约束条件。</li>
+</ul>
+<h1>不同图形的约束条件</h1>
+<table>
+<thead>
+<tr>
+<th>图形</th>
+<th>位置</th>
+<th>限定</th>
+<th>图例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>格线</td>
+<td>-</td>
+<td>一笔画路径。</td>
+<td></td>
+</tr>
+<tr>
+<td>圆点</td>
+<td>格线交点</td>
+<td>一笔画起点。</td>
+<td></td>
+</tr>
+<tr>
+<td>出口</td>
+<td>边界格线交点延伸到图形外</td>
+<td>一笔画终点。</td>
+<td></td>
+</tr>
+<tr>
+<td>圆角方形</td>
+<td>方格内</td>
+<td>所在连通区域内不可出现其它颜色的圆角方形。</td>
+<td><img alt="image" src="images/the-witness-puzzles_square-black.png" /></td>
+</tr>
+<tr>
+<td>正六边形</td>
+<td>格线交点或格线上</td>
+<td>一笔画必须经过此点。黑色可由任一颜色一笔画轨迹经过；其它颜色必须由同色轨迹经过。</td>
+<td><img alt="image" src="images/the-witness-puzzles_hex.png" /></td>
+</tr>
+<tr>
+<td>对称</td>
+<td>题板整体是轴对称或中心对称的</td>
+<td>一笔画出多条轨迹。对称性与题板本身相同。</td>
+<td><img alt="image" src="images/the-witness-puzzles_symmetry.png" /></td>
+</tr>
+<tr>
+<td>俄罗斯方块</td>
+<td>方格内</td>
+<td>所在连通区域的形状必须可由其中的所有俄罗斯方块拼成。</td>
+<td><img alt="image" src="images/the-witness-puzzles_tetris.png" /></td>
+</tr>
+<tr>
+<td>空心俄罗斯方块</td>
+<td>方格内</td>
+<td>修正所在联通区域内的某块俄罗斯方块，将之挖去空心俄罗斯方块形状的一部分。</td>
+<td><img alt="image" src="images/the-witness-puzzles_tetris2.png" /></td>
+</tr>
+<tr>
+<td>八角星/太阳</td>
+<td>方格内</td>
+<td>所在联通区域不可出现多于一个同一颜色的特定图形（圆角方形、八角星）。</td>
+<td><img alt="image" src="images/the-witness-puzzles_sun.png" /></td>
+</tr>
+<tr>
+<td>三通/倒置的Y ...</td></tr></tbody></table>
+		<p class="continue"><a href="/the-witness-puzzles.html">Continue reading &raquo;</a></p>
 </article>
 <hr />
 
