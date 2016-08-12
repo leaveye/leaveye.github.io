@@ -54,8 +54,8 @@
 						<li><a href="">Home</a></li>
 						<li><label>Categories</label></li>
 							<li ><a href="/category/blogging.html">blogging</a></li>
-							<li ><a href="/category/system.html">system</a></li>
-							<li class="active"><a href="/category/test.html">Test</a></li>
+							<li class="active"><a href="/category/system.html">system</a></li>
+							<li ><a href="/category/test.html">Test</a></li>
 
 						<li><label>Links</label></li>
 							<li><a href="https://chou.it">Lex Chow的博客</a></li>
@@ -81,8 +81,8 @@
 					<section class="top-bar-section">
 						<ul class="left">
 								<li ><a href="/category/blogging.html">blogging</a></li>
-								<li ><a href="/category/system.html">system</a></li>
-								<li class="active"><a href="/category/test.html">Test</a></li>
+								<li class="active"><a href="/category/system.html">system</a></li>
+								<li ><a href="/category/test.html">Test</a></li>
 						</ul>
                         <ul class="right">                                                                                                                                           
                                                                                                                                              
@@ -96,13 +96,226 @@
 						<!-- Main Content -->
 						<div class="medium-9 small-12 columns" role="content">
 <article>
-	<h2>Anot`her 测`试 $e^x$ !</h2>
-	<h2>测试</h2>
+	<h2>使用 Docker Compose 搭建本地 GitLab 服务器</h2>
+	<h1>软件安装</h1>
+<blockquote>
+<p>过程主要参考自 <a href="http://docs.gitlab.com/omnibus/">Omnibus GitLab 官方文档</a>中 <a href="http://docs.gitlab.com/omnibus/docker/#install-gitlab-using-docker-compose">install GitLab using docker-compose</a> 章节。</p>
+</blockquote>
+<h2>设置项选择</h2>
+<table>
+<thead>
+<tr>
+<th>设置项</th>
+<th>值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>安装版本</td>
+<td><code>gitlab-ce</code></td>
+<td></td>
+</tr>
+<tr>
+<td>服务器 IP</td>
+<td><code>192.168.3.12</code></td>
+<td>Docker 容器</td>
+</tr>
+<tr>
+<td>工作目录</td>
+<td><code>~/docker-test</code></td>
+<td>容器(集)配置所在路径，此次安装主要工作路径</td>
+</tr>
+<tr>
+<td>服务目录</td>
+<td><code>~/gitlab</code></td>
+<td>GitLab 服务使用的文件将保存在此处</td>
+</tr>
+<tr>
+<td>HTTP 端口</td>
+<td><code>80</code></td>
+<td>唯一 Web 服务，可以独占端口</td>
+</tr>
+<tr>
+<td>SSH 端口</td>
+<td><code>2201</code></td>
+<td>Docker 主机使用了缺省的 22 端口</td>
+</tr>
+<tr>
+<td>访问地址</td>
+<td><code>http://192.168.3.12</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>系统准备</h2>
+<ol>
+<li>
+<p>安装 64 位 Ubuntu (<a href="http://releases.ubuntu.com/xenial/">16.04 LTS</a>)。</p>
+<blockquote>
 <ul>
-<li>Markdown 语法</li>
+<li>docker 依赖。</li>
+</ul>
+</blockquote>
+<p>过程略。</p>
+<p>完成后设置服务器 IP 为静态 IP <code>192.168.3.12</code>。</p>
+</li>
+<li>
+<p>安装 <code>docker-compose</code>。</p>
+<blockquote>
+<ul>
+<li>
+<p>过程参考自 Docker Compose <a href="https://docs.docker.com/engine/installation/linux/ubuntulinux/">Install Docker Compose - Ubuntu installation</a> 。</p>
+</li>
+<li>
+<p>这里是全新安装。如果是升级安装请参阅<a href="https://docs.docker.com/engine/installation/linux/ubuntulinux/">官方文档</a>。</p>
+</li>
+</ul>
+</blockquote>
+<div class="highlight"><pre># 确保 apt 已更新
+sudo apt-get update
+sudo apt-get install apt-transport-https ca-certificates
+
+# 增加 GPG key
+sudo apt-key adv \
+--keyserver hkp://p80.pool.sks-keyservers.net:80 \
+--recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+
+# 更新源列表
+echo &#39;deb https://apt.dockerproject.org/repo ubuntu-xenial main&#39; &gt; docker.list
+sudo mv -f docker.list /etc/apt/sources.list.d/docker.list
+
+# 更新软件源
+sudo apt-get update
+
+# 安装推荐包
+sudo apt-get install linux-image-extra-$(uname -r)
+
+# 安装并启动 Docker
+sudo apt-get install docker-engine
+sudo service docker start
+</pre></div>
+
+
+</li>
+<li>
+<p>环境准备完成。</p>
+</li>
+</ol>
+<h2>安装与配置</h2>
+<ol>
+<li>
+<p>创建并进入工作路径。</p>
+<div class="highlight"><pre>mkdir -p ~/docker-test
+cd ~/docker-test
+sudo mkdir -p ~/gitlab
+ln -s ~/gitlab gitlab
+</pre></div>
+
+
+</li>
+<li>
+<p>创建 <code>docker-compose.yml</code>。</p>
+<div class="highlight"><pre>cat &gt;docker-compose.yml &lt;&lt;TEXT
+web:
+  image: &#39;gitlab/gitlab-ce:latest&#39;
+  restart: always
+  hostname: &#39;192.168.3.12&#39;
+  environment:
+    GITLAB_OMNIBUS_CONFIG: |
+      external_url &#39;http://192.168.3.12&#39;
+      # Add any other gitlab.rb configuration here, each on its own line
+  ports:
+    - &#39;80:80&#39;
+    - &#39;443:443&#39;
+    - &#39;2201:22&#39;
+  volumes:
+    - &#39;`readlink -f gitlab`/config:/etc/gitlab&#39;
+    - &#39;`readlink -f gitlab`/logs:/var/log/gitlab&#39;
+    - &#39;`readlink -f gitlab`/data:/var/opt/gitlab&#39;
+TEXT
+</pre></div>
+
+
+</li>
+<li>
+<p>首次启动 GitLab 服务。</p>
+<blockquote>
+<ul>
+<li>需要下载 image ，会耗时，但是有进度条看得到。</li>
+<li>每次启动 GitLab 需等待约 5 分钟才可以开始访问，中间如果在后台做操作可能会使安装失败。</li>
+</ul>
+</blockquote>
+<div class="highlight"><pre>sudo docker-compose up -d
+</pre></div>
+
+
+</li>
+<li>
+<p>访问 GitLab 设置 <code>root</code> 用户的初始密码。</p>
+<p>浏览器打开 <a href="http://192.168.3.12">http://192.168.3.12</a> ，在页面中按提示操作。</p>
+</li>
+<li>
+<p>停止 GitLab 服务。</p>
+<div class="highlight"><pre>sudo docker-compose stop
+</pre></div>
+
+
+</li>
+<li>
+<p>修改配置文件 <code>~/gitlab/config/gitlab.rb</code> 。</p>
+<blockquote>
+<ul>
+<li>这里<big>不是 Shell 命令</big>，而是文件内容文本。</li>
+<li>文件中配置的详细说明，参见<a href="https://gitlab.com/gitlab-org/omnibus-gitlab/tree/master/doc/settings">文档</a>。此文件中大多段落也有该段落的文档链接。</li>
+</ul>
+</blockquote>
+<div class="highlight"><pre>gitlab_rails[&#39;gitlab_shell_ssh_port&#39;] = 2201 # default 22
+</pre></div>
+
+
+</li>
+<li>
+<p>启动 GitLab 服务。</p>
+<div class="highlight"><pre>sudo docker-compose up -d
+</pre></div>
+
+
+</li>
+<li>
+<p>安装完毕，已可正常使用。</p>
+</li>
+</ol>
+<h2>管理 GitLab</h2>
+<ul>
+<li>
+<p>启动 GitLab 服务。</p>
+<div class="highlight"><pre>sudo docker-compose up -d
+</pre></div>
+
+
+</li>
+<li>
+<p>停止 GitLab 服务。</p>
+<div class="highlight"><pre>sudo docker-compose stop
+</pre></div>
+
+
+</li>
+<li>
+<p>销毁 GitLab 服务。（停止服务并删除容器）</p>
+<div class="highlight"><pre>sudo docker-compose down
+</pre></div>
+
+
+</li>
+<li>
+<p>升级 GitLab 服务。</p>
+<p>参见官方文档中 <a href="http://docs.gitlab.com/omnibus/docker/#update-gitlab-using-docker-compose">Update GitLab using Docker compose</a> 章节。</p>
+</li>
 </ul>
 	<hr/>
-	<h6>Written by <a href="/author/levi-g.html">Levi G</a> in <a href="/category/test.html">Test</a> on 一 15 六月 2015. Tags: <a href="/tag/pelican.html">pelican</a>, <a href="/tag/publishing.html">publishing</a>, <a href="/tag/test.html">test</a>, <a href="/tag/server.html">server</a>, </h6>
+	<h6>Written by <a href="/author/levi-g.html">Levi G</a> in <a href="/category/system.html">system</a> on 五 12 八月 2016. Tags: <a href="/tag/server.html">server</a>, <a href="/tag/install.html">install</a>, <a href="/tag/gitlab.html">gitlab</a>, <a href="/tag/docker.html">docker</a>, </h6>
 </article>
 
 <hr/>
@@ -117,8 +330,8 @@
      */
     //*
     var disqus_config = function () {
-        this.page.url = empty-test.html;  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = empty-test; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = gitlab-docker-compose-install.html;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = gitlab-docker-compose-install; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     //*/
     (function() {  // DON'T EDIT BELOW THIS LINE

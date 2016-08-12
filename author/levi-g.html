@@ -97,6 +97,58 @@
 						<div class="medium-9 small-12 columns" role="content">
 
 <article>
+	<h3><a href="/gitlab-docker-compose-install.html">使用 Docker Compose 搭建本地 GitLab 服务器</a></h3>
+	<h6>Written by <a href="/author/levi-g.html">Levi G</a> in <a href="/category/system.html">system</a> on 五 12 八月 2016. Tags: <a href="/tag/server.html">server</a>, <a href="/tag/install.html">install</a>, <a href="/tag/gitlab.html">gitlab</a>, <a href="/tag/docker.html">docker</a>, </h6>
+	<h1>软件安装</h1>
+<blockquote>
+<p>过程主要参考自 <a href="http://docs.gitlab.com/omnibus/">Omnibus GitLab 官方文档</a>中 <a href="http://docs.gitlab.com/omnibus/docker/#install-gitlab-using-docker-compose">install GitLab using docker-compose</a> 章节。</p>
+</blockquote>
+<h2>设置项选择</h2>
+<table>
+<thead>
+<tr>
+<th>设置项</th>
+<th>值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>安装版本</td>
+<td><code>gitlab-ce</code></td>
+<td></td>
+</tr>
+<tr>
+<td>服务器 IP</td>
+<td><code>192.168.3.12</code></td>
+<td>Docker 容器</td>
+</tr>
+<tr>
+<td>工作目录</td>
+<td><code>~/docker-test</code></td>
+<td>容器(集)配置所在路径，此次安装主要工作路径</td>
+</tr>
+<tr>
+<td>服务目录</td>
+<td><code>~/gitlab</code></td>
+<td>GitLab 服务使用的文件将保存在此处</td>
+</tr>
+<tr>
+<td>HTTP 端口</td>
+<td><code>80</code></td>
+<td>唯一 Web 服务，可以独占端口</td>
+</tr>
+<tr>
+<td>SSH 端口</td>
+<td><code>2201</code></td>
+<td>Docker 主机使用了缺省的 22 端口</td>
+</tr>
+<tr>
+<td>访问地址 ...</td></tr></tbody></table>
+		<p class="continue"><a href="/gitlab-docker-compose-install.html">Continue reading &raquo;</a></p>
+</article>
+<hr />
+<article>
 	<h3><a href="/the-witness-puzzles.html">见证者游戏谜题解析</a></h3>
 	<h6>Written by <a href="/author/levi-g.html">Levi G</a> in <a href="/category/blogging.html">blogging</a> on 三 17 二月 2016. Tags: <a href="/tag/game.html">game</a>, <a href="/tag/puzzle.html">puzzle</a>, <a href="/tag/math.html">math</a>, </h6>
 	<p><img alt="image" src="images/the-witness-puzzles_maze.png" /></p>
@@ -249,18 +301,21 @@
 							<div class="panel">
 								<h5>Tags</h5>
 								<ul class="tag-cloud">
-									<li><a href="/tag/puzzle.html" class="tag-4">puzzle</a></li>
+									<li><a href="/tag/gitlab.html" class="tag-4">gitlab</a></li>
+									<li><a href="/tag/pelican.html" class="tag-1">pelican</a></li>
+									<li><a href="/tag/sip.html" class="tag-4">sip</a></li>
+									<li><a href="/tag/install.html" class="tag-4">install</a></li>
 									<li><a href="/tag/el-capitan.html" class="tag-4">el capitan</a></li>
-									<li><a href="/tag/math.html" class="tag-4">math</a></li>
+									<li><a href="/tag/puzzle.html" class="tag-4">puzzle</a></li>
+									<li><a href="/tag/docker.html" class="tag-4">docker</a></li>
+									<li><a href="/tag/server.html" class="tag-1">server</a></li>
+									<li><a href="/tag/os-x.html" class="tag-4">os x</a></li>
+									<li><a href="/tag/kernel_task.html" class="tag-4">kernel_task</a></li>
+									<li><a href="/tag/try.html" class="tag-2">try</a></li>
+									<li><a href="/tag/test.html" class="tag-1">test</a></li>
 									<li><a href="/tag/game.html" class="tag-4">game</a></li>
 									<li><a href="/tag/publishing.html" class="tag-4">publishing</a></li>
-									<li><a href="/tag/test.html" class="tag-1">test</a></li>
-									<li><a href="/tag/server.html" class="tag-2">server</a></li>
-									<li><a href="/tag/kernel_task.html" class="tag-4">kernel_task</a></li>
-									<li><a href="/tag/pelican.html" class="tag-1">pelican</a></li>
-									<li><a href="/tag/try.html" class="tag-2">try</a></li>
-									<li><a href="/tag/os-x.html" class="tag-4">os x</a></li>
-									<li><a href="/tag/sip.html" class="tag-4">sip</a></li>
+									<li><a href="/tag/math.html" class="tag-4">math</a></li>
 								</ul>
 							</div>
 
