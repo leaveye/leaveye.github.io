@@ -55,6 +55,7 @@
 						<li><label>Categories</label></li>
 							<li ><a href="/category/blogging.html">blogging</a></li>
 							<li ><a href="/category/linux.html">Linux</a></li>
+							<li ><a href="/category/server.html">Server</a></li>
 							<li ><a href="/category/system.html">system</a></li>
 							<li ><a href="/category/test.html">Test</a></li>
 
@@ -83,6 +84,7 @@
 						<ul class="left">
 								<li ><a href="/category/blogging.html">blogging</a></li>
 								<li ><a href="/category/linux.html">Linux</a></li>
+								<li ><a href="/category/server.html">Server</a></li>
 								<li ><a href="/category/system.html">system</a></li>
 								<li ><a href="/category/test.html">Test</a></li>
 						</ul>
@@ -104,54 +106,40 @@
 							</div>
 
 <article>
+	<h3><a href="/building-a-vagrant-box.html">从头到尾做 Vagrant Box</a></h3>
+	<h6>Written by <a href="/author/levi-g.html">Levi G</a> in <a href="/category/server.html">Server</a> on 一 19 十二月 2016. Tags: <a href="/tag/vagrant.html">vagrant</a>, <a href="/tag/virtualization.html">virtualization</a>, <a href="/tag/server.html">server</a>, </h6>
+	<p>译自：<a href="https://blog.engineyard.com/2014/building-a-vagrant-box">https://blog.engineyard.com/2014/building-a-vagrant-box</a><br/>
+<img alt="Original LOGO" src="https://blog.engineyard.com/images/blog-images/vagrant-box.png"/></p>
+<blockquote>
+<p><strong>注：</strong>本文原发布于 tylerbird.org 今年的 blog 。最近在 Engine Yard 发布大众更新版本。</p>
+</blockquote>
+
+<p>Vagrant 的目标是简化在本地创建开发环境，接触上之后，你再也不会想用其它方式了。只用两个简单的命令，你就可以安装你的第一个 vagrant 环境；再使用第三个命令，就可以连接到你的第一个 vagrant box 了，这些总共也用不了几分钟。</p>
+<pre><code>vagrant init precise32 http://files.vagrantup.com/precise32.box
+vagrant up
+vagrant ssh # 你连进来了！
+</code></pre>
+<p>这工具效率高的惊人，而且对那些在许多不同项目中工作的自由职业者，或是需要让队伍新成员尽快上手的公司来说，太有用了。使用 ...</p>
+		<p class="continue"><a href="/building-a-vagrant-box.html">Continue reading &raquo;</a></p>
+</article>
+<hr />
+<article>
 	<h3><a href="/gitlab-docker-compose-install.html">使用 Docker Compose 搭建本地 GitLab 服务器</a></h3>
 	<h6>Written by <a href="/author/levi-g.html">Levi G</a> in <a href="/category/system.html">system</a> on 五 12 八月 2016. Tags: <a href="/tag/server.html">server</a>, <a href="/tag/install.html">install</a>, <a href="/tag/gitlab.html">gitlab</a>, <a href="/tag/docker.html">docker</a>, </h6>
-	<h1>软件安装</h1>
+	<h1 id="_1">软件安装</h1>
 <blockquote>
 <p>过程主要参考自 <a href="http://docs.gitlab.com/omnibus/">Omnibus GitLab 官方文档</a>中 <a href="http://docs.gitlab.com/omnibus/docker/#install-gitlab-using-docker-compose">install GitLab using docker-compose</a> 章节。</p>
 </blockquote>
-<h2>设置项选择</h2>
-<table>
-<thead>
-<tr>
-<th>设置项</th>
-<th>值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>安装版本</td>
-<td><code>gitlab-ce</code></td>
-<td></td>
-</tr>
-<tr>
-<td>服务器 IP</td>
-<td><code>192.168.3.12</code></td>
-<td>Docker 容器</td>
-</tr>
-<tr>
-<td>工作目录</td>
-<td><code>~/docker-test</code></td>
-<td>容器(集)配置所在路径，此次安装主要工作路径</td>
-</tr>
-<tr>
-<td>服务目录</td>
-<td><code>~/gitlab</code></td>
-<td>GitLab 服务使用的文件将保存在此处</td>
-</tr>
-<tr>
-<td>HTTP 端口</td>
-<td><code>80</code></td>
-<td>唯一 Web 服务，可以独占端口</td>
-</tr>
-<tr>
-<td>SSH 端口</td>
-<td><code>2201</code></td>
-<td>Docker 主机使用了缺省的 22 端口</td>
-</tr>
-<tr>
-<td>访问地址 ...</td></tr></tbody></table>
+<h2 id="_2">设置项选择</h2>
+<p>|设置项|值|备注|
+|-|-|-|
+|安装版本|<code>gitlab-ce</code>||
+|服务器 IP|<code>192.168.3.12</code>|Docker 容器|
+|工作目录|<code>~/docker-test</code>|容器(集)配置所在路径，此次安装主要工作路径|
+|服务目录|<code>~/gitlab</code>|GitLab 服务使用的文件将保存在此处|
+|HTTP 端口|<code>80</code>|唯一 Web 服务，可以独占端口|
+|SSH 端口|<code>2201</code>|Docker 主机使用了缺省的 22 端口|
+|访问地址 ...</p>
 		<p class="continue"><a href="/gitlab-docker-compose-install.html">Continue reading &raquo;</a></p>
 </article>
 <hr />
@@ -163,7 +151,7 @@
 <p>反正没花力气，所以也不用心疼……<br />
 —— <a href="/author/levi-g.html">Levi G.</a></p>
 </blockquote>
-<h2>选择</h2>
+<h2 id="_1">选择</h2>
 <p>三天前决定并开始动手，把 blog 放 Github 上面。用了半天的时间，比较过 jekyll 和 pelican 后，还是选择了 pelican 。毕竟 python 在安装上还是要比 Ruby 方便许多的。这对于我这样时不时换工作机的人还是个很大的优势。</p>
 <p>我对 blog 的需求其实还挺烦人的。语法高亮、主题定制是基本的，$\LaTeX$ 是必须的，要是有 graphviz 、序列图的支持就更好了。</p>
 <p>现在的各种工具，语法高亮、主题定制都是必备功能了，产生差异的就只是配套内容的多寡了。粗略看了下 <a href="https://github.com/getpelican/pelican-themes" title="pelican 主题包">pelican-themes</a> 虽然没有 <a href="http://jekyllthemes.org" title="Jekyll 主题包">Jekyll Themes</a> 看上去那么完整 ...</p>
@@ -173,7 +161,7 @@
 <article>
 	<h3><a href="/empty-test.html">Anot`her 测`试 $e^x$ !</a></h3>
 	<h6>Written by <a href="/author/levi-g.html">Levi G</a> in <a href="/category/test.html">Test</a> on 一 15 六月 2015. Tags: <a href="/tag/pelican.html">pelican</a>, <a href="/tag/publishing.html">publishing</a>, <a href="/tag/test.html">test</a>, <a href="/tag/server.html">server</a>, </h6>
-	<h2>测试</h2>
+	<h2 id="_1">测试</h2>
 <ul>
 <li>Markdown 语法</li>
 </ul>
@@ -200,24 +188,26 @@
 							<div class="panel">
 								<h5>Tags</h5>
 								<ul class="tag-cloud">
-									<li><a href="/tag/os-x.html" class="tag-4">os x</a></li>
-									<li><a href="/tag/try.html" class="tag-2">try</a></li>
-									<li><a href="/tag/install.html" class="tag-4">install</a></li>
-									<li><a href="/tag/rules.html" class="tag-4">rules</a></li>
-									<li><a href="/tag/docker.html" class="tag-4">docker</a></li>
-									<li><a href="/tag/gitlab.html" class="tag-4">gitlab</a></li>
-									<li><a href="/tag/pelican.html" class="tag-1">pelican</a></li>
-									<li><a href="/tag/kernel_task.html" class="tag-4">kernel_task</a></li>
-									<li><a href="/tag/publishing.html" class="tag-4">publishing</a></li>
-									<li><a href="/tag/math.html" class="tag-4">math</a></li>
-									<li><a href="/tag/game.html" class="tag-4">game</a></li>
-									<li><a href="/tag/linux.html" class="tag-4">linux</a></li>
 									<li><a href="/tag/sip.html" class="tag-4">sip</a></li>
-									<li><a href="/tag/test.html" class="tag-1">test</a></li>
-									<li><a href="/tag/server.html" class="tag-1">server</a></li>
-									<li><a href="/tag/udev.html" class="tag-4">udev</a></li>
+									<li><a href="/tag/install.html" class="tag-4">install</a></li>
+									<li><a href="/tag/pelican.html" class="tag-1">pelican</a></li>
+									<li><a href="/tag/try.html" class="tag-2">try</a></li>
+									<li><a href="/tag/math.html" class="tag-4">math</a></li>
+									<li><a href="/tag/rules.html" class="tag-4">rules</a></li>
+									<li><a href="/tag/gitlab.html" class="tag-4">gitlab</a></li>
+									<li><a href="/tag/linux.html" class="tag-4">linux</a></li>
+									<li><a href="/tag/publishing.html" class="tag-4">publishing</a></li>
+									<li><a href="/tag/os-x.html" class="tag-4">os x</a></li>
 									<li><a href="/tag/puzzle.html" class="tag-4">puzzle</a></li>
+									<li><a href="/tag/kernel_task.html" class="tag-4">kernel_task</a></li>
+									<li><a href="/tag/game.html" class="tag-4">game</a></li>
+									<li><a href="/tag/server.html" class="tag-1">server</a></li>
+									<li><a href="/tag/vagrant.html" class="tag-4">vagrant</a></li>
+									<li><a href="/tag/virtualization.html" class="tag-4">virtualization</a></li>
+									<li><a href="/tag/test.html" class="tag-1">test</a></li>
 									<li><a href="/tag/el-capitan.html" class="tag-4">el capitan</a></li>
+									<li><a href="/tag/udev.html" class="tag-4">udev</a></li>
+									<li><a href="/tag/docker.html" class="tag-4">docker</a></li>
 								</ul>
 							</div>
 

@@ -55,6 +55,7 @@
 						<li><label>Categories</label></li>
 							<li ><a href="/category/blogging.html">blogging</a></li>
 							<li class="active"><a href="/category/linux.html">Linux</a></li>
+							<li ><a href="/category/server.html">Server</a></li>
 							<li ><a href="/category/system.html">system</a></li>
 							<li ><a href="/category/test.html">Test</a></li>
 
@@ -83,6 +84,7 @@
 						<ul class="left">
 								<li ><a href="/category/blogging.html">blogging</a></li>
 								<li class="active"><a href="/category/linux.html">Linux</a></li>
+								<li ><a href="/category/server.html">Server</a></li>
 								<li ><a href="/category/system.html">system</a></li>
 								<li ><a href="/category/test.html">Test</a></li>
 						</ul>
@@ -106,80 +108,25 @@ Version 0.74</p>
 <li><a href="http://www.reactivated.net/writing_udev_rules.html">http://www.reactivated.net/writing_udev_rules.html</a> (英文版)</li>
 <li><a href="http://blog.levi-g.info/writing-udev-rules.html">http://blog.levi-g.info/writing-udev-rules.html</a> (中文版)</li>
 </ul>
-<h2 id="_1">目录<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<div class="toc">
-<ul>
-<li><a href="#_1">目录</a></li>
-<li><a href="#_2">介绍</a><ul>
-<li><a href="#_3">关于本文档</a></li>
-<li><a href="#_4">更新历史</a></li>
-</ul>
-</li>
-<li><a href="#_5">概念</a><ul>
-<li><a href="#devfs-sysfs-nodes">语义: devfs, sysfs, nodes 等</a></li>
-<li><a href="#_6">为什么？</a></li>
-<li><a href="#_7">内置固定命名方案</a></li>
-</ul>
-</li>
-<li><a href="#_8">规则书写</a><ul>
-<li><a href="#_9">规则文件和语义</a></li>
-<li><a href="#_10">规则语法</a></li>
-<li><a href="#_11">基本规则</a></li>
-<li><a href="#sysfs">匹配 sysfs 属性</a></li>
-<li><a href="#_12">设备级联</a></li>
-<li><a href="#_13">字符串替换</a></li>
-<li><a href="#_14">字符串匹配</a></li>
-</ul>
-</li>
-<li><a href="#sysfs_1">从 sysfs 中查找信息</a><ul>
-<li><a href="#sysfs_2">sysfs 树</a></li>
-<li><a href="#udevinfo">udevinfo</a></li>
-<li><a href="#_15">替代方法</a></li>
-</ul>
-</li>
-<li><a href="#_16">高级话题</a><ul>
-<li><a href="#_17">控制权限和所有权</a></li>
-<li><a href="#_18">使用外部程序来命名设备</a></li>
-<li><a href="#_19">特定事件发生时运行外部程序</a></li>
-<li><a href="#_20">环境交互</a></li>
-<li><a href="#_21">额外选项</a></li>
-</ul>
-</li>
-<li><a href="#_22">例子</a><ul>
-<li><a href="#usb">USB 打印机</a></li>
-<li><a href="#usb_1">USB相机</a></li>
-<li><a href="#usb_2">USB硬盘</a></li>
-<li><a href="#usb_3">USB读卡器</a></li>
-<li><a href="#usb-palm">USB Palm 导航仪</a></li>
-<li><a href="#_23">光驱</a></li>
-<li><a href="#_24">网卡接口</a></li>
-</ul>
-</li>
-<li><a href="#_25">测试和调试</a><ul>
-<li><a href="#_26">让你的规则跑起来</a></li>
-<li><a href="#udevtest">udevtest</a></li>
-</ul>
-</li>
-<li><a href="#_27">作者以及联系方式</a></li>
-</ul>
-</div>
-<h2 id="_2">介绍<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<h3 id="_3">关于本文档<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h2 id="_1">目录</h2>
+
+<h2 id="_2">介绍</h2>
+<h3 id="_3">关于本文档</h3>
 <p>udev 面向 2.6 及以上的 Linux 内核，提供带有固定设备命名的，动态 /dev 目录的，用户空间解决方案。之前的 /dev 实现 <em>devfs</em> 现已被废弃，udev 成为继任者。udev vs devfs 是一个敏感的谈话内容，在进行比较之前你应该读一下<a href="http://kernel.org/pub/linux/utils/kernel/hotplug/udev_vs_devfs">这个文档</a>。</p>
 <p>几年间，如同规则自身的弹性，你为之使用 udev 规则的设备变化了。在现代系统中，udev 为系统外的设备类型提供了固定的命名方法，避免了为这些设备提供定制规则。然而一些用户仍然需要额外的定制级别。</p>
 <p>本文档假设你已经安装了 udev 并使用缺省配置运行良好。这通常是通过你的 Linux 发行版做到的。</p>
 <p>本文档不会覆盖规则书写的方方面面，只集中介绍所有主要概念。更多细节信息可以在 udev 的 man 页面中找到。</p>
 <p>本文档使用各种例子（一些完全是虚构的）来阐述观点和概念。不是所有语法都会显式的在附带文本中描述，请确信通过查看例子规则来获取完整的理解。</p>
-<h3 id="_4">更新历史<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h3 id="_4">更新历史</h3>
 <p>(略)</p>
-<h2 id="_5">概念<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<h3 id="devfs-sysfs-nodes">语义: devfs, sysfs, nodes 等<a class="headerlink" href="#devfs-sysfs-nodes" title="Permanent link">&para;</a></h3>
+<h2 id="_5">概念</h2>
+<h3 id="devfs-sysfs-nodes">语义: devfs, sysfs, nodes 等</h3>
 <p>仅仅是基本介绍，可能并不完全准确。</p>
 <p>在典型的基于 Linux 的系统中，<em>/dev</em> 目录用来存储文件一样的设备节点（<strong>nodes</strong>），它们指向系统中特定的设备。每一个节点指向系统的一部分（一个设备），可能存在也可能不存在。用户空间应用程序可以使用这些设备节点跟系统硬件打交道，例如，X 服务器“监听” /dev/input/mice 来根据用户的鼠标移动来移动可视鼠标指针。</p>
 <p>原始的 <em>/dev</em> 目录在设备可能在系统中出现时就产生，因此 /dev 目录一般非常大。随之而来的 <strong>devfs</strong> 提供了一种易于管理的途径（注意它仅仅在硬件插入到系统中时产生 /dev ）以及其他功能，但系统会出现无法轻松修复的问题。</p>
 <p><strong>udev</strong> 是一种“新”的管理 <em>/dev</em> 目录的方法，它的设计清除了以前的 <em>/dev</em> 实现的一些问题，并提供了鲁棒的路径以向后兼容。为了创建并命名系统中相应的 <em>/dev</em> 设备结点，udev 需要依赖于根据用户提供的规则从 <em>sysfs</em> 中得到的匹配信息。本文着重规则书写的详细过程，udev 相关的任务（或许）要由用户自己完成。</p>
 <p><strong>sysfs</strong> 是 2.6 内核中一个新的文件系统。它由内核管理，并导出当前系统中插入的设备基本信息。udev 可使用这些信息创建对应的硬件设备结点。sysfs 挂载在 <em>/sys</em> 下且可浏览。你可能很希望在使用 udev 之前刺探下存储在那儿的有关文件。本文中，我将等同地使用 <em>/sys</em> 和 <em>sysfs</em> 术语。</p>
-<h3 id="_6">为什么？<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<h3 id="_6">为什么？</h3>
 <p>udev 规则有弹性且非常强大。这里是一些你使用规则可以达成的结果：</p>
 <ul>
 <li>重命名设备节点的缺省名字为其他名字</li>
@@ -191,27 +138,27 @@ Version 0.74</p>
 </ul>
 <p>当存在的特定设备没有设备节点时，这_不是_书写规则的工作范围。即使没有匹配的规则，udev 也会利用内核提供的缺省名字来创建设备节点.</p>
 <p>拥有固定命名的设备节点有很多好处。假设你有两个 USB 存储设备：一个数码相机，一个是 USB 闪存盘。通常这两个设备被赋予 <em>/dev/sda</em> 和 <em>/dev/sdb</em> 设备节点，然而准确的赋值取决于它们连接到系统的顺序。这可能为一些用户造成麻烦，如果每个设备每次都可以固定命名，比如 <em>/dev/camera</em> 和 <em>/dev/flashdisk</em>，用户就会获益。</p>
-<h3 id="_7">内置固定命名方案<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<h3 id="_7">内置固定命名方案</h3>
 <p>udev 为系统外的一些设备类型提供了固定命名。这是一个很有用的特性，在大多情况下意味着你不用书写任何规则。</p>
 <p>udev 为存储设备在 <em>/dev/disk</em> 目录下提供了系统外命名方法。要查看它为你的存储硬件创建的固定命名，你可以使用下列命令：</p>
 <pre><code>#ls -lR /dev/disk
 </code></pre>
 <p>所有存储类型都可以这么用。例如，udev 为我的根分区创建了固定命名链接 <em>/dev/disk/by-id/scsi-SATA_ST3120827AS_4MS1NDXZ-part3</em>。当我插入我的 USB 闪存盘，udev 就会创建另外一个固定命名节点 <em>/dev/disk/by-id/usb-Prolific_Technology_Inc._USB_Mass_Storage_Device-part1</em>。</p>
-<h2 id="_8">规则书写<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
-<h3 id="_9">规则文件和语义<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<h2 id="_8">规则书写</h2>
+<h3 id="_9">规则文件和语义</h3>
 <p>为决定如何命名设备以及执行什么额外动作，udev 会读取一系列规则文件。这些文件保存在 <em>/etc/udev/rules.d</em> 目录下并且都必须有 <em>.rules</em> 后缀名。</p>
 <p>缺省udev规则存储在 <em>/etc/udev/rules.d/50-udev.rules</em> 里面。你可能发现整个文件很有意思，它包含了少量例子，继而是一些提供了 devfs 风格 /dev 布局的缺省规则。但是你不应该直接在这个文件里面书写规则。</p>
 <p>/etc/udev/rules.d/ 下面的文件按字典序解析，在某些情况下，规则文件的解析顺序很重要。通常来说你希望你的规则可以在缺省规则之前解析，所以我建议你创建一个文件 <em>/etc/udev/rules.d/10-local.rules</em> 并把自己的所有规则写到这里面去。</p>
 <p>在一个规则文件中，以 <code>#</code> 开头的行被认为是注释。除此之外每一个非空的行都是一条规则。规则不能跨越多行。</p>
 <p>一个设备可以被多条规则匹配到。实用方面这有优势。例如，我们可以写两个匹配同一个设备的规则，每一个规则为设备提供了它自己的替代命名。即使分开在不同的文件中，两个替代命名也都会被创。要明白 udev 在找到一个匹配规则后<em>不会</em>停止处理其他规则，它仍然会继续查找并尝试应用已知的每条规则，这很重要。</p>
-<h3 id="_10">规则语法<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<h3 id="_10">规则语法</h3>
 <p>每条规则由一系列逗号分隔的键值对组成。<strong>匹配</strong>键是用来识别要应用规则的设备的条件。当规则中对应设备的_所有_匹配键被涉及时，就会应用规则并且触发<strong>赋值</strong>键的行为。每条规则应该包含至少一个匹配键和至少一个赋值键。</p>
 <p>这是用来阐述上面内容的一个例子规则：</p>
 <pre><code>KERNEL=="hdb", NAME="my_spare_disk"
 </code></pre>
 <p>上述规则包含一个匹配键（<em>KERNEL</em>）以及一个赋值键（<em>NAME</em>）。这些键和它们属性的语义将在稍后具体说明。重点注意到匹配键通过连等号（==）与它的值联系起来, 赋值键通过等号（=）与它的值关联。</p>
 <p>注意 udev 不支持任何形式的行连接符。不要在你的规则种插入任何断行符，这将会导致 udev 把你的一条规则看做是多条规则，不会按预期工作。</p>
-<h3 id="_11">基本规则<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<h3 id="_11">基本规则</h3>
 <p>udev 提供许多用来书写精确匹配规则的匹配键。其中一些常用键将在下面介绍，其他将在文档的后面说明。完整列表可以查看 udev 的 man 页面.</p>
 <ul>
 <li><strong>KERNEL</strong> - 匹配内核为设备的命名</li>
@@ -233,13 +180,13 @@ Version 0.74</p>
 <pre><code>KERNEL=="hdc", SYMLINK+="cdrom cdrom0"
 </code></pre>
 <p>上面规则很可能就是你要写的典型规则。它在 <em>/dev/cdrom</em> 和 <em>/dev/cdrom0</em> 创建了两个指向 <em>/dev/hdc</em> 的符号链接。也没有指定 NAME 赋值，所以使用缺省的内核命名（hdc）。</p>
-<h3 id="sysfs">匹配 sysfs 属性<a class="headerlink" href="#sysfs" title="Permanent link">&para;</a></h3>
+<h3 id="sysfs">匹配 sysfs 属性</h3>
 <p>到目前为止介绍的匹配键仅仅提供了有限的匹配能力。实际上我们需要更加优良的控制：我们想基于设备的高级属性来识别设备，如供应商编码、产品编号、序列号、存储能力、分区数等等。</p>
 <p>很多驱动导出这些信息到 sysfs ，udev 允许我们使用 ATTR 键通过稍捎不同的语法来将 sysfs 匹配纳入规则中。</p>
 <p>这里有一个匹配 sysfs 中单一属性的例子。文后会提供更多细节来帮助你基于 sysfs 属性书写规则。</p>
 <pre><code>SUBSYSTEM=="block", ATTR{size}=="234441648", SYMLINK+="my_disk"
 </code></pre>
-<h3 id="_12">设备级联<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<h3 id="_12">设备级联</h3>
 <p>Linux 内核实际上以树状结构展示设备，这个信息通过 sysfs 显露出来，在书写规则时这非常有用。例如我的硬盘设备展示为一个 SCSI 磁盘设备的孩子，这个 SCSI 磁盘设备又是一个串行 ATA 控制器设备的孩子，该控制器又是 PCI 总线设备的孩子。你很有可能发现你需要从一个讨论中的设备的祖先那里引用信息，比如我的硬盘设备的序列号在设备级别并不暴露出来, 而是在 SCSI 磁盘级别通过它的直接双亲展现。</p>
 <p>目前介绍的四个主要匹配键（KERNEL/SUBSYSTEM/DRIVER/ATTR）仅仅跟对应设备的值匹配，不能跟双亲设备的值匹配。udev 提供了在树中向上查找的匹配键变种：</p>
 <ul>
@@ -249,7 +196,7 @@ Version 0.74</p>
 <li><strong>ATTRS</strong> - 匹配设备的 sysfs 属性，或任何祖先设备的 sysfs 属性</li>
 </ul>
 <p>由于在心里要考虑到级联结构，你可能感觉到规则书写变的有点复杂了。歇一会吧，有工具可以帮助我们的，后文再表。</p>
-<h3 id="_13">字符串替换<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<h3 id="_13">字符串替换</h3>
 <p>当编写意图要处理多个相似设备的规则时，udev 的 <em>printf 风格的字符串替换操作符</em>就非常有用了。你可以在你的规则里面的任何赋值里面包含这些操作符，udev 在执行它们时会对其求值。</p>
 <p>最常用的操作符是 <strong>%k</strong> 和 <strong>%n</strong> 。%k 求值为设备的内核命名，例如字符串“sda3”之于（缺省）出现在 <em>/dev/sda3</em> 的设备。%n 求值为设备的内核号码（存储设备的分区号），例如“3”之于 <em>/dev/sda3</em> 。</p>
 <p>udev 也提供了一些高级功能替换操作符。在读完本文剩下内容后可以查询 udev 的 man 页面。以上例子中的操作符也有一个替代语法—— <strong>\$kernel</strong> 和 <strong>\$number</strong> 。因此如果你希望在规则中匹配字符 % ，你必须写成 %% ；如果你希望匹配字符 \$ ，你必须写成 \$\$ 。</p>
@@ -259,7 +206,7 @@ KERNEL=="loop0", NAME="loop/%n", SYMLINK+="%k"
 </code></pre>
 <p>第一条规则确保鼠标设备节点仅仅出现在 <em>/dev/input</em> 目录下（缺省是在 <em>/dev/mice</em> 下面）。第二条规则确保名为 loop0 的设备节点在 <em>/dev/loop/0</em> 创建，但也会照常在 <em>/dev/loop0</em> 创建一个符号链接。</p>
 <p>上面规则的使用都比较可疑，因为他们都可以通过不使用任何替换操作符来重写。这些替换的真正威力将会在下一节显现。</p>
-<h3 id="_14">字符串匹配<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<h3 id="_14">字符串匹配</h3>
 <p>不仅有字符串精确匹配，udev 也允许你使用 shell 风格的模式匹配。支持3种模式：</p>
 <ul>
 <li><strong>*</strong> - 匹配任何字符，0 次或多次</li>
@@ -271,8 +218,8 @@ KERNEL=="loop0", NAME="loop/%n", SYMLINK+="%k"
 KERNEL=="hiddev*", NAME="usb/%k"
 </code></pre>
 <p>第一条规则匹配所有软盘驱动，确保设备节点放置在 <em>/dev/floppy</em> 目录下，也创建一个缺省命名的符号链接。第二条规则确保 hiddev 设备节点放在 <em>/dev/usb</em> 目录下面。</p>
-<h2 id="sysfs_1">从 sysfs 中查找信息<a class="headerlink" href="#sysfs_1" title="Permanent link">&para;</a></h2>
-<h3 id="sysfs_2">sysfs 树<a class="headerlink" href="#sysfs_2" title="Permanent link">&para;</a></h3>
+<h2 id="sysfs_1">从 sysfs 中查找信息</h2>
+<h3 id="sysfs_2">sysfs 树</h3>
 <p>从 sysfs 中获取关注信息的概念在之前的例子中已经触及。为基于这些信息书写规则，你首先需要知道属性名和他们的当前值。</p>
 <p>sysfs 实际上是一个非常简单的结构。逻辑上分成目录形式。每一个目录包含一定量的文件（属性），这些文件往往仅包含一个值。也会有一些符号链接，它们把设备链到双亲那里。级联结构已在上面说明了。</p>
 <p>一些目录被作为<em>顶层设备路径</em>引用。这些目录表示了拥有对应设备节点的实际设备。顶层设备路径可以被归类为包含 <em>dev</em> 文件的 sysfs 目录，下列命令可以列举出这些文件：</p>
@@ -285,7 +232,7 @@ KERNEL=="hiddev*", NAME="usb/%k"
 </code></pre>
 <p>在一个 udev 规则里面，我可以使用 ATTR{size}=="234441648" 来识别这个磁盘。因为 udev 遍历设备链，我可以使用 ATTRS 匹配链中另外一部分的属性（如 <em>/sys/class/block/sda/device</em> 中的属性），然而在处理链中不同部分时会有一些告诫，稍后描述。</p>
 <p>虽然对 sysfs 的结构和具体 udev 如何匹配值来说，梳理 sysfs 都是有用的介绍，但这是个既耗时也没必要的事。</p>
-<h3 id="udevinfo">udevinfo<a class="headerlink" href="#udevinfo" title="Permanent link">&para;</a></h3>
+<h3 id="udevinfo">udevinfo</h3>
 <p>你构造规则最直白的工具大概就是敲入 <em>udevinfo</em> 了。你需要知道的全部，就是问题设备的 sysfs 设备路径。下面是一个精简的例子（udevinfo 输出信息中，每段颜色不同，第一段绿色，第二段蓝色，第三段栗色，译者注）：</p>
 <pre><code># udevinfo -a -p /sys/block/sda
 
@@ -337,10 +284,10 @@ SUBSYSTEM=="block", SUBSYSTEMS=="scsi", ATTRS{model}=="ST3120827AS", NAME="my_ha
 <p>使用 udevinfo 的唯一复杂之处在于要求你知道顶级设备路径（例如上面例子中的 /sys/block/sda ）。这通常并不明显。但是，因为你通常是为已经存在的设备节点写规则，你可以自己使用 udevinfo 查找设备路径：</p>
 <pre><code>#udevinfo -a -p $(udevinfo -q path -n /dev/sda)
 </code></pre>
-<h3 id="_15">替代方法<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<h3 id="_15">替代方法</h3>
 <p>虽然 udevinfo 差不多是列举你要构建的规则的准确属性的最直接方式，但一些用户仍然乐于使用其它工具。诸如 <a href="http://www.kroah.com/linux/usb/">usbview</a> 的工具可以显示类似的信息集，这些信息大多也可以用在规则中。</p>
-<h2 id="_16">高级话题<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
-<h3 id="_17">控制权限和所有权<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<h2 id="_16">高级话题</h2>
+<h3 id="_17">控制权限和所有权</h3>
 <p>udev 允许你在规则中使用另外的赋值来控制每个设备的所有权和权限属性。</p>
 <p><em>GROUP</em> 赋值允许你定义哪个 Unix 组应该拥有设备节点。这里有一个例子规则，它定义 <em>video</em> 组拥有 framebuffer 设备：</p>
 <pre><code>KERNEL=="fb[0-9]*", NAME="fb/%n", SYMLINK+="%k", GROUP="video"
@@ -351,7 +298,7 @@ SUBSYSTEM=="block", SUBSYSTEMS=="scsi", ATTRS{model}=="ST3120827AS", NAME="my_ha
 <p>udev 缺省用 Unix 的 0660 权限（拥有者和组员可以读写）创建设备节点。需要的话你可以在特定设备的规则中包含 <em>MODE</em> 赋值键覆盖这些缺省值。作为例子，下面的规则定义了 inotify 节点可以被每个人读写：</p>
 <pre><code>KERNEL=="inotify", NAME="misc/%k", SYMLINK+="%k", MODE="0666"
 </code></pre>
-<h3 id="_18">使用外部程序来命名设备<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<h3 id="_18">使用外部程序来命名设备</h3>
 <p>某些情况下你可能要求比 udev 标准规则提供的更多弹性。这种情况下，你可以请求 udev 运行一个程序并运用程序的标准输出来提供设备命名。</p>
 <p>要使用这个功能，你只需简单的在 <em>PROGRAM</em> 赋值中指定要运行程序（以及任何参数）的绝对路径，然后在 NAME/SYMLINK 赋值中使用 <em>%c</em> 替换及其变种。</p>
 <p>下列例子引用一个位于 <em>/bin/device_namer</em> 的虚构程序。device_namer 接收一个表示内核名字的命令行参数。基于内核名，device_namer 做一些魔幻变换接着产生一些输出到普通 <em>stdout</em> 管道，这些输出被分割为很多小块，每一小块是一个单词，块之间用一个空格分开。</p>
@@ -367,7 +314,7 @@ SUBSYSTEM=="block", SUBSYSTEMS=="scsi", ATTRS{model}=="ST3120827AS", NAME="my_ha
 <p>输出的部分也可在任一赋值键中使用，而不仅限于 NAME 和 SYMLINK 。下个例子使用一个虚构程序来决定哪个 Unix 组拥有设备：</p>
 <pre><code>KERNEL=="hda", PROGRAM="/bin/who_owns_device %k", GROUP="%c"
 </code></pre>
-<h3 id="_19">特定事件发生时运行外部程序<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<h3 id="_19">特定事件发生时运行外部程序</h3>
 <p>书写 udev 规则还有一个原因，就是为了在设备连接或者断开时运行一个特定程序。例如，你可能想在你的数码相机连到系统时执行一个脚本来自动下载相机里面的所有照片。</p>
 <p>不要把这个跟上述的 <em>PROGRAM</em> 功能弄混淆了，<em>PROGRAM</em> 是用来运行产生设备名字（除此之外不应该做其他事情）程序。当执行这些程序时，设备节点还没创建，所以对设备的任何形式的操作都是不可能的。</p>
 <p>这里介绍的功能允许你在设备节点到位后运行一个程序。该程序可以作用在设备上，但是它不准超时运行，因为当程序运行时 udev 是暂停运行的。一个变通办法是确保你的程序立即分离（detach）自身。</p>
@@ -376,7 +323,7 @@ SUBSYSTEM=="block", SUBSYSTEMS=="scsi", ATTRS{model}=="ST3120827AS", NAME="my_ha
 </code></pre>
 <p>当执行 <em>/usr/bin/my_program</em> 时，udev 环境的多数部分可作为环境变量使用，包括诸如 <em>SUBSYSTEM</em> 的键值。你也可以使用 <em>ACTION</em> 环境变量来检测设备是否连接或断开，它的对应值是 “add” 和 “remove” 。</p>
 <p>udev 并不在任何激活终端中运行这些程序，也不再 shell 上下文中执行。确保你的程序是可执行的，如果它是个 shell 脚本请确保它以适当的 <a href="http://en.wikipedia.org/wiki/Shebang_(Unix)">shebang</a> 开头（如<code>#!/bin/sh</code>），也不要在你的终端上期待任何标准输出。</p>
-<h3 id="_20">环境交互<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<h3 id="_20">环境交互</h3>
 <p>udev 为环境变量提供了一个 <em>ENV</em> 键，可用于匹配和赋值。</p>
 <p>在赋值情况下，你可以设置稍后要匹配的环境变量。你也可以为通过上面提到的技巧调用的任何外部程序设置环境变量。一个虚构的设置环境变量的例子规则如下：</p>
 <pre><code>KERNEL=="fd0", SYMLINK+="floppy", ENV{some_var}="value"
@@ -385,7 +332,7 @@ SUBSYSTEM=="block", SUBSYSTEMS=="scsi", ATTRS{model}=="ST3120827AS", NAME="my_ha
 <pre><code>KERNEL=="fd0", ENV{an_env_var}=="yes", SYMLINK+="floppy"
 </code></pre>
 <p>上面规则仅当 udev 环境中的 \$an_env_var 的值设为 “yes” 时才创建 <em>/dev/floppy</em> 链接。</p>
-<h3 id="_21">额外选项<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<h3 id="_21">额外选项</h3>
 <p>另外一个有用的赋值是 <em>OPTIONS</em> 列表。可用的选项不多：</p>
 <ul>
 <li><strong>all_partitions</strong> - 为一个块设备创建所有可能的分区，而不是初始检测到的那些分区</li>
@@ -395,8 +342,8 @@ SUBSYSTEM=="block", SUBSYSTEMS=="scsi", ATTRS{model}=="ST3120827AS", NAME="my_ha
 <p>例如，下面规则设置我的硬盘节点的组所有权，并且后面的规则对它没有任何效果：</p>
 <pre><code>KERNEL=="sda", GROUP="disk", OPTIONS+="last_rule"
 </code></pre>
-<h2 id="_22">例子<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h2>
-<h3 id="usb">USB 打印机<a class="headerlink" href="#usb" title="Permanent link">&para;</a></h3>
+<h2 id="_22">例子</h2>
+<h3 id="usb">USB 打印机</h3>
 <p>我打开了打印机，它就被赋予了一个设备节点 <em>/dev/lp0</em> 。我不太满意这样乏味的名字，打算使用 udevinfo 帮我写一个规则来提供一个替代名字：</p>
 <pre><code># udevinfo -a -p $(udevinfo -q path -n /dev/lp0)
   looking at device '/class/usb/lp0':
@@ -414,7 +361,7 @@ SUBSYSTEM=="block", SUBSYSTEMS=="scsi", ATTRS{model}=="ST3120827AS", NAME="my_ha
 <p>我的规则就成了：</p>
 <pre><code>SUBSYSTEM=="usb", ATTRS{serial}=="L72010011070626380", SYMLINK+="epson_680"
 </code></pre>
-<h3 id="usb_1">USB相机<a class="headerlink" href="#usb_1" title="Permanent link">&para;</a></h3>
+<h3 id="usb_1">USB相机</h3>
 <p>跟大多数相机一样, 我的相机标识自己为一个通过 USB 总线来连接，通过 SCSI 传输的外部硬盘。为了访问我的相片，我先挂载分区然后拷贝图片文件到我的硬盘中。</p>
 <p>不是所有相机都这样工作，其中一些使用非存储协议，如 <a href="http://www.gphoto.org/">gphoto2</a> 支持的相机。在 gphoto 情况下，你不用为你的设备写任何规则，因为纯粹由用户空间控制（而不是指定的内核驱动）。</p>
 <p>USB 相机设备的一个常见复杂性在于，它们通常标识自己是一个单分区磁盘，就是有 <em>/dev/sdb1</em> 的 <em>/dev/sdb</em> 。sdb 节点对我毫无用处，但对 sdb1 有兴趣——这才是我要挂载的。这里有个麻烦因为 sysfs 是链式的，udevinfo 为 /dev/sdb1 产生的有用属性跟为 /dev/sdb 产生的一样，这导致你的规则潜在的匹配到原始磁盘和分区，这不是你想要的，你的规则应该<strong>特化</strong>。</p>
@@ -437,7 +384,7 @@ SUBSYSTEM=="block", SUBSYSTEMS=="scsi", ATTRS{model}=="ST3120827AS", NAME="my_ha
 <p>我的规则：</p>
 <pre><code>KERNEL=="sd?1", SUBSYSTEMS=="scsi", ATTRS{model}=="X250,D560Z,C350Z", SYMLINK+="camera"
 </code></pre>
-<h3 id="usb_2">USB硬盘<a class="headerlink" href="#usb_2" title="Permanent link">&para;</a></h3>
+<h3 id="usb_2">USB硬盘</h3>
 <p>USB 硬盘跟 USB 相机差不多，但典型的使用方式不同。在相机例子中，我解释过对 sdb 节点没有兴趣，它仅仅在分区（如使用fdisk）时才有用，但我为什么要为相机分区呢！？</p>
 <p>当然如果你有一个 100GB 的 USB 硬盘，你希望为它分区是完全可以理解的，这种情况下我们可以使用 udev 的字符串替换优势：</p>
 <pre><code>KERNEL=="sd*", SUBSYSTEMS=="scsi", ATTRS{model}=="USB 2.0 Storage Device", SYMLINK+="usbhd%n"
@@ -448,26 +395,26 @@ SUBSYSTEM=="block", SUBSYSTEMS=="scsi", ATTRS{model}=="ST3120827AS", NAME="my_ha
 <li><em>/dev/usbhd1</em> - 第一块分区（可挂载）</li>
 <li><em>/dev/usbhd2</em> - 第二块分区（可挂载）</li>
 </ul>
-<h3 id="usb_3">USB读卡器<a class="headerlink" href="#usb_3" title="Permanent link">&para;</a></h3>
+<h3 id="usb_3">USB读卡器</h3>
 <p>USB读卡器（CompactFlash，SmartMedia 等）属于 USB 存储设备的另一范围，它有不同的使用需求。</p>
 <p>这些设备一般在媒介（指存储卡）改变时不通知主机。所以如果你插入这种设备时不带媒介，再插入一张卡，计算机不会意识到这点，你也不会有媒介的可挂载的 sdb1 分区节点。</p>
 <p>一个可能的解决办法是采取 <em>all_partttions</em> 选项的长处，它将为每个规则匹配的块设备创建 16 个分区节点：</p>
 <pre><code>KERNEL="sd*", SUBSYSTEMS=="scsi", ATTRS{model}=="USB 2.0 CompactFlash Reader", SYMLINK+="cfrdr%n", OPTIONS+="all_partitions"
 </code></pre>
 <p>你将得到这些命名节点：cfrdr，cfrdr1，cfrdr2，cfrdr3，…，cfrdr15。</p>
-<h3 id="usb-palm">USB Palm 导航仪<a class="headerlink" href="#usb-palm" title="Permanent link">&para;</a></h3>
+<h3 id="usb-palm">USB Palm 导航仪</h3>
 <p>这些设备作为 USB 串行设备工作，所以缺省状态下，你只会得到 <em>ttyUSB1</em> 设备节点。palm 工具依赖于 <em>/dev/pilot</em> ，有很多用户会希望使用一条规则提供它。</p>
 <p><a href="http://www.clasohm.com/blog/one-entry?entry%5fid=12096">Carsten Clasohm 的博客</a>看上去是它毫无争议上的源头。Carsten 的规则如下：</p>
 <pre><code>SUBSYSTEMS=="usb", ATTRS{product}=="Palm Handheld", KERNEL=="ttyUSB*", SYMLINK+="pilot"
 </code></pre>
 <p>注意到产品字符串因产品不同很多变，所以确保你检查（使用 udevinfo）了哪一个适用于你。</p>
-<h3 id="_23">光驱<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<h3 id="_23">光驱</h3>
 <p>我的电脑有两个光驱：一个 DVD 只读（hdc），一个 DVD 刻录（hdd）。除非我物理性的重新接线，我不希望这些设备节点有变化。然而一些用户喜欢拥有诸如 <em>/dev/dvd</em> 这么方便的设备节点。</p>
 <p>我们知道了 KERNEL 是这些设备的名字，规则书写就很简单了。这是我系统上的一些例子：</p>
 <pre><code>SUBSYSTEM=="block", KERNEL=="hdc", SYMLINK+="dvd", GROUP="cdrom"
 SUBSYSTEM=="block", KERNEL=="hdd", SYMLINK+="dvdrw", GROUP="cdrom"
 </code></pre>
-<h3 id="_24">网卡接口<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
+<h3 id="_24">网卡接口</h3>
 <p>尽管它们都是通过名字引用，网卡往往没有与之关联的设备节点。即便如此，规则书写过程还是几乎一样的。</p>
 <p>在规则中简单的匹配网卡 MAC 地址是有意义的，因为它们是唯一的。但是，确信你使用的是 udevinfo 显示的<em>准确</em> MAC 地址，因为如果你没有精准匹配，你的规则不会工作。</p>
 <pre><code># udevinfo -a -p /sys/class/net/eth0
@@ -479,13 +426,13 @@ SUBSYSTEM=="block", KERNEL=="hdd", SYMLINK+="dvdrw", GROUP="cdrom"
 <pre><code>KERNEL=="eth*", ATTR{address}=="00:52:8b:d5:04:48", NAME="lan"
 </code></pre>
 <p>为了让这个规则生效，你得重启网络驱动。你可以卸载并重新加载模块，或简单的重启系统。你还得重新配置你的系统使用 “lan” 取代 “eth0”。我以前遇到过这样的麻烦（网卡不能重命名）直到我去除了所有对 eth0 的引用。在此之后，你应该可以在任何 ifconfig 或类似的工具的调用中使用 “lan” 取代 “eth0” 了。</p>
-<h2 id="_25">测试和调试<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h2>
-<h3 id="_26">让你的规则跑起来<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h3>
+<h2 id="_25">测试和调试</h2>
+<h3 id="_26">让你的规则跑起来</h3>
 <p>假如你在一个有 <em>inotify</em> 支持的近期内核上工作，udev 将自动监视你的规则目录并且自动挑取你对规则文件的任何修改。</p>
 <p>尽管这样，udev 也不会自动重新处理所有设备并试图应用新规则。例如，如果你写了个规则来为你的已连接相机添加一个额外符号链接，你不能指望这个符号链接可以马上显现出来。</p>
 <p>为使符号链接显示，你可以断开并重连你的相机，或在设备不可移除时，代之以运行 <strong>udevtrigger</strong> 。</p>
 <p>如果你的内核没有 inotify 支持，新规则不会自动被检测到。这种情况下，你必须在做出更改后运行 <strong>udevcontrol reload_rules</strong> 使之生效。</p>
-<h3 id="udevtest">udevtest<a class="headerlink" href="#udevtest" title="Permanent link">&para;</a></h3>
+<h3 id="udevtest">udevtest</h3>
 <p>如果你知道 sysfs 中的顶级设备路径，你可以使用 <strong>udevtest</strong> 来显示 udev 将要执行的动作。这也许可以帮你调试你的规则。例如，假设你想调试作用在 <em>/sys/class/sound/dsp</em> 上的规则：</p>
 <pre><code># udevtest /class/sound/dsp
 main: looking at device '/class/sound/dsp' from subsystem 'sound'
@@ -496,7 +443,7 @@ udev_node_add: creating device node '/dev/sound/dsp', major = '14', minor = '3',
 udev_node_add: creating symlink '/dev/dsp' to 'sound/dsp'
 </code></pre>
 <p>注意 <em>/sys</em> 前缀在 udevtest 命令行中被删除了，这是因为 udevtest 在设备路径上操作。还要留意的是 udevtest 是一个纯粹的测试/调试工具，无论输出怎么建议，它不创建任何设备节点。</p>
-<h2 id="_27">作者以及联系方式<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h2>
+<h2 id="_27">作者以及联系方式</h2>
 <p>本文由 Daniel Drake &lt;<a href="mailto:dan@reactivated.net">dan@reactivated.net</a>&gt; 写就。欢迎反馈信息。</p>
 <p>本译文由 Levi G. &lt;<a href="mailto:leaveye@hotmail.com">leaveye@hotmail.com</a>&gt; 基于旧翻译修改更新。</p>
 <p>对于技术支持你可以致信给 linux-hotplug 邮件列表：<a href="mailto:linux-hotplug-devel@lists.sourceforge.net">linux-hotplug-devel@lists.sourceforge.net</a> 。</p>
@@ -553,24 +500,26 @@ udev_node_add: creating symlink '/dev/dsp' to 'sound/dsp'
 							<div class="panel">
 								<h5>Tags</h5>
 								<ul class="tag-cloud">
-									<li><a href="/tag/os-x.html" class="tag-4">os x</a></li>
-									<li><a href="/tag/try.html" class="tag-2">try</a></li>
-									<li><a href="/tag/install.html" class="tag-4">install</a></li>
-									<li><a href="/tag/rules.html" class="tag-4">rules</a></li>
-									<li><a href="/tag/docker.html" class="tag-4">docker</a></li>
-									<li><a href="/tag/gitlab.html" class="tag-4">gitlab</a></li>
-									<li><a href="/tag/pelican.html" class="tag-1">pelican</a></li>
-									<li><a href="/tag/kernel_task.html" class="tag-4">kernel_task</a></li>
-									<li><a href="/tag/publishing.html" class="tag-4">publishing</a></li>
-									<li><a href="/tag/math.html" class="tag-4">math</a></li>
-									<li><a href="/tag/game.html" class="tag-4">game</a></li>
-									<li><a href="/tag/linux.html" class="tag-4">linux</a></li>
 									<li><a href="/tag/sip.html" class="tag-4">sip</a></li>
-									<li><a href="/tag/test.html" class="tag-1">test</a></li>
-									<li><a href="/tag/server.html" class="tag-1">server</a></li>
-									<li><a href="/tag/udev.html" class="tag-4">udev</a></li>
+									<li><a href="/tag/install.html" class="tag-4">install</a></li>
+									<li><a href="/tag/pelican.html" class="tag-1">pelican</a></li>
+									<li><a href="/tag/try.html" class="tag-2">try</a></li>
+									<li><a href="/tag/math.html" class="tag-4">math</a></li>
+									<li><a href="/tag/rules.html" class="tag-4">rules</a></li>
+									<li><a href="/tag/gitlab.html" class="tag-4">gitlab</a></li>
+									<li><a href="/tag/linux.html" class="tag-4">linux</a></li>
+									<li><a href="/tag/publishing.html" class="tag-4">publishing</a></li>
+									<li><a href="/tag/os-x.html" class="tag-4">os x</a></li>
 									<li><a href="/tag/puzzle.html" class="tag-4">puzzle</a></li>
+									<li><a href="/tag/kernel_task.html" class="tag-4">kernel_task</a></li>
+									<li><a href="/tag/game.html" class="tag-4">game</a></li>
+									<li><a href="/tag/server.html" class="tag-1">server</a></li>
+									<li><a href="/tag/vagrant.html" class="tag-4">vagrant</a></li>
+									<li><a href="/tag/virtualization.html" class="tag-4">virtualization</a></li>
+									<li><a href="/tag/test.html" class="tag-1">test</a></li>
 									<li><a href="/tag/el-capitan.html" class="tag-4">el capitan</a></li>
+									<li><a href="/tag/udev.html" class="tag-4">udev</a></li>
+									<li><a href="/tag/docker.html" class="tag-4">docker</a></li>
 								</ul>
 							</div>
 

@@ -55,6 +55,7 @@
 						<li><label>Categories</label></li>
 							<li class="active"><a href="/category/blogging.html">blogging</a></li>
 							<li ><a href="/category/linux.html">Linux</a></li>
+							<li ><a href="/category/server.html">Server</a></li>
 							<li ><a href="/category/system.html">system</a></li>
 							<li ><a href="/category/test.html">Test</a></li>
 
@@ -83,6 +84,7 @@
 						<ul class="left">
 								<li class="active"><a href="/category/blogging.html">blogging</a></li>
 								<li ><a href="/category/linux.html">Linux</a></li>
+								<li ><a href="/category/server.html">Server</a></li>
 								<li ><a href="/category/system.html">system</a></li>
 								<li ><a href="/category/test.html">Test</a></li>
 						</ul>
@@ -99,8 +101,8 @@
 						<div class="medium-9 small-12 columns" role="content">
 <article>
 	<h2>你好，世界</h2>
-	<p>[TOC]</p>
-<h1><a href="id:try">试水</a></h1>
+	
+<h1 id="_1"><a href="id:try">试水</a></h1>
 <p>正文文字。
 断行同段落。</p>
 <p>新段落。</p>
@@ -116,99 +118,72 @@
 <li>numbered 2</li>
 </ol>
 <p>$$E=mc^2$$</p>
-<div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;stylesheets/stylesheet.css&quot;</span> <span class="na">media=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;stylesheets/github-dark.css&quot;</span> <span class="na">media=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;stylesheets/print.css&quot;</span> <span class="na">media=</span><span class="s">&quot;print&quot;</span><span class="nt">&gt;</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span class="cp">#define _IDENT_JOIN(PACKAGENAME, FUNCTIONNAME) PACKAGENAME##FUNCTIONNAME</span>
-<span class="cp">#define JavaIdent(FUNCTIONNAME) _IDENT_JOIN(Java_com_abc_abc_JniUtils_, FUNCTIONNAME)</span>
-
-<span class="k">class</span> <span class="nc">sigslot_connection</span>
-<span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="n">sigslot_connection</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">()</span><span class="o">&gt;</span> <span class="n">func</span><span class="p">)</span> <span class="o">:</span> <span class="n">disconnect_</span><span class="p">(</span><span class="n">func</span><span class="p">)</span> <span class="p">{}</span>
-    <span class="kt">void</span> <span class="n">disconnect</span><span class="p">()</span> <span class="p">{</span> <span class="n">disconnect_</span><span class="p">();</span> <span class="p">}</span>
-<span class="k">private</span><span class="o">:</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">()</span><span class="o">&gt;</span> <span class="n">disconnect_</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">F</span><span class="o">&gt;</span>
-<span class="k">class</span> <span class="nc">sigslot</span><span class="p">;</span>
-
-<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">RET</span><span class="p">,</span> <span class="k">typename</span><span class="p">...</span> <span class="n">Args</span><span class="o">&gt;</span>
-<span class="k">class</span> <span class="nc">sigslot</span> <span class="o">&lt;</span> <span class="n">RET</span><span class="p">(</span><span class="n">Args</span><span class="p">...)</span> <span class="o">&gt;</span>
-<span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="n">sigslot</span><span class="p">()</span> <span class="o">:</span> <span class="n">ret_handler_</span><span class="p">(</span><span class="k">nullptr</span><span class="p">),</span> <span class="n">next_id_</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{}</span>
-    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">F</span><span class="o">&gt;</span>
-    <span class="n">sigslot_connection</span> <span class="n">connect</span><span class="p">(</span><span class="n">F</span><span class="o">&amp;&amp;</span> <span class="n">f</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="n">next_id_</span><span class="o">++</span><span class="p">;</span>
-        <span class="n">slots_</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">F</span><span class="o">&gt;</span><span class="p">(</span><span class="n">f</span><span class="p">)));</span>
-        <span class="k">return</span> <span class="nf">sigslot_connection</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sigslot</span><span class="o">::</span><span class="n">disconnect</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="n">id</span><span class="p">));</span>
-    <span class="p">}</span>
-    <span class="n">RET</span> <span class="k">operator</span><span class="p">()(</span><span class="n">Args</span><span class="p">...</span> <span class="n">args</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">RET</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">ret_init_</span><span class="p">;</span>
-        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="nl">f</span> <span class="p">:</span> <span class="n">slots_</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">RET</span> <span class="n">ret2</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">second</span><span class="p">(</span><span class="n">args</span><span class="p">...);</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">ret_handler_</span><span class="p">)</span>
-                <span class="n">ret</span> <span class="o">=</span> <span class="n">ret_handler_</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">ret2</span><span class="p">);</span>
-            <span class="k">else</span>
-                <span class="n">ret</span> <span class="o">=</span> <span class="n">ret2</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="kt">size_t</span> <span class="n">size</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">slots_</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="p">}</span>
-
-    <span class="kt">void</span> <span class="n">set_init_return_code</span><span class="p">(</span><span class="n">RET</span> <span class="n">ret</span><span class="p">)</span> <span class="p">{</span> <span class="n">ret_init_</span> <span class="o">=</span> <span class="n">ret</span><span class="p">;</span> <span class="p">}</span>
-    <span class="kt">void</span> <span class="n">set_return_code_handler</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="n">RET</span><span class="p">(</span><span class="n">RET</span><span class="p">,</span> <span class="n">RET</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">ret_handler</span><span class="p">)</span> <span class="p">{</span> <span class="n">ret_handler_</span> <span class="o">=</span> <span class="n">ret_handler</span><span class="p">;</span> <span class="p">}</span>
-<span class="k">private</span><span class="o">:</span>
-    <span class="kt">void</span> <span class="n">disconnect</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">slots_</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="k">private</span><span class="o">:</span>
-    <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="n">RET</span><span class="p">(</span><span class="n">Args</span><span class="p">...)</span><span class="o">&gt;</span> <span class="n">TFunc</span><span class="p">;</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">TFunc</span><span class="o">&gt;</span> <span class="n">slots_</span><span class="p">;</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="n">RET</span><span class="p">(</span><span class="n">RET</span><span class="p">,</span> <span class="n">RET</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">ret_handler_</span><span class="p">;</span>
-    <span class="n">RET</span> <span class="n">ret_init_</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">next_id_</span><span class="p">;</span>
-<span class="p">};</span>
-</pre></div>
-
-
-<hr />
-<table>
-<thead>
-<tr>
-<th>A</th>
-<th>B</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>C</td>
-<td>D</td>
-</tr>
-<tr>
-<td>E</td>
-<td>F</td>
-</tr>
-</tbody>
-</table>
-<p><a href="#try">跳转到小标题</a><sup id="fnref:split"><a class="footnote-ref" href="#fn:split" rel="footnote">1</a></sup></p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:split">
-<p>分割线&#160;<a class="footnote-backref" href="#fnref:split" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
+<p><code>:::html
+&lt;link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen"&gt;
+&lt;link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen"&gt;
+&lt;link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print"&gt;</code></p>
+<p>```
+:::cpp</p>
+<h1 id="define-_ident_joinpackagename-functionname-packagenamefunctionname">define _IDENT_JOIN(PACKAGENAME, FUNCTIONNAME) PACKAGENAME##FUNCTIONNAME</h1>
+<h1 id="define-javaidentfunctionname-ident_joinjava_com_abc_abc_jniutils-functionname">define JavaIdent(FUNCTIONNAME) <em>IDENT_JOIN(Java_com_abc_abc_JniUtils</em>, FUNCTIONNAME)</h1>
+<p>class sigslot_connection
+{
+public:
+    sigslot_connection(std::function<void()> func) : disconnect_(func) {}
+    void disconnect() { disconnect_(); }
+private:
+    std::function<void()> disconnect_;
+};</void()></void()></p>
+<p>template<class f="">
+class sigslot;</class></p>
+<p>template<typename args="" ret,="" typename...="">
+class sigslot &lt; RET(Args...) &gt;
+{
+public:
+    sigslot() : ret_handler_(nullptr), next_id_(0) {}
+    template<typename f="">
+    sigslot_connection connect(F&amp;&amp; f)
+    {
+        int id = next_id_++;
+        slots_.insert(std::make_pair(id, std::forward<f>(f)));
+        return sigslot_connection(std::bind(&amp;sigslot::disconnect, this, id));
+    }
+    RET operator()(Args... args)
+    {
+        RET ret = ret_init_;
+        for (auto&amp; f : slots_)
+        {
+            RET ret2 = f.second(args...);
+            if (ret_handler_)
+                ret = ret_handler_(ret, ret2);
+            else
+                ret = ret2;
+        }
+        return ret;
+    }
+    size_t size() const { return slots_.size(); }</f></typename></typename></p>
+<pre><code>void set_init_return_code(RET ret) { ret_init_ = ret; }
+void set_return_code_handler(std::function&lt;RET(RET, RET)&gt; ret_handler) { ret_handler_ = ret_handler; }
+</code></pre>
+<p>private:
+    void disconnect(int id)
+    {
+        slots_.erase(id);
+    }
+private:
+    typedef std::function<ret(args...)> TFunc;
+    std::map<int, tfunc=""> slots_;
+    std::function<ret(ret, ret)=""> ret_handler_;
+    RET ret_init_;
+    int next_id_;
+};
+```</ret(ret,></int,></ret(args...)></p>
+<hr/>
+<p>A | B
+--|--
+C | D
+E | F</p>
+<p><a href="#try">跳转到小标题</a><a href="分割线">^split</a></p>
 	<hr/>
 	<h6>Written by <a href="/author/levi-g.html">Levi G</a> in <a href="/category/blogging.html">blogging</a> on 日 14 六月 2015. Tags: <a href="/tag/try.html">try</a>, <a href="/tag/pelican.html">pelican</a>, <a href="/tag/test.html">test</a>, </h6>
 </article>
@@ -260,24 +235,26 @@
 							<div class="panel">
 								<h5>Tags</h5>
 								<ul class="tag-cloud">
-									<li><a href="/tag/os-x.html" class="tag-4">os x</a></li>
-									<li><a href="/tag/try.html" class="tag-2">try</a></li>
-									<li><a href="/tag/install.html" class="tag-4">install</a></li>
-									<li><a href="/tag/rules.html" class="tag-4">rules</a></li>
-									<li><a href="/tag/docker.html" class="tag-4">docker</a></li>
-									<li><a href="/tag/gitlab.html" class="tag-4">gitlab</a></li>
-									<li><a href="/tag/pelican.html" class="tag-1">pelican</a></li>
-									<li><a href="/tag/kernel_task.html" class="tag-4">kernel_task</a></li>
-									<li><a href="/tag/publishing.html" class="tag-4">publishing</a></li>
-									<li><a href="/tag/math.html" class="tag-4">math</a></li>
-									<li><a href="/tag/game.html" class="tag-4">game</a></li>
-									<li><a href="/tag/linux.html" class="tag-4">linux</a></li>
 									<li><a href="/tag/sip.html" class="tag-4">sip</a></li>
-									<li><a href="/tag/test.html" class="tag-1">test</a></li>
-									<li><a href="/tag/server.html" class="tag-1">server</a></li>
-									<li><a href="/tag/udev.html" class="tag-4">udev</a></li>
+									<li><a href="/tag/install.html" class="tag-4">install</a></li>
+									<li><a href="/tag/pelican.html" class="tag-1">pelican</a></li>
+									<li><a href="/tag/try.html" class="tag-2">try</a></li>
+									<li><a href="/tag/math.html" class="tag-4">math</a></li>
+									<li><a href="/tag/rules.html" class="tag-4">rules</a></li>
+									<li><a href="/tag/gitlab.html" class="tag-4">gitlab</a></li>
+									<li><a href="/tag/linux.html" class="tag-4">linux</a></li>
+									<li><a href="/tag/publishing.html" class="tag-4">publishing</a></li>
+									<li><a href="/tag/os-x.html" class="tag-4">os x</a></li>
 									<li><a href="/tag/puzzle.html" class="tag-4">puzzle</a></li>
+									<li><a href="/tag/kernel_task.html" class="tag-4">kernel_task</a></li>
+									<li><a href="/tag/game.html" class="tag-4">game</a></li>
+									<li><a href="/tag/server.html" class="tag-1">server</a></li>
+									<li><a href="/tag/vagrant.html" class="tag-4">vagrant</a></li>
+									<li><a href="/tag/virtualization.html" class="tag-4">virtualization</a></li>
+									<li><a href="/tag/test.html" class="tag-1">test</a></li>
 									<li><a href="/tag/el-capitan.html" class="tag-4">el capitan</a></li>
+									<li><a href="/tag/udev.html" class="tag-4">udev</a></li>
+									<li><a href="/tag/docker.html" class="tag-4">docker</a></li>
 								</ul>
 							</div>
 

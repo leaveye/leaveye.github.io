@@ -55,6 +55,7 @@
 						<li><label>Categories</label></li>
 							<li ><a href="/category/blogging.html">blogging</a></li>
 							<li class="active"><a href="/category/linux.html">Linux</a></li>
+							<li ><a href="/category/server.html">Server</a></li>
 							<li ><a href="/category/system.html">system</a></li>
 							<li ><a href="/category/test.html">Test</a></li>
 
@@ -83,6 +84,7 @@
 						<ul class="left">
 								<li ><a href="/category/blogging.html">blogging</a></li>
 								<li class="active"><a href="/category/linux.html">Linux</a></li>
+								<li ><a href="/category/server.html">Server</a></li>
 								<li ><a href="/category/system.html">system</a></li>
 								<li ><a href="/category/test.html">Test</a></li>
 						</ul>
@@ -113,33 +115,11 @@ Version 0.74</p>
 <li><a href="http://www.reactivated.net/writing_udev_rules.html">http://www.reactivated.net/writing_udev_rules.html</a> (英文版)</li>
 <li><a href="http://blog.levi-g.info/writing-udev-rules.html">http://blog.levi-g.info/writing-udev-rules.html</a> (中文版)</li>
 </ul>
-<h2 id="_1">目录<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<div class="toc">
-<ul>
-<li><a href="#_1">目录</a></li>
-<li><a href="#_2">介绍</a><ul>
-<li><a href="#_3">关于本文档</a></li>
-<li><a href="#_4">更新历史</a></li>
-</ul>
-</li>
-<li><a href="#_5">概念</a><ul>
-<li><a href="#devfs-sysfs-nodes">语义: devfs, sysfs, nodes 等</a></li>
-<li><a href="#_6">为什么？</a></li>
-<li><a href="#_7">内置固定命名方案</a></li>
-</ul>
-</li>
-<li><a href="#_8">规则书写</a><ul>
-<li><a href="#_9">规则文件和语义</a></li>
-<li><a href="#_10">规则语法</a></li>
-<li><a href="#_11">基本规则</a></li>
-<li><a href="#sysfs">匹配 sysfs 属性</a></li>
-<li><a href="#_12">设备级联</a></li>
-<li><a href="#_13">字符串替换</a></li>
-<li><a href="#_14">字符串匹配</a></li>
-</ul>
-</li>
-<li><a href="#sysfs_1">从 sysfs 中查找信息</a><ul>
-<li><a href="#sysfs_2">sysfs 树 ...</a></li></ul></li></ul></div>
+<h2 id="_1">目录</h2>
+
+<h2 id="_2">介绍</h2>
+<h3 id="_3">关于本文档</h3>
+<p>udev 面向 2.6 及以上的 Linux 内核，提供带有固定设备命名的，动态 /dev 目录的，用户空间解决方案。之前的 /dev 实现 <em>devfs</em> 现已被废弃，udev 成为继任者。udev vs devfs 是一个敏感的谈话内容，在进行比较之前你应该读一下<a href="http://kernel.org/pub/linux/utils/kernel/hotplug/udev_vs_devfs">这个文档 ...</a></p>
 		<p class="continue"><a href="/writing-udev-rules.html">Continue reading &raquo;</a></p>
 </article>
 <hr />
@@ -163,24 +143,26 @@ Version 0.74</p>
 							<div class="panel">
 								<h5>Tags</h5>
 								<ul class="tag-cloud">
-									<li><a href="/tag/os-x.html" class="tag-4">os x</a></li>
-									<li><a href="/tag/try.html" class="tag-2">try</a></li>
-									<li><a href="/tag/install.html" class="tag-4">install</a></li>
-									<li><a href="/tag/rules.html" class="tag-4">rules</a></li>
-									<li><a href="/tag/docker.html" class="tag-4">docker</a></li>
-									<li><a href="/tag/gitlab.html" class="tag-4">gitlab</a></li>
-									<li><a href="/tag/pelican.html" class="tag-1">pelican</a></li>
-									<li><a href="/tag/kernel_task.html" class="tag-4">kernel_task</a></li>
-									<li><a href="/tag/publishing.html" class="tag-4">publishing</a></li>
-									<li><a href="/tag/math.html" class="tag-4">math</a></li>
-									<li><a href="/tag/game.html" class="tag-4">game</a></li>
-									<li><a href="/tag/linux.html" class="tag-4">linux</a></li>
 									<li><a href="/tag/sip.html" class="tag-4">sip</a></li>
-									<li><a href="/tag/test.html" class="tag-1">test</a></li>
-									<li><a href="/tag/server.html" class="tag-1">server</a></li>
-									<li><a href="/tag/udev.html" class="tag-4">udev</a></li>
+									<li><a href="/tag/install.html" class="tag-4">install</a></li>
+									<li><a href="/tag/pelican.html" class="tag-1">pelican</a></li>
+									<li><a href="/tag/try.html" class="tag-2">try</a></li>
+									<li><a href="/tag/math.html" class="tag-4">math</a></li>
+									<li><a href="/tag/rules.html" class="tag-4">rules</a></li>
+									<li><a href="/tag/gitlab.html" class="tag-4">gitlab</a></li>
+									<li><a href="/tag/linux.html" class="tag-4">linux</a></li>
+									<li><a href="/tag/publishing.html" class="tag-4">publishing</a></li>
+									<li><a href="/tag/os-x.html" class="tag-4">os x</a></li>
 									<li><a href="/tag/puzzle.html" class="tag-4">puzzle</a></li>
+									<li><a href="/tag/kernel_task.html" class="tag-4">kernel_task</a></li>
+									<li><a href="/tag/game.html" class="tag-4">game</a></li>
+									<li><a href="/tag/server.html" class="tag-1">server</a></li>
+									<li><a href="/tag/vagrant.html" class="tag-4">vagrant</a></li>
+									<li><a href="/tag/virtualization.html" class="tag-4">virtualization</a></li>
+									<li><a href="/tag/test.html" class="tag-1">test</a></li>
 									<li><a href="/tag/el-capitan.html" class="tag-4">el capitan</a></li>
+									<li><a href="/tag/udev.html" class="tag-4">udev</a></li>
+									<li><a href="/tag/docker.html" class="tag-4">docker</a></li>
 								</ul>
 							</div>
 

@@ -55,6 +55,7 @@
 						<li><label>Categories</label></li>
 							<li ><a href="/category/blogging.html">blogging</a></li>
 							<li ><a href="/category/linux.html">Linux</a></li>
+							<li ><a href="/category/server.html">Server</a></li>
 							<li class="active"><a href="/category/system.html">system</a></li>
 							<li ><a href="/category/test.html">Test</a></li>
 
@@ -83,6 +84,7 @@
 						<ul class="left">
 								<li ><a href="/category/blogging.html">blogging</a></li>
 								<li ><a href="/category/linux.html">Linux</a></li>
+								<li ><a href="/category/server.html">Server</a></li>
 								<li class="active"><a href="/category/system.html">system</a></li>
 								<li ><a href="/category/test.html">Test</a></li>
 						</ul>
@@ -106,52 +108,20 @@
 <article>
 	<h3><a href="/gitlab-docker-compose-install.html">使用 Docker Compose 搭建本地 GitLab 服务器</a></h3>
 	<h6>Written by <a href="/author/levi-g.html">Levi G</a> in <a href="/category/system.html">system</a> on 五 12 八月 2016. Tags: <a href="/tag/server.html">server</a>, <a href="/tag/install.html">install</a>, <a href="/tag/gitlab.html">gitlab</a>, <a href="/tag/docker.html">docker</a>, </h6>
-	<h1>软件安装</h1>
+	<h1 id="_1">软件安装</h1>
 <blockquote>
 <p>过程主要参考自 <a href="http://docs.gitlab.com/omnibus/">Omnibus GitLab 官方文档</a>中 <a href="http://docs.gitlab.com/omnibus/docker/#install-gitlab-using-docker-compose">install GitLab using docker-compose</a> 章节。</p>
 </blockquote>
-<h2>设置项选择</h2>
-<table>
-<thead>
-<tr>
-<th>设置项</th>
-<th>值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>安装版本</td>
-<td><code>gitlab-ce</code></td>
-<td></td>
-</tr>
-<tr>
-<td>服务器 IP</td>
-<td><code>192.168.3.12</code></td>
-<td>Docker 容器</td>
-</tr>
-<tr>
-<td>工作目录</td>
-<td><code>~/docker-test</code></td>
-<td>容器(集)配置所在路径，此次安装主要工作路径</td>
-</tr>
-<tr>
-<td>服务目录</td>
-<td><code>~/gitlab</code></td>
-<td>GitLab 服务使用的文件将保存在此处</td>
-</tr>
-<tr>
-<td>HTTP 端口</td>
-<td><code>80</code></td>
-<td>唯一 Web 服务，可以独占端口</td>
-</tr>
-<tr>
-<td>SSH 端口</td>
-<td><code>2201</code></td>
-<td>Docker 主机使用了缺省的 22 端口</td>
-</tr>
-<tr>
-<td>访问地址 ...</td></tr></tbody></table>
+<h2 id="_2">设置项选择</h2>
+<p>|设置项|值|备注|
+|-|-|-|
+|安装版本|<code>gitlab-ce</code>||
+|服务器 IP|<code>192.168.3.12</code>|Docker 容器|
+|工作目录|<code>~/docker-test</code>|容器(集)配置所在路径，此次安装主要工作路径|
+|服务目录|<code>~/gitlab</code>|GitLab 服务使用的文件将保存在此处|
+|HTTP 端口|<code>80</code>|唯一 Web 服务，可以独占端口|
+|SSH 端口|<code>2201</code>|Docker 主机使用了缺省的 22 端口|
+|访问地址 ...</p>
 		<p class="continue"><a href="/gitlab-docker-compose-install.html">Continue reading &raquo;</a></p>
 </article>
 <hr />
@@ -164,7 +134,7 @@
 <p>担心了 1 个小时变砖的问题，决定还是强行关机。重启后没有继续安装，而是自动进入到升级前的系统。庆幸了一下。再次点击安装软件，重启进入安装过程。</p>
 <p>这次虽然进度条依旧很慢，但是顺利完成了安装过程。登录系统后，发现又再次出现了一年前修复的 <code>kernel_task</code> 进程 CPU 占用率暴高的问题。搜索到了<a href="http://www.zhihu.com/question/19611376">结果</a>，准备照此办理。</p>
 <p>查询到我的设备型号是 <code>MacBookPro8,2</code>，要删除的文件没有权限：</p>
-<div class="highlight"><pre><span class="nv">$ </span><span class="nb">pwd ...</span></pre></div>
+<p><code>$ pwd ...</code></p>
 		<p class="continue"><a href="/upgrade-to-el-capitan.html">Continue reading &raquo;</a></p>
 </article>
 <hr />
@@ -188,24 +158,26 @@
 							<div class="panel">
 								<h5>Tags</h5>
 								<ul class="tag-cloud">
-									<li><a href="/tag/os-x.html" class="tag-4">os x</a></li>
-									<li><a href="/tag/try.html" class="tag-2">try</a></li>
-									<li><a href="/tag/install.html" class="tag-4">install</a></li>
-									<li><a href="/tag/rules.html" class="tag-4">rules</a></li>
-									<li><a href="/tag/docker.html" class="tag-4">docker</a></li>
-									<li><a href="/tag/gitlab.html" class="tag-4">gitlab</a></li>
-									<li><a href="/tag/pelican.html" class="tag-1">pelican</a></li>
-									<li><a href="/tag/kernel_task.html" class="tag-4">kernel_task</a></li>
-									<li><a href="/tag/publishing.html" class="tag-4">publishing</a></li>
-									<li><a href="/tag/math.html" class="tag-4">math</a></li>
-									<li><a href="/tag/game.html" class="tag-4">game</a></li>
-									<li><a href="/tag/linux.html" class="tag-4">linux</a></li>
 									<li><a href="/tag/sip.html" class="tag-4">sip</a></li>
-									<li><a href="/tag/test.html" class="tag-1">test</a></li>
-									<li><a href="/tag/server.html" class="tag-1">server</a></li>
-									<li><a href="/tag/udev.html" class="tag-4">udev</a></li>
+									<li><a href="/tag/install.html" class="tag-4">install</a></li>
+									<li><a href="/tag/pelican.html" class="tag-1">pelican</a></li>
+									<li><a href="/tag/try.html" class="tag-2">try</a></li>
+									<li><a href="/tag/math.html" class="tag-4">math</a></li>
+									<li><a href="/tag/rules.html" class="tag-4">rules</a></li>
+									<li><a href="/tag/gitlab.html" class="tag-4">gitlab</a></li>
+									<li><a href="/tag/linux.html" class="tag-4">linux</a></li>
+									<li><a href="/tag/publishing.html" class="tag-4">publishing</a></li>
+									<li><a href="/tag/os-x.html" class="tag-4">os x</a></li>
 									<li><a href="/tag/puzzle.html" class="tag-4">puzzle</a></li>
+									<li><a href="/tag/kernel_task.html" class="tag-4">kernel_task</a></li>
+									<li><a href="/tag/game.html" class="tag-4">game</a></li>
+									<li><a href="/tag/server.html" class="tag-1">server</a></li>
+									<li><a href="/tag/vagrant.html" class="tag-4">vagrant</a></li>
+									<li><a href="/tag/virtualization.html" class="tag-4">virtualization</a></li>
+									<li><a href="/tag/test.html" class="tag-1">test</a></li>
 									<li><a href="/tag/el-capitan.html" class="tag-4">el capitan</a></li>
+									<li><a href="/tag/udev.html" class="tag-4">udev</a></li>
+									<li><a href="/tag/docker.html" class="tag-4">docker</a></li>
 								</ul>
 							</div>
 

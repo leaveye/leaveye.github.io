@@ -55,6 +55,7 @@
 						<li><label>Categories</label></li>
 							<li class="active"><a href="/category/blogging.html">blogging</a></li>
 							<li ><a href="/category/linux.html">Linux</a></li>
+							<li ><a href="/category/server.html">Server</a></li>
 							<li ><a href="/category/system.html">system</a></li>
 							<li ><a href="/category/test.html">Test</a></li>
 
@@ -83,6 +84,7 @@
 						<ul class="left">
 								<li class="active"><a href="/category/blogging.html">blogging</a></li>
 								<li ><a href="/category/linux.html">Linux</a></li>
+								<li ><a href="/category/server.html">Server</a></li>
 								<li ><a href="/category/system.html">system</a></li>
 								<li ><a href="/category/test.html">Test</a></li>
 						</ul>
@@ -104,11 +106,11 @@
 <p>反正没花力气，所以也不用心疼……<br />
 —— <a href="/author/levi-g.html">Levi G.</a></p>
 </blockquote>
-<h2>选择</h2>
+<h2 id="_1">选择</h2>
 <p>三天前决定并开始动手，把 blog 放 Github 上面。用了半天的时间，比较过 jekyll 和 pelican 后，还是选择了 pelican 。毕竟 python 在安装上还是要比 Ruby 方便许多的。这对于我这样时不时换工作机的人还是个很大的优势。</p>
 <p>我对 blog 的需求其实还挺烦人的。语法高亮、主题定制是基本的，$\LaTeX$ 是必须的，要是有 graphviz 、序列图的支持就更好了。</p>
 <p>现在的各种工具，语法高亮、主题定制都是必备功能了，产生差异的就只是配套内容的多寡了。粗略看了下 <a href="https://github.com/getpelican/pelican-themes" title="pelican 主题包">pelican-themes</a> 虽然没有 <a href="http://jekyllthemes.org" title="Jekyll 主题包">Jekyll Themes</a> 看上去那么完整，不过基本样子上还是够用了。毕竟这些『小众』平台比起大 Wordpress 还是差远了。</p>
-<h2>安装</h2>
+<h2 id="_2">安装</h2>
 <p>安装、配置过程其实是非常简单的。即使如此，我也踩了进坑里了。</p>
 <ul>
 <li>Mac OS X 系统自带和 <code>brew install</code> 的两个版本的 python 冲突问题，删掉或改名系统自带的版本可以解决。这个问题有时表现得像是权限问题。不管怎样，牢记这一条就好：</li>
@@ -127,37 +129,17 @@
 <li><a href="http://www.vcheng.org/2014/02/22/migrating-from-wordpress-to-pelican/">Migrating from Wordpress to Pelican</a></li>
 <li>以及 pelican 的文档：<a href="http://pelican-docs-zh-cn.readthedocs.org/en/latest/">HOME</a>，<a href="http://pelican-docs-zh-cn.readthedocs.org/en/latest/faq.html">FAQ</a></li>
 </ul>
-<h2>定制</h2>
+<h2 id="_3">定制</h2>
 <blockquote>
 <p>革命尚未成功，同志仍需努力。</p>
 </blockquote>
 <p>目前为止我还没弄完，只有了个大概思路。先找了个主题用着，以后慢慢弄。</p>
-<table>
-<thead>
-<tr>
-<th align="center">功能</th>
-<th>状态与方向</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">$\LaTeX$</td>
-<td><a href="http://www.mathjax.org/">MathJax</a></td>
-</tr>
-<tr>
-<td align="center">SyntaxHighlight</td>
-<td>主题帮助里有</td>
-</tr>
-<tr>
-<td align="center"><a href="http://www.graphviz.org/">graphviz</a></td>
-<td>见到过有人开源了编译成 js 的 graphviz ，回头可以考虑试试</td>
-</tr>
-<tr>
-<td align="center">序列图</td>
-<td>这个没找到好的本地解析，实在不行就得尽量少用，偶尔用 <a href="https://www.websequencediagrams.com">WebSequenceDiagrams</a> 顶一下吧。</td>
-</tr>
-</tbody>
-</table>
+<p>功能 | 状态与方向
+:-:|-
+$\LaTeX$ | <a href="http://www.mathjax.org/">MathJax</a>
+SyntaxHighlight | 主题帮助里有
+<a href="http://www.graphviz.org/">graphviz</a> | 见到过有人开源了编译成 js 的 graphviz ，回头可以考虑试试
+序列图 | 这个没找到好的本地解析，实在不行就得尽量少用，偶尔用 <a href="https://www.websequencediagrams.com">WebSequenceDiagrams</a> 顶一下吧。</p>
 <hr />
 <p>我用了几乎一整天的时间对比 <a href="https://github.com/getpelican/pelican-themes" title="pelican 主题包">pelican 的各种主题</a>。各有各的不满意，这当然是符合预期的。</p>
 <p>很自然的就想瞧瞧定制的话有多难。看到了文档（<a href="http://docs.getpelican.com/en/3.5.0/themes.html#structure">英文</a>，<a href="http://pelican-docs-zh-cn.readthedocs.org/en/latest/themes.html#theming-pelican">中文</a>）觉得很简单，就想从零开始做个自己的主题了。在这之前，把以前喜欢的 Wordpress 主题 port 过来一个吧。</p>
@@ -222,24 +204,26 @@
 							<div class="panel">
 								<h5>Tags</h5>
 								<ul class="tag-cloud">
-									<li><a href="/tag/os-x.html" class="tag-4">os x</a></li>
-									<li><a href="/tag/try.html" class="tag-2">try</a></li>
-									<li><a href="/tag/install.html" class="tag-4">install</a></li>
-									<li><a href="/tag/rules.html" class="tag-4">rules</a></li>
-									<li><a href="/tag/docker.html" class="tag-4">docker</a></li>
-									<li><a href="/tag/gitlab.html" class="tag-4">gitlab</a></li>
-									<li><a href="/tag/pelican.html" class="tag-1">pelican</a></li>
-									<li><a href="/tag/kernel_task.html" class="tag-4">kernel_task</a></li>
-									<li><a href="/tag/publishing.html" class="tag-4">publishing</a></li>
-									<li><a href="/tag/math.html" class="tag-4">math</a></li>
-									<li><a href="/tag/game.html" class="tag-4">game</a></li>
-									<li><a href="/tag/linux.html" class="tag-4">linux</a></li>
 									<li><a href="/tag/sip.html" class="tag-4">sip</a></li>
-									<li><a href="/tag/test.html" class="tag-1">test</a></li>
-									<li><a href="/tag/server.html" class="tag-1">server</a></li>
-									<li><a href="/tag/udev.html" class="tag-4">udev</a></li>
+									<li><a href="/tag/install.html" class="tag-4">install</a></li>
+									<li><a href="/tag/pelican.html" class="tag-1">pelican</a></li>
+									<li><a href="/tag/try.html" class="tag-2">try</a></li>
+									<li><a href="/tag/math.html" class="tag-4">math</a></li>
+									<li><a href="/tag/rules.html" class="tag-4">rules</a></li>
+									<li><a href="/tag/gitlab.html" class="tag-4">gitlab</a></li>
+									<li><a href="/tag/linux.html" class="tag-4">linux</a></li>
+									<li><a href="/tag/publishing.html" class="tag-4">publishing</a></li>
+									<li><a href="/tag/os-x.html" class="tag-4">os x</a></li>
 									<li><a href="/tag/puzzle.html" class="tag-4">puzzle</a></li>
+									<li><a href="/tag/kernel_task.html" class="tag-4">kernel_task</a></li>
+									<li><a href="/tag/game.html" class="tag-4">game</a></li>
+									<li><a href="/tag/server.html" class="tag-1">server</a></li>
+									<li><a href="/tag/vagrant.html" class="tag-4">vagrant</a></li>
+									<li><a href="/tag/virtualization.html" class="tag-4">virtualization</a></li>
+									<li><a href="/tag/test.html" class="tag-1">test</a></li>
 									<li><a href="/tag/el-capitan.html" class="tag-4">el capitan</a></li>
+									<li><a href="/tag/udev.html" class="tag-4">udev</a></li>
+									<li><a href="/tag/docker.html" class="tag-4">docker</a></li>
 								</ul>
 							</div>
 

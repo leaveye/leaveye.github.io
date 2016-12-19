@@ -101,38 +101,26 @@
 						<div class="medium-9 small-12 columns" role="content">
 							<div class="row">
 								<div class="small-12 columns">
-									<h2>Posts Tagged With 'game'</h2>
+									<h2>Posts Tagged With 'virtualization'</h2>
 								</div>
 							</div>
 
 <article>
-	<h3><a href="/the-witness-puzzles.html">见证者游戏谜题解析</a></h3>
-	<h6>Written by <a href="/author/levi-g.html">Levi G</a> in <a href="/category/blogging.html">blogging</a> on 三 17 二月 2016. Tags: <a href="/tag/game.html">game</a>, <a href="/tag/puzzle.html">puzzle</a>, <a href="/tag/math.html">math</a>, </h6>
-	<p><img alt="image" src="images/the-witness-puzzles_maze.png" /></p>
-<h1 id="_1">略作定义</h1>
-<p>所有谜题都可以这样描述：</p>
-<ul>
-<li>谜题题板是在一个平面或空间曲面上的格线阵列。</li>
-<li>谜题解答是无交叉的一笔画图形。<ul>
-<li>一笔画轨迹必须在题板给出的格线上。以圆点为起点，以方格阵列凸点为终点。</li>
-<li>一笔画轨迹本身必须满足阵列中图形的限定条件。</li>
-<li>一笔画轨迹将题板划分成一个或多个联通区域，每个联通区域必须满足阵列中图形的限定条件。</li>
-</ul>
-</li>
-</ul>
-<h1 id="_2">不同图形的限定含义</h1>
-<p>图形|位置|限定|图例
--|-|-|-
-格线|-|一笔画路径。
-圆点|格线交点|一笔画起点。
-出口|边界格线交点延伸到图形外|一笔画终点。
-圆角方形|方格内|所在连通区域内不可出现其它颜色的圆角方形。|<img alt="image" src="images/the-witness-puzzles_square-black.png" />
-正六边形|格线交点或格线上|一笔画必须经过此点。黑色可由任一颜色一笔画轨迹经过；其它颜色必须由同色轨迹经过。|<img alt="image" src="images/the-witness-puzzles_hex.png" />
-对称|题板整体是轴对称或中心对称的|一笔画出多条轨迹。对称性与题板本身相同。|<img alt="image" src="images/the-witness-puzzles_symmetry.png" />
-俄罗斯方块/<br/>多联骨牌|方格内|所在连通区域的形状必须可由其中的所有俄罗斯方块拼成。|<img alt="image" src="images/the-witness-puzzles_tetris.png" />
-空心俄罗斯方块/<br/>反多联骨牌|方格内|修正所在联通区域内的某块俄罗斯方块，将之挖去空心俄罗斯方块形状的一部分。|<img alt="image" src="images/the-witness-puzzles_tetris2.png" />
-八角星/太阳|方格内|所在联通区域必须存在且仅有一个同一颜色的特定图形（圆角方形、八角星 ...</br/></br/></p>
-		<p class="continue"><a href="/the-witness-puzzles.html">Continue reading &raquo;</a></p>
+	<h3><a href="/building-a-vagrant-box.html">从头到尾做 Vagrant Box</a></h3>
+	<h6>Written by <a href="/author/levi-g.html">Levi G</a> in <a href="/category/server.html">Server</a> on 一 19 十二月 2016. Tags: <a href="/tag/vagrant.html">vagrant</a>, <a href="/tag/virtualization.html">virtualization</a>, <a href="/tag/server.html">server</a>, </h6>
+	<p>译自：<a href="https://blog.engineyard.com/2014/building-a-vagrant-box">https://blog.engineyard.com/2014/building-a-vagrant-box</a><br/>
+<img alt="Original LOGO" src="https://blog.engineyard.com/images/blog-images/vagrant-box.png"/></p>
+<blockquote>
+<p><strong>注：</strong>本文原发布于 tylerbird.org 今年的 blog 。最近在 Engine Yard 发布大众更新版本。</p>
+</blockquote>
+
+<p>Vagrant 的目标是简化在本地创建开发环境，接触上之后，你再也不会想用其它方式了。只用两个简单的命令，你就可以安装你的第一个 vagrant 环境；再使用第三个命令，就可以连接到你的第一个 vagrant box 了，这些总共也用不了几分钟。</p>
+<pre><code>vagrant init precise32 http://files.vagrantup.com/precise32.box
+vagrant up
+vagrant ssh # 你连进来了！
+</code></pre>
+<p>这工具效率高的惊人，而且对那些在许多不同项目中工作的自由职业者，或是需要让队伍新成员尽快上手的公司来说，太有用了。使用 ...</p>
+		<p class="continue"><a href="/building-a-vagrant-box.html">Continue reading &raquo;</a></p>
 </article>
 <hr />
 

@@ -55,6 +55,7 @@
 						<li><label>Categories</label></li>
 							<li ><a href="/category/blogging.html">blogging</a></li>
 							<li ><a href="/category/linux.html">Linux</a></li>
+							<li ><a href="/category/server.html">Server</a></li>
 							<li class="active"><a href="/category/system.html">system</a></li>
 							<li ><a href="/category/test.html">Test</a></li>
 
@@ -83,6 +84,7 @@
 						<ul class="left">
 								<li ><a href="/category/blogging.html">blogging</a></li>
 								<li ><a href="/category/linux.html">Linux</a></li>
+								<li ><a href="/category/server.html">Server</a></li>
 								<li class="active"><a href="/category/system.html">system</a></li>
 								<li ><a href="/category/test.html">Test</a></li>
 						</ul>
@@ -105,28 +107,24 @@
 <p>担心了 1 个小时变砖的问题，决定还是强行关机。重启后没有继续安装，而是自动进入到升级前的系统。庆幸了一下。再次点击安装软件，重启进入安装过程。</p>
 <p>这次虽然进度条依旧很慢，但是顺利完成了安装过程。登录系统后，发现又再次出现了一年前修复的 <code>kernel_task</code> 进程 CPU 占用率暴高的问题。搜索到了<a href="http://www.zhihu.com/question/19611376">结果</a>，准备照此办理。</p>
 <p>查询到我的设备型号是 <code>MacBookPro8,2</code>，要删除的文件没有权限：</p>
-<div class="highlight"><pre><span class="nv">$ </span><span class="nb">pwd</span> <span class="o">&amp;&amp;</span> ls -lO@ MacBookPro8_2.plist
+<p><code>$ pwd &amp;&amp; ls -lO@ MacBookPro8_2.plist
 /System/Library/Extensions/IOPlatformPluginFamily.kext/Contents/PlugIns/ACPI_SMC_PlatformPlugin.kext/Contents/Resources
--rw-r--r--  <span class="m">1</span> root  wheel  restricted   14K  <span class="m">9</span> <span class="m">17</span> 09:20 MacBookPro8_2.plist
-</pre></div>
-
-
+-rw-r--r--  1 root  wheel  restricted   14K  9 17 09:20 MacBookPro8_2.plist</code></p>
 <p>尝试过安全模式下，仍然没有权限。搜索得知，这个 <code>restricted</code> 属性是 El Capitan 新加功能 SIP (System Intregrity Protection) 的一部分。常规启动下的 root 用户并没有这部分操作权限。有的说通过设置 <code>nvrom bootarg='rootless=0'</code> 来尝试解决，似乎这样风险有点大。还是根据<a href="https://forums.developer.apple.com/thread/3981">这里</a>，使用 OS X 自带的 Recovery OS 来弄吧。这里我还因为硬盘里没有恢复分区而折腾了两个小时，又是找制作修复磁盘的工具又是借 U 盘的，直到后来看到帖子说只需要能连到网络就可以进入恢复系统……</p>
 <p>进入 Recovery OS 的方法是启动电脑时，播放声音后，苹果 Logo 前，按 Command+R 键即可。可我这已经没有启动声音很久了，只好在黑屏就开始反复按这个组合键。</p>
 <p>在恢复系统中，进入终端后：</p>
-<div class="highlight"><pre># 进入硬盘 我这里硬盘卷标叫做『Macintosh HD』
-cd /Volumes/Macintosh\ HD
-# 进入文件所在路径
-cd System/Library/Extensions/IOPlatformPluginFamily.kext/Contents/PlugIns/ACPI_SMC_PlatformPlugin.kext/Contents/Resources
-# 关闭 SIP
-csrutil disable
-# 删除文件
-rm MacBookPro8_2.plist
-# 还原 SIP
-csrutil enable
-</pre></div>
-
-
+<p>```</p>
+<h1 id="macintosh-hd">进入硬盘 我这里硬盘卷标叫做『Macintosh HD』</h1>
+<p>cd /Volumes/Macintosh\ HD</p>
+<h1 id="_1">进入文件所在路径</h1>
+<p>cd System/Library/Extensions/IOPlatformPluginFamily.kext/Contents/PlugIns/ACPI_SMC_PlatformPlugin.kext/Contents/Resources</p>
+<h1 id="sip">关闭 SIP</h1>
+<p>csrutil disable</p>
+<h1 id="_2">删除文件</h1>
+<p>rm MacBookPro8_2.plist</p>
+<h1 id="sip_1">还原 SIP</h1>
+<p>csrutil enable
+```</p>
 <blockquote>
 <p>这里我先关闭 SIP 才删除文件的，怀疑不必关闭 SIP 直接就能操作，不过我没有验证。</p>
 </blockquote>
@@ -182,24 +180,26 @@ csrutil enable
 							<div class="panel">
 								<h5>Tags</h5>
 								<ul class="tag-cloud">
-									<li><a href="/tag/os-x.html" class="tag-4">os x</a></li>
-									<li><a href="/tag/try.html" class="tag-2">try</a></li>
-									<li><a href="/tag/install.html" class="tag-4">install</a></li>
-									<li><a href="/tag/rules.html" class="tag-4">rules</a></li>
-									<li><a href="/tag/docker.html" class="tag-4">docker</a></li>
-									<li><a href="/tag/gitlab.html" class="tag-4">gitlab</a></li>
-									<li><a href="/tag/pelican.html" class="tag-1">pelican</a></li>
-									<li><a href="/tag/kernel_task.html" class="tag-4">kernel_task</a></li>
-									<li><a href="/tag/publishing.html" class="tag-4">publishing</a></li>
-									<li><a href="/tag/math.html" class="tag-4">math</a></li>
-									<li><a href="/tag/game.html" class="tag-4">game</a></li>
-									<li><a href="/tag/linux.html" class="tag-4">linux</a></li>
 									<li><a href="/tag/sip.html" class="tag-4">sip</a></li>
-									<li><a href="/tag/test.html" class="tag-1">test</a></li>
-									<li><a href="/tag/server.html" class="tag-1">server</a></li>
-									<li><a href="/tag/udev.html" class="tag-4">udev</a></li>
+									<li><a href="/tag/install.html" class="tag-4">install</a></li>
+									<li><a href="/tag/pelican.html" class="tag-1">pelican</a></li>
+									<li><a href="/tag/try.html" class="tag-2">try</a></li>
+									<li><a href="/tag/math.html" class="tag-4">math</a></li>
+									<li><a href="/tag/rules.html" class="tag-4">rules</a></li>
+									<li><a href="/tag/gitlab.html" class="tag-4">gitlab</a></li>
+									<li><a href="/tag/linux.html" class="tag-4">linux</a></li>
+									<li><a href="/tag/publishing.html" class="tag-4">publishing</a></li>
+									<li><a href="/tag/os-x.html" class="tag-4">os x</a></li>
 									<li><a href="/tag/puzzle.html" class="tag-4">puzzle</a></li>
+									<li><a href="/tag/kernel_task.html" class="tag-4">kernel_task</a></li>
+									<li><a href="/tag/game.html" class="tag-4">game</a></li>
+									<li><a href="/tag/server.html" class="tag-1">server</a></li>
+									<li><a href="/tag/vagrant.html" class="tag-4">vagrant</a></li>
+									<li><a href="/tag/virtualization.html" class="tag-4">virtualization</a></li>
+									<li><a href="/tag/test.html" class="tag-1">test</a></li>
 									<li><a href="/tag/el-capitan.html" class="tag-4">el capitan</a></li>
+									<li><a href="/tag/udev.html" class="tag-4">udev</a></li>
+									<li><a href="/tag/docker.html" class="tag-4">docker</a></li>
 								</ul>
 							</div>
 
