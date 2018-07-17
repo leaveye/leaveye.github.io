@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Happy Coding - Linux</title><link href="http://leaveye.github.io/" rel="alternate"></link><link href="http://leaveye.github.io/feeds/linux.atom.xml" rel="self"></link><id>http://leaveye.github.io/</id><updated>2016-12-15T19:29:00+08:00</updated><entry><title>编写 udev 规则</title><link href="http://leaveye.github.io/writing-udev-rules.html" rel="alternate"></link><published>2016-12-15T19:29:00+08:00</published><updated>2016-12-15T19:29:00+08:00</updated><author><name>Levi G</name></author><id>tag:leaveye.github.io,2016-12-15:/writing-udev-rules.html</id><summary type="html">&lt;p&gt;by Daniel Drake (dsd)
+Version 0.74&lt;/p&gt;
+&lt;p&gt;本文最新版本可在此处找到：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.reactivated.net/writing_udev_rules.html"&gt;http://www.reactivated.net/writing_udev_rules.html&lt;/a&gt; (英文版)&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.levi-g.info/writing-udev-rules.html"&gt;http://blog.levi-g.info/writing-udev-rules.html&lt;/a&gt; (中文版)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="_1"&gt;目录&lt;/h2&gt;
+&lt;div class="toc"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#_1"&gt;目录&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_2"&gt;介绍&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#_3"&gt;关于本文档&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_4"&gt;更新历史&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_5"&gt;概念&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#devfs-sysfs-nodes"&gt;语义: devfs, sysfs, nodes 等&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_6"&gt;为什么？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_7"&gt;内置固定命名方案&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_8"&gt;规则书写&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#_9"&gt;规则文件和语义&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_10"&gt;规则语法&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_11"&gt;基本规则&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#sysfs"&gt;匹配 sysfs 属性&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_12"&gt;设备级联&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_13"&gt;字符串替换&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_14"&gt;字符串匹配&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#sysfs_1"&gt;从 sysfs 中查找信息&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#sysfs_2"&gt;sysfs 树 …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;by Daniel Drake (dsd)
+Version 0.74&lt;/p&gt;
+&lt;p&gt;本文最新版本可在此处找到：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.reactivated.net/writing_udev_rules.html"&gt;http://www.reactivated.net/writing_udev_rules.html&lt;/a&gt; (英文版)&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.levi-g.info/writing-udev-rules.html"&gt;http://blog.levi-g.info/writing-udev-rules.html&lt;/a&gt; (中文版)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="_1"&gt;目录&lt;/h2&gt;
+&lt;div class="toc"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#_1"&gt;目录&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_2"&gt;介绍&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#_3"&gt;关于本文档&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_4"&gt;更新历史&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_5"&gt;概念&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#devfs-sysfs-nodes"&gt;语义: devfs, sysfs, nodes 等&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_6"&gt;为什么？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_7"&gt;内置固定命名方案&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_8"&gt;规则书写&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#_9"&gt;规则文件和语义&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_10"&gt;规则语法&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_11"&gt;基本规则&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#sysfs"&gt;匹配 sysfs 属性&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_12"&gt;设备级联&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_13"&gt;字符串替换&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_14"&gt;字符串匹配&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#sysfs_1"&gt;从 sysfs 中查找信息&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#sysfs_2"&gt;sysfs 树&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#udevinfo"&gt;udevinfo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_15"&gt;替代方法&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_16"&gt;高级话题&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#_17"&gt;控制权限和所有权&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_18"&gt;使用外部程序来命名设备&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_19"&gt;特定事件发生时运行外部程序&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_20"&gt;环境交互&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_21"&gt;额外选项&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_22"&gt;例子&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#usb"&gt;USB 打印机&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#usb_1"&gt;USB相机&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#usb_2"&gt;USB硬盘&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#usb_3"&gt;USB读卡器&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#usb-palm"&gt;USB Palm 导航仪&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_23"&gt;光驱&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_24"&gt;网卡接口&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_25"&gt;测试和调试&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#_26"&gt;让你的规则跑起来&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#udevtest"&gt;udevtest&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_27"&gt;作者以及联系方式&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;h2 id="_2"&gt;介绍&lt;/h2&gt;
+&lt;h3 id="_3"&gt;关于本文档&lt;/h3&gt;
+&lt;p&gt;udev 面向 2.6 及以上的 Linux 内核，提供带有固定设备命名的，动态 /dev 目录的，用户空间解决方案。之前的 /dev 实现 &lt;em&gt;devfs&lt;/em&gt; 现已被废弃，udev 成为继任者。udev vs devfs 是一个敏感的谈话内容，在进行比较之前你应该读一下&lt;a href="http://kernel.org/pub/linux/utils/kernel/hotplug/udev_vs_devfs"&gt;这个文档&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;几年间，如同规则自身的弹性，你为之使用 udev 规则的设备变化了。在现代系统中，udev 为系统外的设备类型提供了固定的命名方法，避免了为这些设备提供定制规则。然而一些用户仍然需要额外的定制级别。&lt;/p&gt;
+&lt;p&gt;本文档假设你已经安装了 udev 并使用缺省配置运行良好。这通常是通过你的 Linux 发行版做到的。&lt;/p&gt;
+&lt;p&gt;本文档不会覆盖规则书写的方方面面，只集中介绍所有主要概念。更多细节信息可以在 udev 的 man 页面中找到。&lt;/p&gt;
+&lt;p&gt;本文档使用各种例子（一些完全是虚构的）来阐述观点和概念。不是所有语法都会显式的在附带文本中描述，请确信通过查看例子规则来获取完整的理解。&lt;/p&gt;
+&lt;h3 id="_4"&gt;更新历史&lt;/h3&gt;
+&lt;p&gt;(略)&lt;/p&gt;
+&lt;h2 id="_5"&gt;概念&lt;/h2&gt;
+&lt;h3 id="devfs-sysfs-nodes"&gt;语义: devfs, sysfs, nodes 等&lt;/h3&gt;
+&lt;p&gt;仅仅是基本介绍，可能并不完全准确。&lt;/p&gt;
+&lt;p&gt;在典型的基于 Linux 的系统中，&lt;em&gt;/dev&lt;/em&gt; 目录用来存储文件一样的设备节点（&lt;strong&gt;nodes&lt;/strong&gt;），它们指向系统中特定的设备。每一个节点指向系统的一部分（一个设备），可能存在也可能不存在。用户空间应用程序可以使用这些设备节点跟系统硬件打交道，例如，X 服务器“监听” /dev/input/mice 来根据用户的鼠标移动来移动可视鼠标指针。&lt;/p&gt;
+&lt;p&gt;原始的 &lt;em&gt;/dev&lt;/em&gt; 目录在设备可能在系统中出现时就产生，因此 /dev 目录一般非常大。随之而来的 &lt;strong&gt;devfs&lt;/strong&gt; 提供了一种易于管理的途径（注意它仅仅在硬件插入到系统中时产生 /dev ）以及其他功能，但系统会出现无法轻松修复的问题。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;udev&lt;/strong&gt; 是一种“新”的管理 &lt;em&gt;/dev&lt;/em&gt; 目录的方法，它的设计清除了以前的 &lt;em&gt;/dev&lt;/em&gt; 实现的一些问题，并提供了鲁棒的路径以向后兼容。为了创建并命名系统中相应的 &lt;em&gt;/dev&lt;/em&gt; 设备结点，udev 需要依赖于根据用户提供的规则从 &lt;em&gt;sysfs&lt;/em&gt; 中得到的匹配信息。本文着重规则书写的详细过程，udev 相关的任务（或许）要由用户自己完成。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;sysfs&lt;/strong&gt; 是 2.6 内核中一个新的文件系统。它由内核管理，并导出当前系统中插入的设备基本信息。udev 可使用这些信息创建对应的硬件设备结点。sysfs 挂载在 &lt;em&gt;/sys&lt;/em&gt; 下且可浏览。你可能很希望在使用 udev 之前刺探下存储在那儿的有关文件。本文中，我将等同地使用 &lt;em&gt;/sys&lt;/em&gt; 和 &lt;em&gt;sysfs&lt;/em&gt; 术语。&lt;/p&gt;
+&lt;h3 id="_6"&gt;为什么？&lt;/h3&gt;
+&lt;p&gt;udev 规则有弹性且非常强大。这里是一些你使用规则可以达成的结果：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;重命名设备节点的缺省名字为其他名字&lt;/li&gt;
+&lt;li&gt;通过创建符号链接到缺省设备节点来提供一个替代或固定的设备节点名&lt;/li&gt;
+&lt;li&gt;基于程序的输出命名设备节点&lt;/li&gt;
+&lt;li&gt;改变设备节点的权限和所有权&lt;/li&gt;
+&lt;li&gt;当设备节点被创建或删除时（通常是添加设备或拔出设备时）执行一个脚本&lt;/li&gt;
+&lt;li&gt;重命名网络接口&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;当存在的特定设备没有设备节点时，这_不是_书写规则的工作范围。即使没有匹配的规则，udev 也会利用内核提供的缺省名字来创建设备节点.&lt;/p&gt;
+&lt;p&gt;拥有固定命名的设备节点有很多好处。假设你有两个 USB 存储设备：一个数码相机，一个是 USB 闪存盘。通常这两个设备被赋予 &lt;em&gt;/dev/sda&lt;/em&gt; 和 &lt;em&gt;/dev/sdb&lt;/em&gt; 设备节点，然而准确的赋值取决于它们连接到系统的顺序。这可能为一些用户造成麻烦，如果每个设备每次都可以固定命名，比如 &lt;em&gt;/dev/camera&lt;/em&gt; 和 &lt;em&gt;/dev/flashdisk&lt;/em&gt;，用户就会获益。&lt;/p&gt;
+&lt;h3 id="_7"&gt;内置固定命名方案&lt;/h3&gt;
+&lt;p&gt;udev 为系统外的一些设备类型提供了固定命名。这是一个很有用的特性，在大多情况下意味着你不用书写任何规则。&lt;/p&gt;
+&lt;p&gt;udev 为存储设备在 &lt;em&gt;/dev/disk&lt;/em&gt; 目录下提供了系统外命名方法。要查看它为你的存储硬件创建的固定命名，你可以使用下列命令：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;#ls -lR /dev/disk
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;所有存储类型都可以这么用。例如，udev 为我的根分区创建了固定命名链接 &lt;em&gt;/dev/disk/by-id/scsi-SATA_ST3120827AS_4MS1NDXZ-part3&lt;/em&gt;。当我插入我的 USB 闪存盘，udev 就会创建另外一个固定命名节点 &lt;em&gt;/dev/disk/by-id/usb-Prolific_Technology_Inc._USB_Mass_Storage_Device-part1&lt;/em&gt;。&lt;/p&gt;
+&lt;h2 id="_8"&gt;规则书写&lt;/h2&gt;
+&lt;h3 id="_9"&gt;规则文件和语义&lt;/h3&gt;
+&lt;p&gt;为决定如何命名设备以及执行什么额外动作，udev 会读取一系列规则文件。这些文件保存在 &lt;em&gt;/etc/udev/rules.d&lt;/em&gt; 目录下并且都必须有 &lt;em&gt;.rules&lt;/em&gt; 后缀名。&lt;/p&gt;
+&lt;p&gt;缺省udev规则存储在 &lt;em&gt;/etc/udev/rules.d/50-udev.rules&lt;/em&gt; 里面。你可能发现整个文件很有意思，它包含了少量例子，继而是一些提供了 devfs 风格 /dev 布局的缺省规则。但是你不应该直接在这个文件里面书写规则。&lt;/p&gt;
+&lt;p&gt;/etc/udev/rules.d/ 下面的文件按字典序解析，在某些情况下，规则文件的解析顺序很重要。通常来说你希望你的规则可以在缺省规则之前解析，所以我建议你创建一个文件 &lt;em&gt;/etc/udev/rules.d/10-local.rules&lt;/em&gt; 并把自己的所有规则写到这里面去。&lt;/p&gt;
+&lt;p&gt;在一个规则文件中，以 &lt;code&gt;#&lt;/code&gt; 开头的行被认为是注释。除此之外每一个非空的行都是一条规则。规则不能跨越多行。&lt;/p&gt;
+&lt;p&gt;一个设备可以被多条规则匹配到。实用方面这有优势。例如，我们可以写两个匹配同一个设备的规则，每一个规则为设备提供了它自己的替代命名。即使分开在不同的文件中，两个替代命名也都会被创。要明白 udev 在找到一个匹配规则后&lt;em&gt;不会&lt;/em&gt;停止处理其他规则，它仍然会继续查找并尝试应用已知的每条规则，这很重要。&lt;/p&gt;
+&lt;h3 id="_10"&gt;规则语法&lt;/h3&gt;
+&lt;p&gt;每条规则由一系列逗号分隔的键值对组成。&lt;strong&gt;匹配&lt;/strong&gt;键是用来识别要应用规则的设备的条件。当规则中对应设备的_所有_匹配键被涉及时，就会应用规则并且触发&lt;strong&gt;赋值&lt;/strong&gt;键的行为。每条规则应该包含至少一个匹配键和至少一个赋值键。&lt;/p&gt;
+&lt;p&gt;这是用来阐述上面内容的一个例子规则：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;KERNEL==&amp;quot;hdb&amp;quot;, NAME=&amp;quot;my_spare_disk&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;上述规则包含一个匹配键（&lt;em&gt;KERNEL&lt;/em&gt;）以及一个赋值键（&lt;em&gt;NAME&lt;/em&gt;）。这些键和它们属性的语义将在稍后具体说明。重点注意到匹配键通过连等号（==）与它的值联系起来, 赋值键通过等号（=）与它的值关联。&lt;/p&gt;
+&lt;p&gt;注意 udev 不支持任何形式的行连接符。不要在你的规则种插入任何断行符，这将会导致 udev 把你的一条规则看做是多条规则，不会按预期工作。&lt;/p&gt;
+&lt;h3 id="_11"&gt;基本规则&lt;/h3&gt;
+&lt;p&gt;udev 提供许多用来书写精确匹配规则的匹配键。其中一些常用键将在下面介绍，其他将在文档的后面说明。完整列表可以查看 udev 的 man 页面.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;KERNEL&lt;/strong&gt; - 匹配内核为设备的命名&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SUBSYSTEM&lt;/strong&gt; - 匹配设备的子系统&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DRIVER&lt;/strong&gt; - 匹配支持设备的驱动名称&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在你使用一系列匹配键来准确匹配设备后，udev 通过赋值键让你更好的控制接下来发生的事。完整的赋值键列表可以查看 udev 的 man 页面。最基本的赋值键在下面说明，其他的将在文档结束时说明。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;NAME&lt;/strong&gt; - 设备节点应该使用的名字&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SYMLINK&lt;/strong&gt; - 一个设备节点的替代符号链接命名&lt;strong&gt;列表&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;正如前文所暗示的，udev 仅仅为设备创建一个真正的设备节点。如果你希望为设备节点提供替代命名，你得使用符号链接功能。通过 &lt;em&gt;SYMLINK&lt;/em&gt; 赋值，实际上是维护一个符号链接&lt;em&gt;列表&lt;/em&gt;，这些符号链接都会指向真实的设备节点。为了维护这些链接，我们介绍一个用来追加到列表的新操作符：&lt;code&gt;+=&lt;/code&gt;。你可以在一个规则中附加多个符号链接到列表中，通过空格分开。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;KERNEL==&amp;quot;hdb&amp;quot;, NAME=&amp;quot;my_spare_disk&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;上面规则意思是：&lt;em&gt;匹配一个内核命名为 hdb 的设备，把它重新命名为 my_spare_disk。&lt;/em&gt;设备节点出现在 &lt;em&gt;/dev/my_spare_disk&lt;/em&gt; 。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;KERNEL==&amp;quot;hdb&amp;quot;, DRIVER==&amp;quot;ide-disk&amp;quot;, SYMLINK+=&amp;quot;sparedisk&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;上面规则意思是：&lt;em&gt;匹配一个内核命名为 hdb _同时_驱动为 ide-disk 的设备，以缺省命名设备节点，并创建一个名为 sparedisk 的符号链接指向它。&lt;/em&gt;注意我们没有指明设备节点名字，于是 udev 使用缺省命名。为保留标准 &lt;em&gt;/dev&lt;/em&gt; 布局，你自己的规则通常没有 NAME 但会创建一些 SYMLINK 并/或执行其他赋值操作。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;KERNEL==&amp;quot;hdc&amp;quot;, SYMLINK+=&amp;quot;cdrom cdrom0&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;上面规则很可能就是你要写的典型规则。它在 &lt;em&gt;/dev/cdrom&lt;/em&gt; 和 &lt;em&gt;/dev/cdrom0&lt;/em&gt; 创建了两个指向 &lt;em&gt;/dev/hdc&lt;/em&gt; 的符号链接。也没有指定 NAME 赋值，所以使用缺省的内核命名（hdc）。&lt;/p&gt;
+&lt;h3 id="sysfs"&gt;匹配 sysfs 属性&lt;/h3&gt;
+&lt;p&gt;到目前为止介绍的匹配键仅仅提供了有限的匹配能力。实际上我们需要更加优良的控制：我们想基于设备的高级属性来识别设备，如供应商编码、产品编号、序列号、存储能力、分区数等等。&lt;/p&gt;
+&lt;p&gt;很多驱动导出这些信息到 sysfs ，udev 允许我们使用 ATTR 键通过稍捎不同的语法来将 sysfs 匹配纳入规则中。&lt;/p&gt;
+&lt;p&gt;这里有一个匹配 sysfs 中单一属性的例子。文后会提供更多细节来帮助你基于 sysfs 属性书写规则。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;SUBSYSTEM==&amp;quot;block&amp;quot;, ATTR{size}==&amp;quot;234441648&amp;quot;, SYMLINK+=&amp;quot;my_disk&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id="_12"&gt;设备级联&lt;/h3&gt;
+&lt;p&gt;Linux 内核实际上以树状结构展示设备，这个信息通过 sysfs 显露出来，在书写规则时这非常有用。例如我的硬盘设备展示为一个 SCSI 磁盘设备的孩子，这个 SCSI 磁盘设备又是一个串行 ATA 控制器设备的孩子，该控制器又是 PCI 总线设备的孩子。你很有可能发现你需要从一个讨论中的设备的祖先那里引用信息，比如我的硬盘设备的序列号在设备级别并不暴露出来, 而是在 SCSI 磁盘级别通过它的直接双亲展现。&lt;/p&gt;
+&lt;p&gt;目前介绍的四个主要匹配键（KERNEL/SUBSYSTEM/DRIVER/ATTR）仅仅跟对应设备的值匹配，不能跟双亲设备的值匹配。udev 提供了在树中向上查找的匹配键变种：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;KERNELS&lt;/strong&gt; - 匹配设备的内核名，或任何祖先设备的内核名&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SUBSYSTEMS&lt;/strong&gt; - 匹配设备的子系统名，或任何祖先设备中的子系统名&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DRIVERS&lt;/strong&gt; - 匹配支持设备的驱动名，或任何支持祖先设备的驱动名&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ATTRS&lt;/strong&gt; - 匹配设备的 sysfs 属性，或任何祖先设备的 sysfs 属性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;由于在心里要考虑到级联结构，你可能感觉到规则书写变的有点复杂了。歇一会吧，有工具可以帮助我们的，后文再表。&lt;/p&gt;
+&lt;h3 id="_13"&gt;字符串替换&lt;/h3&gt;
+&lt;p&gt;当编写意图要处理多个相似设备的规则时，udev 的 &lt;em&gt;printf 风格的字符串替换操作符&lt;/em&gt;就非常有用了。你可以在你的规则里面的任何赋值里面包含这些操作符，udev 在执行它们时会对其求值。&lt;/p&gt;
+&lt;p&gt;最常用的操作符是 &lt;strong&gt;%k&lt;/strong&gt; 和 &lt;strong&gt;%n&lt;/strong&gt; 。%k 求值为设备的内核命名，例如字符串“sda3”之于（缺省）出现在 &lt;em&gt;/dev/sda3&lt;/em&gt; 的设备。%n 求值为设备的内核号码（存储设备的分区号），例如“3”之于 &lt;em&gt;/dev/sda3&lt;/em&gt; 。&lt;/p&gt;
+&lt;p&gt;udev 也提供了一些高级功能替换操作符。在读完本文剩下内容后可以查询 udev 的 man 页面。以上例子中的操作符也有一个替代语法—— &lt;strong&gt;\&lt;span class="math"&gt;\(kernel** 和 **\\)&lt;/span&gt;number&lt;/strong&gt; 。因此如果你希望在规则中匹配字符 % ，你必须写成 %% ；如果你希望匹配字符 \&lt;span class="math"&gt;\( ，你必须写成 \\)&lt;/span&gt;\$ 。&lt;/p&gt;
+&lt;p&gt;为阐述下字符串替换的概念，我们来展示几个例子：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;KERNEL==&amp;quot;mice&amp;quot;, NAME=&amp;quot;input/%k&amp;quot;
+KERNEL==&amp;quot;loop0&amp;quot;, NAME=&amp;quot;loop/%n&amp;quot;, SYMLINK+=&amp;quot;%k&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;第一条规则确保鼠标设备节点仅仅出现在 &lt;em&gt;/dev/input&lt;/em&gt; 目录下（缺省是在 &lt;em&gt;/dev/mice&lt;/em&gt; 下面）。第二条规则确保名为 loop0 的设备节点在 &lt;em&gt;/dev/loop/0&lt;/em&gt; 创建，但也会照常在 &lt;em&gt;/dev/loop0&lt;/em&gt; 创建一个符号链接。&lt;/p&gt;
+&lt;p&gt;上面规则的使用都比较可疑，因为他们都可以通过不使用任何替换操作符来重写。这些替换的真正威力将会在下一节显现。&lt;/p&gt;
+&lt;h3 id="_14"&gt;字符串匹配&lt;/h3&gt;
+&lt;p&gt;不仅有字符串精确匹配，udev 也允许你使用 shell 风格的模式匹配。支持3种模式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;*&lt;/strong&gt; - 匹配任何字符，0 次或多次&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;?&lt;/strong&gt; - 匹配任何字符一次&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;[]&lt;/strong&gt; - 匹配任何方括号中指定的单个字符，可以指定范围&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这里有一些例子，注意字符串替换符的使用：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;KERNEL==&amp;quot;fd[0-9]*&amp;quot;, NAME=&amp;quot;floppy/%n&amp;quot;, SYMLINK+=&amp;quot;%k&amp;quot;
+KERNEL==&amp;quot;hiddev*&amp;quot;, NAME=&amp;quot;usb/%k&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;第一条规则匹配所有软盘驱动，确保设备节点放置在 &lt;em&gt;/dev/floppy&lt;/em&gt; 目录下，也创建一个缺省命名的符号链接。第二条规则确保 hiddev 设备节点放在 &lt;em&gt;/dev/usb&lt;/em&gt; 目录下面。&lt;/p&gt;
+&lt;h2 id="sysfs_1"&gt;从 sysfs 中查找信息&lt;/h2&gt;
+&lt;h3 id="sysfs_2"&gt;sysfs 树&lt;/h3&gt;
+&lt;p&gt;从 sysfs 中获取关注信息的概念在之前的例子中已经触及。为基于这些信息书写规则，你首先需要知道属性名和他们的当前值。&lt;/p&gt;
+&lt;p&gt;sysfs 实际上是一个非常简单的结构。逻辑上分成目录形式。每一个目录包含一定量的文件（属性），这些文件往往仅包含一个值。也会有一些符号链接，它们把设备链到双亲那里。级联结构已在上面说明了。&lt;/p&gt;
+&lt;p&gt;一些目录被作为&lt;em&gt;顶层设备路径&lt;/em&gt;引用。这些目录表示了拥有对应设备节点的实际设备。顶层设备路径可以被归类为包含 &lt;em&gt;dev&lt;/em&gt; 文件的 sysfs 目录，下列命令可以列举出这些文件：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# find /sys -name dev
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;例如，在我的系统中，&lt;em&gt;/sys/block/sda&lt;/em&gt; 目录就是我的硬盘设备路径。它通过 &lt;em&gt;/sys/block/sda/device&lt;/em&gt; 符号链接链向它的双亲 SCSI 磁盘设备。&lt;/p&gt;
+&lt;p&gt;当你书写基于 sysfs 信息的规则时，只是简单的匹配链条上一部分文件的属性内容。例如，我可以这样读我的硬盘的大小：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# cat /sys/block/sda/size
+234441648
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在一个 udev 规则里面，我可以使用 ATTR{size}=="234441648" 来识别这个磁盘。因为 udev 遍历设备链，我可以使用 ATTRS 匹配链中另外一部分的属性（如 &lt;em&gt;/sys/class/block/sda/device&lt;/em&gt; 中的属性），然而在处理链中不同部分时会有一些告诫，稍后描述。&lt;/p&gt;
+&lt;p&gt;虽然对 sysfs 的结构和具体 udev 如何匹配值来说，梳理 sysfs 都是有用的介绍，但这是个既耗时也没必要的事。&lt;/p&gt;
+&lt;h3 id="udevinfo"&gt;udevinfo&lt;/h3&gt;
+&lt;p&gt;你构造规则最直白的工具大概就是敲入 &lt;em&gt;udevinfo&lt;/em&gt; 了。你需要知道的全部，就是问题设备的 sysfs 设备路径。下面是一个精简的例子（udevinfo 输出信息中，每段颜色不同，第一段绿色，第二段蓝色，第三段栗色，译者注）：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# udevinfo -a -p /sys/block/sda
+
+  looking at device &amp;#39;/block/sda&amp;#39;:
+    KERNEL==&amp;quot;sda&amp;quot;
+    SUBSYSTEM==&amp;quot;block&amp;quot;
+    ATTR{stat}==&amp;quot;  128535     2246  2788977   766188    73998   317300  3132216  5735004        0   516516  6503316&amp;quot;
+    ATTR{size}==&amp;quot;234441648&amp;quot;
+    ATTR{removable}==&amp;quot;0&amp;quot;
+    ATTR{range}==&amp;quot;16&amp;quot;
+    ATTR{dev}==&amp;quot;8:0&amp;quot;
+
+  looking at parent device &amp;#39;/devices/pci0000:00/0000:00:07.0/host0/target0:0:0/0:0:0:0&amp;#39;:
+    KERNELS==&amp;quot;0:0:0:0&amp;quot;
+    SUBSYSTEMS==&amp;quot;scsi&amp;quot;
+    DRIVERS==&amp;quot;sd&amp;quot;
+    ATTRS{ioerr_cnt}==&amp;quot;0x0&amp;quot;
+    ATTRS{iodone_cnt}==&amp;quot;0x31737&amp;quot;
+    ATTRS{iorequest_cnt}==&amp;quot;0x31737&amp;quot;
+    ATTRS{iocounterbits}==&amp;quot;32&amp;quot;
+    ATTRS{timeout}==&amp;quot;30&amp;quot;
+    ATTRS{state}==&amp;quot;running&amp;quot;
+    ATTRS{rev}==&amp;quot;3.42&amp;quot;
+    ATTRS{model}==&amp;quot;ST3120827AS     &amp;quot;
+    ATTRS{vendor}==&amp;quot;ATA     &amp;quot;
+    ATTRS{scsi_level}==&amp;quot;6&amp;quot;
+    ATTRS{type}==&amp;quot;0&amp;quot;
+    ATTRS{queue_type}==&amp;quot;none&amp;quot;
+    ATTRS{queue_depth}==&amp;quot;1&amp;quot;
+    ATTRS{device_blocked}==&amp;quot;0&amp;quot;
+
+  looking at parent device &amp;#39;/devices/pci0000:00/0000:00:07.0&amp;#39;:
+    KERNELS==&amp;quot;0000:00:07.0&amp;quot;
+    SUBSYSTEMS==&amp;quot;pci&amp;quot;
+    DRIVERS==&amp;quot;sata_nv&amp;quot;
+    ATTRS{vendor}==&amp;quot;0x10de&amp;quot;
+    ATTRS{device}==&amp;quot;0x037f&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;正如你看到的，udevinfo 简单的产生一个你可以在 udev 规则中作为匹配键的属性列表。从上面例子中我可以为该设备产生下面两条规则（ATTR 绿色，SUBSYSTEMS、ATTRS 蓝色，DRIVERS 栗色，译者注）：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;SUBSYSTEM==&amp;quot;block&amp;quot;, ATTR{size}==&amp;quot;234441648&amp;quot;, NAME=&amp;quot;my_hard_disk&amp;quot;
+SUBSYSTEM==&amp;quot;block&amp;quot;, SUBSYSTEMS==&amp;quot;scsi&amp;quot;, ATTRS{model}==&amp;quot;ST3120827AS&amp;quot;, NAME=&amp;quot;my_hard_disk&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;你可能发现到例子中使用了颜色，这是为了阐述把问题设备属性和&lt;em&gt;单个&lt;/em&gt;祖先设备属性并在一起是合法的，你不能混合匹配多个祖先设备属性——这样你的规则不能工作。例如，下列规则（ATTRS 蓝色，DRIVERS 栗色，译者注）是&lt;em&gt;不合理的&lt;/em&gt;，因为它试图匹配两个祖先设备的属性：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;SUBSYSTEM==&amp;quot;block&amp;quot;, ATTRS{model}==&amp;quot;ST3120827AS&amp;quot;, DRIVERS==&amp;quot;sata_nv&amp;quot;, NAME=&amp;quot;my_hard_disk&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;通常有大量的属性提供给你，你必须挑选其中一部分来构造你的规则。一般来讲，你希望挑选那些能够稳定标识你的设备并便于理解的属性。上例中我选取的是我的磁盘大小和它的模型号，而没有使用没有意义的数字，诸如 ATTRS{iodone_cnt}=="0×31737" 。&lt;/p&gt;
+&lt;p&gt;仔细观察下 udevinfo 的输出中的级联结构。对应于设备的绿色部分，使用了标准匹配键如 KERNEL 和 ATTR 。蓝色部分和栗色部分使用了祖先遍历变量如 SUBSYSTEMS 和 ATTRS 。这就是为什么级联结构的复杂性实际上很容易处理的原因，只要确保使用 udevinfo 建议的准确值就行了。&lt;/p&gt;
+&lt;p&gt;另外一点需要指出的是 udevinfo 输出的文本属性之间用空格填充（例如上面的 ST3120827AS ）是很常见的。在你的规则中你可以添加那些额外的空格，也可以像我那样去掉。&lt;/p&gt;
+&lt;p&gt;使用 udevinfo 的唯一复杂之处在于要求你知道顶级设备路径（例如上面例子中的 /sys/block/sda ）。这通常并不明显。但是，因为你通常是为已经存在的设备节点写规则，你可以自己使用 udevinfo 查找设备路径：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;#udevinfo -a -p $(udevinfo -q path -n /dev/sda)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id="_15"&gt;替代方法&lt;/h3&gt;
+&lt;p&gt;虽然 udevinfo 差不多是列举你要构建的规则的准确属性的最直接方式，但一些用户仍然乐于使用其它工具。诸如 &lt;a href="http://www.kroah.com/linux/usb/"&gt;usbview&lt;/a&gt; 的工具可以显示类似的信息集，这些信息大多也可以用在规则中。&lt;/p&gt;
+&lt;h2 id="_16"&gt;高级话题&lt;/h2&gt;
+&lt;h3 id="_17"&gt;控制权限和所有权&lt;/h3&gt;
+&lt;p&gt;udev 允许你在规则中使用另外的赋值来控制每个设备的所有权和权限属性。&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;GROUP&lt;/em&gt; 赋值允许你定义哪个 Unix 组应该拥有设备节点。这里有一个例子规则，它定义 &lt;em&gt;video&lt;/em&gt; 组拥有 framebuffer 设备：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;KERNEL==&amp;quot;fb[0-9]*&amp;quot;, NAME=&amp;quot;fb/%n&amp;quot;, SYMLINK+=&amp;quot;%k&amp;quot;, GROUP=&amp;quot;video&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;em&gt;OWNER&lt;/em&gt; 键可能用处不大，它允许你定义哪个 Unix 用户应该具有设备节点的所有权。假设有个奇怪状况要你让 &lt;em&gt;john&lt;/em&gt; 拥有软盘设备，你可以使用：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;KERNEL=&amp;quot;fd[0-9]*&amp;quot;, OWNER=&amp;quot;john&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;udev 缺省用 Unix 的 0660 权限（拥有者和组员可以读写）创建设备节点。需要的话你可以在特定设备的规则中包含 &lt;em&gt;MODE&lt;/em&gt; 赋值键覆盖这些缺省值。作为例子，下面的规则定义了 inotify 节点可以被每个人读写：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;KERNEL==&amp;quot;inotify&amp;quot;, NAME=&amp;quot;misc/%k&amp;quot;, SYMLINK+=&amp;quot;%k&amp;quot;, MODE=&amp;quot;0666&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id="_18"&gt;使用外部程序来命名设备&lt;/h3&gt;
+&lt;p&gt;某些情况下你可能要求比 udev 标准规则提供的更多弹性。这种情况下，你可以请求 udev 运行一个程序并运用程序的标准输出来提供设备命名。&lt;/p&gt;
+&lt;p&gt;要使用这个功能，你只需简单的在 &lt;em&gt;PROGRAM&lt;/em&gt; 赋值中指定要运行程序（以及任何参数）的绝对路径，然后在 NAME/SYMLINK 赋值中使用 &lt;em&gt;%c&lt;/em&gt; 替换及其变种。&lt;/p&gt;
+&lt;p&gt;下列例子引用一个位于 &lt;em&gt;/bin/device_namer&lt;/em&gt; 的虚构程序。device_namer 接收一个表示内核名字的命令行参数。基于内核名，device_namer 做一些魔幻变换接着产生一些输出到普通 &lt;em&gt;stdout&lt;/em&gt; 管道，这些输出被分割为很多小块，每一小块是一个单词，块之间用一个空格分开。&lt;/p&gt;
+&lt;p&gt;在我们的第一个例子中，我们假设 device_namer 输出中，每一个部分形成当前设备的一个符号链接（替代命名）。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;KERNEL==&amp;quot;hda&amp;quot;, PROGRAM=&amp;quot;/bin/device_namer %k&amp;quot;, SYMLINK+=&amp;quot;%c&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;下一个例子假设 device_namer 有两部分输出，第一部分是设备名字，第二部分是额外符号链接的名字。我们现在介绍 &lt;em&gt;%c{N}&lt;/em&gt; 替换，它引用命令输出的第 N 个部分：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;KERNEL==&amp;quot;hda&amp;quot;, PROGRAM=&amp;quot;/bin/device_namer %k&amp;quot;, NAME=&amp;quot;%c{1}&amp;quot;, SYMLINK+=&amp;quot;%c{2}&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;下一个例子假设 device_namer 输出第一部分是设备名，后面跟着任意数量的部分，形成另外的符号链接。我们现在介绍 &lt;em&gt;%c{N+}&lt;/em&gt; 替换，它将被求值为第 N 部分及其后的全部内容。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;KERNEL==&amp;quot;hda&amp;quot;, PROGRAM=&amp;quot;/bin/device_namer %k&amp;quot;, NAME=&amp;quot;%c{1}&amp;quot;, SYMLINK+=&amp;quot;%c{2+}&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;输出的部分也可在任一赋值键中使用，而不仅限于 NAME 和 SYMLINK 。下个例子使用一个虚构程序来决定哪个 Unix 组拥有设备：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;KERNEL==&amp;quot;hda&amp;quot;, PROGRAM=&amp;quot;/bin/who_owns_device %k&amp;quot;, GROUP=&amp;quot;%c&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id="_19"&gt;特定事件发生时运行外部程序&lt;/h3&gt;
+&lt;p&gt;书写 udev 规则还有一个原因，就是为了在设备连接或者断开时运行一个特定程序。例如，你可能想在你的数码相机连到系统时执行一个脚本来自动下载相机里面的所有照片。&lt;/p&gt;
+&lt;p&gt;不要把这个跟上述的 &lt;em&gt;PROGRAM&lt;/em&gt; 功能弄混淆了，&lt;em&gt;PROGRAM&lt;/em&gt; 是用来运行产生设备名字（除此之外不应该做其他事情）程序。当执行这些程序时，设备节点还没创建，所以对设备的任何形式的操作都是不可能的。&lt;/p&gt;
+&lt;p&gt;这里介绍的功能允许你在设备节点到位后运行一个程序。该程序可以作用在设备上，但是它不准超时运行，因为当程序运行时 udev 是暂停运行的。一个变通办法是确保你的程序立即分离（detach）自身。&lt;/p&gt;
+&lt;p&gt;这里有个展示 &lt;em&gt;RUN&lt;/em&gt; 列表赋值的例子:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;KERNEL==&amp;quot;sdb&amp;quot;, RUN+=&amp;quot;/usr/bin/my_program&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;当执行 &lt;em&gt;/usr/bin/my_program&lt;/em&gt; 时，udev 环境的多数部分可作为环境变量使用，包括诸如 &lt;em&gt;SUBSYSTEM&lt;/em&gt; 的键值。你也可以使用 &lt;em&gt;ACTION&lt;/em&gt; 环境变量来检测设备是否连接或断开，它的对应值是 “add” 和 “remove” 。&lt;/p&gt;
+&lt;p&gt;udev 并不在任何激活终端中运行这些程序，也不再 shell 上下文中执行。确保你的程序是可执行的，如果它是个 shell 脚本请确保它以适当的 &lt;a href="http://en.wikipedia.org/wiki/Shebang_(Unix)"&gt;shebang&lt;/a&gt; 开头（如&lt;code&gt;#!/bin/sh&lt;/code&gt;），也不要在你的终端上期待任何标准输出。&lt;/p&gt;
+&lt;h3 id="_20"&gt;环境交互&lt;/h3&gt;
+&lt;p&gt;udev 为环境变量提供了一个 &lt;em&gt;ENV&lt;/em&gt; 键，可用于匹配和赋值。&lt;/p&gt;
+&lt;p&gt;在赋值情况下，你可以设置稍后要匹配的环境变量。你也可以为通过上面提到的技巧调用的任何外部程序设置环境变量。一个虚构的设置环境变量的例子规则如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;KERNEL==&amp;quot;fd0&amp;quot;, SYMLINK+=&amp;quot;floppy&amp;quot;, ENV{some_var}=&amp;quot;value&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在匹配情况下，你可以确保规则仅仅依赖一个环境变量的值而运行。注意 udev 看到的环境跟你在控制台上得到的用户环境不一样。一个虚构的涉及环境匹配的规则如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;KERNEL==&amp;quot;fd0&amp;quot;, ENV{an_env_var}==&amp;quot;yes&amp;quot;, SYMLINK+=&amp;quot;floppy&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;上面规则仅当 udev 环境中的 \$an_env_var 的值设为 “yes” 时才创建 &lt;em&gt;/dev/floppy&lt;/em&gt; 链接。&lt;/p&gt;
+&lt;h3 id="_21"&gt;额外选项&lt;/h3&gt;
+&lt;p&gt;另外一个有用的赋值是 &lt;em&gt;OPTIONS&lt;/em&gt; 列表。可用的选项不多：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;all_partitions&lt;/strong&gt; - 为一个块设备创建所有可能的分区，而不是初始检测到的那些分区&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ignore_device&lt;/strong&gt; - 完全忽略事件&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;last_rule&lt;/strong&gt; - 确保后面的所有规则不会生效&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;例如，下面规则设置我的硬盘节点的组所有权，并且后面的规则对它没有任何效果：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;KERNEL==&amp;quot;sda&amp;quot;, GROUP=&amp;quot;disk&amp;quot;, OPTIONS+=&amp;quot;last_rule&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id="_22"&gt;例子&lt;/h2&gt;
+&lt;h3 id="usb"&gt;USB 打印机&lt;/h3&gt;
+&lt;p&gt;我打开了打印机，它就被赋予了一个设备节点 &lt;em&gt;/dev/lp0&lt;/em&gt; 。我不太满意这样乏味的名字，打算使用 udevinfo 帮我写一个规则来提供一个替代名字：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# udevinfo -a -p $(udevinfo -q path -n /dev/lp0)
+  looking at device &amp;#39;/class/usb/lp0&amp;#39;:
+    KERNEL==&amp;quot;lp0&amp;quot;
+    SUBSYSTEM==&amp;quot;usb&amp;quot;
+    DRIVER==&amp;quot;&amp;quot;
+    ATTR{dev}==&amp;quot;180:0&amp;quot;
+
+  looking at parent device &amp;#39;/devices/pci0000:00/0000:00:1d.0/usb1/1-1&amp;#39;:
+    SUBSYSTEMS==&amp;quot;usb&amp;quot;
+    ATTRS{manufacturer}==&amp;quot;EPSON&amp;quot;
+    ATTRS{product}==&amp;quot;USB Printer&amp;quot;
+    ATTRS{serial}==&amp;quot;L72010011070626380&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;我的规则就成了：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;SUBSYSTEM==&amp;quot;usb&amp;quot;, ATTRS{serial}==&amp;quot;L72010011070626380&amp;quot;, SYMLINK+=&amp;quot;epson_680&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id="usb_1"&gt;USB相机&lt;/h3&gt;
+&lt;p&gt;跟大多数相机一样, 我的相机标识自己为一个通过 USB 总线来连接，通过 SCSI 传输的外部硬盘。为了访问我的相片，我先挂载分区然后拷贝图片文件到我的硬盘中。&lt;/p&gt;
+&lt;p&gt;不是所有相机都这样工作，其中一些使用非存储协议，如 &lt;a href="http://www.gphoto.org/"&gt;gphoto2&lt;/a&gt; 支持的相机。在 gphoto 情况下，你不用为你的设备写任何规则，因为纯粹由用户空间控制（而不是指定的内核驱动）。&lt;/p&gt;
+&lt;p&gt;USB 相机设备的一个常见复杂性在于，它们通常标识自己是一个单分区磁盘，就是有 &lt;em&gt;/dev/sdb1&lt;/em&gt; 的 &lt;em&gt;/dev/sdb&lt;/em&gt; 。sdb 节点对我毫无用处，但对 sdb1 有兴趣——这才是我要挂载的。这里有个麻烦因为 sysfs 是链式的，udevinfo 为 /dev/sdb1 产生的有用属性跟为 /dev/sdb 产生的一样，这导致你的规则潜在的匹配到原始磁盘和分区，这不是你想要的，你的规则应该&lt;strong&gt;特化&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;为绕过这个，你只需要考虑下 sdb 和 sdb1 之间有什么区别。夸张地简单：只是名字不同，所以我们可在 NAME 域上使用一个简单的模式匹配。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# udevinfo -a -p $(udevinfo -q path -n /dev/sdb1)
+  looking at device &amp;#39;/block/sdb/sdb1&amp;#39;:
+    KERNEL==&amp;quot;sdb1&amp;quot;
+    SUBSYSTEM==&amp;quot;block&amp;quot;
+
+  looking at parent device &amp;#39;/devices/pci0000:00/0000:00:02.1/usb1/1-1/1-1:1.0/host6/target6:0:0/6:0:0:0&amp;#39;:
+    KERNELS==&amp;quot;6:0:0:0&amp;quot;
+    SUBSYSTEMS==&amp;quot;scsi&amp;quot;
+    DRIVERS==&amp;quot;sd&amp;quot;
+    ATTRS{rev}==&amp;quot;1.00&amp;quot;
+    ATTRS{model}==&amp;quot;X250,D560Z,C350Z&amp;quot;
+    ATTRS{vendor}==&amp;quot;OLYMPUS &amp;quot;
+    ATTRS{scsi_level}==&amp;quot;3&amp;quot;
+    ATTRS{type}==&amp;quot;0&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;我的规则：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;KERNEL==&amp;quot;sd?1&amp;quot;, SUBSYSTEMS==&amp;quot;scsi&amp;quot;, ATTRS{model}==&amp;quot;X250,D560Z,C350Z&amp;quot;, SYMLINK+=&amp;quot;camera&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id="usb_2"&gt;USB硬盘&lt;/h3&gt;
+&lt;p&gt;USB 硬盘跟 USB 相机差不多，但典型的使用方式不同。在相机例子中，我解释过对 sdb 节点没有兴趣，它仅仅在分区（如使用fdisk）时才有用，但我为什么要为相机分区呢！？&lt;/p&gt;
+&lt;p&gt;当然如果你有一个 100GB 的 USB 硬盘，你希望为它分区是完全可以理解的，这种情况下我们可以使用 udev 的字符串替换优势：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;KERNEL==&amp;quot;sd*&amp;quot;, SUBSYSTEMS==&amp;quot;scsi&amp;quot;, ATTRS{model}==&amp;quot;USB 2.0 Storage Device&amp;quot;, SYMLINK+=&amp;quot;usbhd%n&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这个规则创建诸如下面的符号链接:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;/dev/usbhd&lt;/em&gt; - 可被 fdisk 的节点&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;/dev/usbhd1&lt;/em&gt; - 第一块分区（可挂载）&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;/dev/usbhd2&lt;/em&gt; - 第二块分区（可挂载）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="usb_3"&gt;USB读卡器&lt;/h3&gt;
+&lt;p&gt;USB读卡器（CompactFlash，SmartMedia 等）属于 USB 存储设备的另一范围，它有不同的使用需求。&lt;/p&gt;
+&lt;p&gt;这些设备一般在媒介（指存储卡）改变时不通知主机。所以如果你插入这种设备时不带媒介，再插入一张卡，计算机不会意识到这点，你也不会有媒介的可挂载的 sdb1 分区节点。&lt;/p&gt;
+&lt;p&gt;一个可能的解决办法是采取 &lt;em&gt;all_partttions&lt;/em&gt; 选项的长处，它将为每个规则匹配的块设备创建 16 个分区节点：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;KERNEL=&amp;quot;sd*&amp;quot;, SUBSYSTEMS==&amp;quot;scsi&amp;quot;, ATTRS{model}==&amp;quot;USB 2.0 CompactFlash Reader&amp;quot;, SYMLINK+=&amp;quot;cfrdr%n&amp;quot;, OPTIONS+=&amp;quot;all_partitions&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;你将得到这些命名节点：cfrdr，cfrdr1，cfrdr2，cfrdr3，…，cfrdr15。&lt;/p&gt;
+&lt;h3 id="usb-palm"&gt;USB Palm 导航仪&lt;/h3&gt;
+&lt;p&gt;这些设备作为 USB 串行设备工作，所以缺省状态下，你只会得到 &lt;em&gt;ttyUSB1&lt;/em&gt; 设备节点。palm 工具依赖于 &lt;em&gt;/dev/pilot&lt;/em&gt; ，有很多用户会希望使用一条规则提供它。&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.clasohm.com/blog/one-entry?entry%5fid=12096"&gt;Carsten Clasohm 的博客&lt;/a&gt;看上去是它毫无争议上的源头。Carsten 的规则如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;SUBSYSTEMS==&amp;quot;usb&amp;quot;, ATTRS{product}==&amp;quot;Palm Handheld&amp;quot;, KERNEL==&amp;quot;ttyUSB*&amp;quot;, SYMLINK+=&amp;quot;pilot&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;注意到产品字符串因产品不同很多变，所以确保你检查（使用 udevinfo）了哪一个适用于你。&lt;/p&gt;
+&lt;h3 id="_23"&gt;光驱&lt;/h3&gt;
+&lt;p&gt;我的电脑有两个光驱：一个 DVD 只读（hdc），一个 DVD 刻录（hdd）。除非我物理性的重新接线，我不希望这些设备节点有变化。然而一些用户喜欢拥有诸如 &lt;em&gt;/dev/dvd&lt;/em&gt; 这么方便的设备节点。&lt;/p&gt;
+&lt;p&gt;我们知道了 KERNEL 是这些设备的名字，规则书写就很简单了。这是我系统上的一些例子：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;SUBSYSTEM==&amp;quot;block&amp;quot;, KERNEL==&amp;quot;hdc&amp;quot;, SYMLINK+=&amp;quot;dvd&amp;quot;, GROUP=&amp;quot;cdrom&amp;quot;
+SUBSYSTEM==&amp;quot;block&amp;quot;, KERNEL==&amp;quot;hdd&amp;quot;, SYMLINK+=&amp;quot;dvdrw&amp;quot;, GROUP=&amp;quot;cdrom&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id="_24"&gt;网卡接口&lt;/h3&gt;
+&lt;p&gt;尽管它们都是通过名字引用，网卡往往没有与之关联的设备节点。即便如此，规则书写过程还是几乎一样的。&lt;/p&gt;
+&lt;p&gt;在规则中简单的匹配网卡 MAC 地址是有意义的，因为它们是唯一的。但是，确信你使用的是 udevinfo 显示的&lt;em&gt;准确&lt;/em&gt; MAC 地址，因为如果你没有精准匹配，你的规则不会工作。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# udevinfo -a -p /sys/class/net/eth0
+  looking at class device &amp;#39;/sys/class/net/eth0&amp;#39;:
+    KERNEL==&amp;quot;eth0&amp;quot;
+    ATTR{address}==&amp;quot;00:52:8b:d5:04:48&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这是我的规则：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;KERNEL==&amp;quot;eth*&amp;quot;, ATTR{address}==&amp;quot;00:52:8b:d5:04:48&amp;quot;, NAME=&amp;quot;lan&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;为了让这个规则生效，你得重启网络驱动。你可以卸载并重新加载模块，或简单的重启系统。你还得重新配置你的系统使用 “lan” 取代 “eth0”。我以前遇到过这样的麻烦（网卡不能重命名）直到我去除了所有对 eth0 的引用。在此之后，你应该可以在任何 ifconfig 或类似的工具的调用中使用 “lan” 取代 “eth0” 了。&lt;/p&gt;
+&lt;h2 id="_25"&gt;测试和调试&lt;/h2&gt;
+&lt;h3 id="_26"&gt;让你的规则跑起来&lt;/h3&gt;
+&lt;p&gt;假如你在一个有 &lt;em&gt;inotify&lt;/em&gt; 支持的近期内核上工作，udev 将自动监视你的规则目录并且自动挑取你对规则文件的任何修改。&lt;/p&gt;
+&lt;p&gt;尽管这样，udev 也不会自动重新处理所有设备并试图应用新规则。例如，如果你写了个规则来为你的已连接相机添加一个额外符号链接，你不能指望这个符号链接可以马上显现出来。&lt;/p&gt;
+&lt;p&gt;为使符号链接显示，你可以断开并重连你的相机，或在设备不可移除时，代之以运行 &lt;strong&gt;udevtrigger&lt;/strong&gt; 。&lt;/p&gt;
+&lt;p&gt;如果你的内核没有 inotify 支持，新规则不会自动被检测到。这种情况下，你必须在做出更改后运行 &lt;strong&gt;udevcontrol reload_rules&lt;/strong&gt; 使之生效。&lt;/p&gt;
+&lt;h3 id="udevtest"&gt;udevtest&lt;/h3&gt;
+&lt;p&gt;如果你知道 sysfs 中的顶级设备路径，你可以使用 &lt;strong&gt;udevtest&lt;/strong&gt; 来显示 udev 将要执行的动作。这也许可以帮你调试你的规则。例如，假设你想调试作用在 &lt;em&gt;/sys/class/sound/dsp&lt;/em&gt; 上的规则：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# udevtest /class/sound/dsp
+main: looking at device &amp;#39;/class/sound/dsp&amp;#39; from subsystem &amp;#39;sound&amp;#39;
+udev_rules_get_name: add symlink &amp;#39;dsp&amp;#39;
+udev_rules_get_name: rule applied, &amp;#39;dsp&amp;#39; becomes &amp;#39;sound/dsp&amp;#39;
+udev_device_event: device &amp;#39;/class/sound/dsp&amp;#39; already known, remove possible symlinks
+udev_node_add: creating device node &amp;#39;/dev/sound/dsp&amp;#39;, major = &amp;#39;14&amp;#39;, minor = &amp;#39;3&amp;#39;, mode = &amp;#39;0660&amp;#39;, uid = &amp;#39;0&amp;#39;, gid = &amp;#39;18&amp;#39;
+udev_node_add: creating symlink &amp;#39;/dev/dsp&amp;#39; to &amp;#39;sound/dsp&amp;#39;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;注意 &lt;em&gt;/sys&lt;/em&gt; 前缀在 udevtest 命令行中被删除了，这是因为 udevtest 在设备路径上操作。还要留意的是 udevtest 是一个纯粹的测试/调试工具，无论输出怎么建议，它不创建任何设备节点。&lt;/p&gt;
+&lt;h2 id="_27"&gt;作者以及联系方式&lt;/h2&gt;
+&lt;p&gt;本文由 Daniel Drake &amp;lt;&lt;a href="mailto:dan@reactivated.net"&gt;dan@reactivated.net&lt;/a&gt;&amp;gt; 写就。欢迎反馈信息。&lt;/p&gt;
+&lt;p&gt;本译文由 Levi G. &amp;lt;&lt;a href="mailto:leaveye@hotmail.com"&gt;leaveye@hotmail.com&lt;/a&gt;&amp;gt; 基于旧翻译修改更新。&lt;/p&gt;
+&lt;p&gt;对于技术支持你可以致信给 linux-hotplug 邮件列表：&lt;a href="mailto:linux-hotplug-devel@lists.sourceforge.net"&gt;linux-hotplug-devel@lists.sourceforge.net&lt;/a&gt; 。&lt;/p&gt;
+&lt;p&gt;Copyright (C) 2003-2006 Daniel Drake。
+本文档基于 &lt;a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html"&gt;GNU General Public License, Version 2&lt;/a&gt; 授权。&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="linux"></category><category term="udev"></category><category term="rules"></category></entry></feed>
