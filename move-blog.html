@@ -1,114 +1,77 @@
-<!doctype html>
-<html class="no-js" lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!DOCTYPE html>
+<html lang="chinese (simplified)">
 
-		<title>Happy Coding</title>
-		<meta name="description" content="">
-		<meta name="author" content="Levi G.">
+<head>
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<link rel="stylesheet" href="/theme/css/foundation.css" />
-		<link rel="stylesheet" href="/theme/css/pygment/monokai.css" />
-		<link rel="stylesheet" href="/theme/css/custom.css" />
-
-
-		<script src="/theme/js/modernizr.js"></script>
-
-		<!-- Feeds -->
-
-
-		<!-- mathjax config similar to math.stackexchange -->
-		<script type="text/x-mathjax-config">
-		MathJax.Hub.Config({
-			jax: ["input/TeX", "output/HTML-CSS"],
-			tex2jax: {
-				inlineMath: [ ['$', '$'] ],
-				displayMath: [ ['$$', '$$']],
-				processEscapes: true,
-				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-			},
-			messageStyle: "none",
-			"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
-		});
-		</script>
-		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-	</head>
-	<body>
-		<div class="off-canvas-wrap">
-			<div class="inner-wrap">
-				<!-- mobile top bar to activate nav -->
-				<nav class="tab-bar show-for-small">
-					<section class="left-small">
-						<a class="left-off-canvas-toggle menu-icon" ><span></span></a>
-					</section>
-
-					<section class="middle tab-bar-section">
-						<h1 class="title">Happy&nbsp;Coding</h1>
-					</section>
-				</nav>
-
-				<!-- mobile side bar nav -->
-				<aside class="left-off-canvas-menu">
-					<ul class="off-canvas-list">
-						<li><a href="">Home</a></li>
-						<li><label>Categories</label></li>
-							<li class="active"><a href="/category/blogging.html">blogging</a></li>
-							<li ><a href="/category/linux.html">Linux</a></li>
-							<li ><a href="/category/server.html">Server</a></li>
-							<li ><a href="/category/system.html">system</a></li>
-							<li ><a href="/category/test.html">Test</a></li>
-
-						<li><label>Links</label></li>
-							<li><a href="https://chou.it">Lex Chow的博客</a></li>
-							<li><a href="http://getpelican.com/">Pelican</a></li>
-							<li><a href="http://python.org/">Python.org</a></li>
-							<li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-							<li><a href="#">You can modify those links in your config file</a></li>
+  <title>迁移Blog | Happy Coding
+</title>
+  <link rel="canonical" href="/move-blog.html">
 
 
 
-						<li><label>Social</label></li>
-					</ul>	
-				</aside>
+  <link rel="stylesheet" href="/theme/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/theme/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/theme/css/pygments/default.min.css">
+  <link rel="stylesheet" href="/theme/css/style.css">
 
-				<!-- top bar nav -->
-				<nav class="top-bar hide-for-small-only" data-topbar>
-					<ul class="title-area">
-						<li class="name">
-							<h1><a href="/">Happy Coding</a></h1>
-						</li>
-					</ul>
 
-					<section class="top-bar-section">
-						<ul class="left">
-								<li class="active"><a href="/category/blogging.html">blogging</a></li>
-								<li ><a href="/category/linux.html">Linux</a></li>
-								<li ><a href="/category/server.html">Server</a></li>
-								<li ><a href="/category/system.html">system</a></li>
-								<li ><a href="/category/test.html">Test</a></li>
-						</ul>
-                        <ul class="right">                                                                                                                                           
-                                                                                                                                             
-                        </ul>  
-					</section>
-				</nav>
+<meta name="description" content="之前的 blog 放在朋友的主机上，还没写上几个字呢，在换主机的过程中数据就丢失了。 反正没花力气，所以也不用心疼…… —— Levi G. 选择 三天前决定并开始动手，把 blog 放 Github 上面。用了半天的时间，比较过 jekyll 和 pelican 后，还是选择了 pelican 。毕竟 python 在安装上还是要比 Ruby 方便许多的。这对于我这样时不时换工作机的人还是个很大的优势。 我对 blog 的需求其实还挺烦人的。语法高亮、主题定制是基本的，\(\LaTeX\) 是必须的，要是有 graphviz 、序列图的支持就更好了。 现在的各种工具，语法高亮、主题定制都是必备功能了，产生差异的就只是配套内容的多寡了。粗略看了下 pelican-themes 虽然没有 Jekyll Themes 看上去那么完整 …">
+</head>
 
-				<!-- Main Page Content and Sidebar -->
-				<section class="main-section">
-					<div class="row">
-						<!-- Main Content -->
-						<div class="medium-9 small-12 columns" role="content">
-<article>
-	<h2>迁移Blog</h2>
-	<p>之前的 blog 放在朋友的主机上，还没写上几个字呢，在换主机的过程中数据就丢失了。</p>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1 class="title"><a href="">Happy Coding</a></h1>
+          <ul class="list-inline">
+            <li class="list-inline-item"><a href="https://chou.it" target="_blank">Lex Chow的博客</a></li>
+            <li class="list-inline-item"><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
+            <li class="list-inline-item"><a href="http://python.org/" target="_blank">Python.org</a></li>
+            <li class="list-inline-item"><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="main">
+    <div class="container">
+      <h1>迁移Blog
+</h1>
+      <hr>
+<article class="article">
+  <header>
+    <ul class="list-inline">
+      <li class="list-inline-item text-muted" title="2015-06-17T13:37:00+08:00">
+        <i class="fa fa-clock-o"></i>
+        三 17 六月 2015
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/category/bo-ke.html">博客</a>
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-user-o"></i>
+        <a href="/author/levi-g.html">Levi G</a>      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-files-o"></i>
+        <a href="/tag/pelican.html">#pelican</a>,         <a href="/tag/server.html">#server</a>      </li>
+    </ul>
+  </header>
+  <div class="content">
+    <p>之前的 blog 放在朋友的主机上，还没写上几个字呢，在换主机的过程中数据就丢失了。</p>
 <blockquote>
-<p>反正没花力气，所以也不用心疼……<br />
+<p>反正没花力气，所以也不用心疼……<br>
 —— <a href="/author/levi-g.html">Levi G.</a></p>
 </blockquote>
 <h2 id="_1">选择</h2>
 <p>三天前决定并开始动手，把 blog 放 Github 上面。用了半天的时间，比较过 jekyll 和 pelican 后，还是选择了 pelican 。毕竟 python 在安装上还是要比 Ruby 方便许多的。这对于我这样时不时换工作机的人还是个很大的优势。</p>
-<p>我对 blog 的需求其实还挺烦人的。语法高亮、主题定制是基本的，$\LaTeX$ 是必须的，要是有 graphviz 、序列图的支持就更好了。</p>
+<p>我对 blog 的需求其实还挺烦人的。语法高亮、主题定制是基本的，<span class="math">\(\LaTeX\)</span> 是必须的，要是有 graphviz 、序列图的支持就更好了。</p>
 <p>现在的各种工具，语法高亮、主题定制都是必备功能了，产生差异的就只是配套内容的多寡了。粗略看了下 <a href="https://github.com/getpelican/pelican-themes" title="pelican 主题包">pelican-themes</a> 虽然没有 <a href="http://jekyllthemes.org" title="Jekyll 主题包">Jekyll Themes</a> 看上去那么完整，不过基本样子上还是够用了。毕竟这些『小众』平台比起大 Wordpress 还是差远了。</p>
 <h2 id="_2">安装</h2>
 <p>安装、配置过程其实是非常简单的。即使如此，我也踩了进坑里了。</p>
@@ -116,7 +79,7 @@
 <li>Mac OS X 系统自带和 <code>brew install</code> 的两个版本的 python 冲突问题，删掉或改名系统自带的版本可以解决。这个问题有时表现得像是权限问题。不管怎样，牢记这一条就好：</li>
 </ul>
 <blockquote>
-<p><code>brew</code> 的东西都是无需 <code>sudo</code> 的。<br />
+<p><code>brew</code> 的东西都是无需 <code>sudo</code> 的。<br>
 —— <a href="/author/levi-g.html">Levi G.</a></p>
 </blockquote>
 <ul>
@@ -134,13 +97,33 @@
 <p>革命尚未成功，同志仍需努力。</p>
 </blockquote>
 <p>目前为止我还没弄完，只有了个大概思路。先找了个主题用着，以后慢慢弄。</p>
-<p>功能 | 状态与方向
-:-:|-
-$\LaTeX$ | <a href="http://www.mathjax.org/">MathJax</a>
-SyntaxHighlight | 主题帮助里有
-<a href="http://www.graphviz.org/">graphviz</a> | 见到过有人开源了编译成 js 的 graphviz ，回头可以考虑试试
-序列图 | 这个没找到好的本地解析，实在不行就得尽量少用，偶尔用 <a href="https://www.websequencediagrams.com">WebSequenceDiagrams</a> 顶一下吧。</p>
-<hr />
+<table>
+<thead>
+<tr>
+<th align="center">功能</th>
+<th>状态与方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(\LaTeX\)</span></td>
+<td><a href="http://www.mathjax.org/">MathJax</a></td>
+</tr>
+<tr>
+<td align="center">SyntaxHighlight</td>
+<td>主题帮助里有</td>
+</tr>
+<tr>
+<td align="center"><a href="http://www.graphviz.org/">graphviz</a></td>
+<td>见到过有人开源了编译成 js 的 graphviz ，回头可以考虑试试</td>
+</tr>
+<tr>
+<td align="center">序列图</td>
+<td>这个没找到好的本地解析，实在不行就得尽量少用，偶尔用 <a href="https://www.websequencediagrams.com">WebSequenceDiagrams</a> 顶一下吧。</td>
+</tr>
+</tbody>
+</table>
+<hr>
 <p>我用了几乎一整天的时间对比 <a href="https://github.com/getpelican/pelican-themes" title="pelican 主题包">pelican 的各种主题</a>。各有各的不满意，这当然是符合预期的。</p>
 <p>很自然的就想瞧瞧定制的话有多难。看到了文档（<a href="http://docs.getpelican.com/en/3.5.0/themes.html#structure">英文</a>，<a href="http://pelican-docs-zh-cn.readthedocs.org/en/latest/themes.html#theming-pelican">中文</a>）觉得很简单，就想从零开始做个自己的主题了。在这之前，把以前喜欢的 Wordpress 主题 port 过来一个吧。</p>
 <p>翻了好一段时间才找到当时很喜欢的主题 decode ，下载回来尝试了一下『对照翻译』弄了一下。页面主体弄起来还算容易，可惜 sidebar 的部分就被绕晕了。</p>
@@ -148,112 +131,111 @@ SyntaxHighlight | 主题帮助里有
 <p>『这动态效果是怎么实现的？状态保存在哪儿？怎么调整的？』</p>
 </blockquote>
 <p>觉得还是不花时间弄这个了。简单选择了一个完成度比较高的现成主题 <a href="https://github.com/getpelican/pelican-themes/tree/master/foundation-default-colours">foundation-default-colours</a> 。</p>
-<p>选这个主题是因为它已经有了正确的排版并且支持了 $\LaTeX$ 。回头一点点弄的时候再换吧。</p>
-<hr />
+<p>选这个主题是因为它已经有了正确的排版并且支持了 <span class="math">\(\LaTeX\)</span> 。回头一点点弄的时候再换吧。</p>
+<hr>
+<p><strong>【2018/6/18 更新】</strong></p>
+<p>时隔好久，在家里老电脑的新系统里又配置了一下 pelican 环境。发现主题已经普遍更新了，大家的完成度都上升了一大截。我现在用的是 <a href="https://github.com/getpelican/pelican-themes" title="pelican 主题包">pelican 主题</a>中的 <a href="https://github.com/jvanz/pelican-hyde">hyde</a> 。</p>
+<p><span class="math">\(\LaTeX\)</span> 已经有 <a href="https://github.com/barrysteyn/pelican_plugin-render_math">pelican 插件</a>支持了。</p>
+<hr>
+<p><strong>【2018/6/25 更新】</strong></p>
+<p>主题颜色还是碍眼，换成 <a href="https://github.com/nairobilug/pelican-alchemy">Alchemy</a> 吧。</p>
+<hr>
 <blockquote>
 <p>待续……</p>
 </blockquote>
-	<hr/>
-	<h6>Written by <a href="/author/levi-g.html">Levi G</a> in <a href="/category/blogging.html">blogging</a> on 三 17 六月 2015. Tags: <a href="/tag/pelican.html">pelican</a>, <a href="/tag/server.html">server</a>, </h6>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+  </div>
 </article>
-
-<hr/>
-<div class="row">
-	<div class="small-12 columns">
-		<h3>Comments</h3>
-		<div id="disqus_thread"></div>
+<hr>
+<div id="disqus_thread"></div>
 <script>
-    /**
-     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-     */
-    //*
-    var disqus_config = function () {
-        this.page.url = move-blog.html;  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = move-blog; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    //*/
-    (function() {  // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-        
-	s.src = '//blog-levi-g-info.disqus.com/embed.js';
-        
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-			})();
-		</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-	</div>
-</div>
-						</div>
-						<!-- End Main Content -->
-						<!-- Sidebar -->
-						<aside class="medium-3 hide-for-small-only columns">
-							<div class="panel">
-								<h5>Links</h5>
-								<ul class="side-nav">
-									<li><a href="https://chou.it">Lex Chow的博客</a></li>
-									<li><a href="http://getpelican.com/">Pelican</a></li>
-									<li><a href="http://python.org/">Python.org</a></li>
-									<li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-									<li><a href="#">You can modify those links in your config file</a></li>
-								</ul>
-							</div>
+  var disqus_config = function() {
+    this.page.url = '/move-blog.html';
+    this.page.identifier = 'move-blog';
+  };
+  (function() {
+    var d = document;
+    var s = d.createElement('script');
+    s.src = '//blog-levi-g-info.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript class="text-muted">
+  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    </div>
+  </div>
 
-							<div class="panel">
-								<h5>Tags</h5>
-								<ul class="tag-cloud">
-									<li><a href="/tag/sip.html" class="tag-4">sip</a></li>
-									<li><a href="/tag/install.html" class="tag-4">install</a></li>
-									<li><a href="/tag/pelican.html" class="tag-1">pelican</a></li>
-									<li><a href="/tag/try.html" class="tag-2">try</a></li>
-									<li><a href="/tag/math.html" class="tag-4">math</a></li>
-									<li><a href="/tag/rules.html" class="tag-4">rules</a></li>
-									<li><a href="/tag/gitlab.html" class="tag-4">gitlab</a></li>
-									<li><a href="/tag/linux.html" class="tag-4">linux</a></li>
-									<li><a href="/tag/publishing.html" class="tag-4">publishing</a></li>
-									<li><a href="/tag/os-x.html" class="tag-4">os x</a></li>
-									<li><a href="/tag/puzzle.html" class="tag-4">puzzle</a></li>
-									<li><a href="/tag/kernel_task.html" class="tag-4">kernel_task</a></li>
-									<li><a href="/tag/game.html" class="tag-4">game</a></li>
-									<li><a href="/tag/server.html" class="tag-1">server</a></li>
-									<li><a href="/tag/vagrant.html" class="tag-4">vagrant</a></li>
-									<li><a href="/tag/virtualization.html" class="tag-4">virtualization</a></li>
-									<li><a href="/tag/test.html" class="tag-1">test</a></li>
-									<li><a href="/tag/el-capitan.html" class="tag-4">el capitan</a></li>
-									<li><a href="/tag/udev.html" class="tag-4">udev</a></li>
-									<li><a href="/tag/docker.html" class="tag-4">docker</a></li>
-								</ul>
-							</div>
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+       <ul class="col-sm-6 list-inline">
+          <li class="list-inline-item"><a href="/authors.html">Authors</a></li>
+          <li class="list-inline-item"><a href="/archives.html">Archives</a></li>
+          <li class="list-inline-item"><a href="/categories.html">Categories</a></li>
+          <li class="list-inline-item"><a href="/tags.html">Tags</a></li>
+        </ul>
+        <p class="col-sm-6 text-sm-right text-muted">
+          Generated by <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a> / <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">&#x2728;</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
 
-
-							<div class="panel">
-								<h5>Social</h5>
-								<ul class="side-nav">
-								</ul>
-							</div>
-						</aside>
-						<!-- End Sidebar -->
-					</div>
-
-					<!-- Footer -->
-					<footer class="row">
-						<div class="medium-9 small-12">
-							<hr/>
-							<p class="text-center">Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://foundation.zurb.com/">Zurb Foundation</a>. Theme by <a href="http://hamaluik.com">Kenton Hamaluik</a>.</p>
-						</div>
-					</footer>
-					<!-- End Footer -->
-				</section>
-				<a class="exit-off-canvas"></a>
-			</div><!--off-canvas inner-->
-		</div><!--off-canvas wrap-->
-
-		<script src="/theme/js/jquery.js"></script>
-		<script src="/theme/js/foundation.min.js"></script>
-		<script>
-			$(document).foundation();
-		</script>
-	</body>
 </html>

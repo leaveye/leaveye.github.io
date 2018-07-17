@@ -1,120 +1,120 @@
-<!doctype html>
-<html class="no-js" lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!DOCTYPE html>
+<html lang="chinese (simplified)">
 
-		<title>Happy Coding</title>
-		<meta name="description" content="">
-		<meta name="author" content="Levi G.">
+<head>
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<link rel="stylesheet" href="/theme/css/foundation.css" />
-		<link rel="stylesheet" href="/theme/css/pygment/monokai.css" />
-		<link rel="stylesheet" href="/theme/css/custom.css" />
-
-
-		<script src="/theme/js/modernizr.js"></script>
-
-		<!-- Feeds -->
-
-
-		<!-- mathjax config similar to math.stackexchange -->
-		<script type="text/x-mathjax-config">
-		MathJax.Hub.Config({
-			jax: ["input/TeX", "output/HTML-CSS"],
-			tex2jax: {
-				inlineMath: [ ['$', '$'] ],
-				displayMath: [ ['$$', '$$']],
-				processEscapes: true,
-				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-			},
-			messageStyle: "none",
-			"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
-		});
-		</script>
-		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-	</head>
-	<body>
-		<div class="off-canvas-wrap">
-			<div class="inner-wrap">
-				<!-- mobile top bar to activate nav -->
-				<nav class="tab-bar show-for-small">
-					<section class="left-small">
-						<a class="left-off-canvas-toggle menu-icon" ><span></span></a>
-					</section>
-
-					<section class="middle tab-bar-section">
-						<h1 class="title">Happy&nbsp;Coding</h1>
-					</section>
-				</nav>
-
-				<!-- mobile side bar nav -->
-				<aside class="left-off-canvas-menu">
-					<ul class="off-canvas-list">
-						<li><a href="">Home</a></li>
-						<li><label>Categories</label></li>
-							<li ><a href="/category/blogging.html">blogging</a></li>
-							<li ><a href="/category/linux.html">Linux</a></li>
-							<li ><a href="/category/server.html">Server</a></li>
-							<li class="active"><a href="/category/system.html">system</a></li>
-							<li ><a href="/category/test.html">Test</a></li>
-
-						<li><label>Links</label></li>
-							<li><a href="https://chou.it">Lex Chow的博客</a></li>
-							<li><a href="http://getpelican.com/">Pelican</a></li>
-							<li><a href="http://python.org/">Python.org</a></li>
-							<li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-							<li><a href="#">You can modify those links in your config file</a></li>
+  <title>使用 Docker Compose 搭建本地 GitLab 服务器 | Happy Coding
+</title>
+  <link rel="canonical" href="/gitlab-docker-compose-install.html">
 
 
 
-						<li><label>Social</label></li>
-					</ul>	
-				</aside>
+  <link rel="stylesheet" href="/theme/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/theme/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/theme/css/pygments/default.min.css">
+  <link rel="stylesheet" href="/theme/css/style.css">
 
-				<!-- top bar nav -->
-				<nav class="top-bar hide-for-small-only" data-topbar>
-					<ul class="title-area">
-						<li class="name">
-							<h1><a href="/">Happy Coding</a></h1>
-						</li>
-					</ul>
 
-					<section class="top-bar-section">
-						<ul class="left">
-								<li ><a href="/category/blogging.html">blogging</a></li>
-								<li ><a href="/category/linux.html">Linux</a></li>
-								<li ><a href="/category/server.html">Server</a></li>
-								<li class="active"><a href="/category/system.html">system</a></li>
-								<li ><a href="/category/test.html">Test</a></li>
-						</ul>
-                        <ul class="right">                                                                                                                                           
-                                                                                                                                             
-                        </ul>  
-					</section>
-				</nav>
+<meta name="description" content="软件安装 过程主要参考自 Omnibus GitLab 官方文档中 install GitLab using docker-compose 章节。 设置项选择 设置项 值 备注 安装版本 gitlab-ce 服务器 IP 192.168.3.12 Docker 容器 工作目录 ~/docker-test 容器(集)配置所在路径，此次安装主要工作路径 服务目录 ~/gitlab GitLab 服务使用的文件将保存在此处 HTTP 端口 80 唯一 Web 服务，可以独占端口 SSH 端口 2201 Docker 主机使用了缺省的 22 端口 访问地址 …">
+</head>
 
-				<!-- Main Page Content and Sidebar -->
-				<section class="main-section">
-					<div class="row">
-						<!-- Main Content -->
-						<div class="medium-9 small-12 columns" role="content">
-<article>
-	<h2>使用 Docker Compose 搭建本地 GitLab 服务器</h2>
-	<h1 id="_1">软件安装</h1>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1 class="title"><a href="">Happy Coding</a></h1>
+          <ul class="list-inline">
+            <li class="list-inline-item"><a href="https://chou.it" target="_blank">Lex Chow的博客</a></li>
+            <li class="list-inline-item"><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
+            <li class="list-inline-item"><a href="http://python.org/" target="_blank">Python.org</a></li>
+            <li class="list-inline-item"><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="main">
+    <div class="container">
+      <h1>使用 Docker Compose 搭建本地 GitLab 服务器
+</h1>
+      <hr>
+<article class="article">
+  <header>
+    <ul class="list-inline">
+      <li class="list-inline-item text-muted" title="2016-08-12T10:34:00+08:00">
+        <i class="fa fa-clock-o"></i>
+        五 12 八月 2016
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/category/fu-wu-qi.html">服务器</a>
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-user-o"></i>
+        <a href="/author/levi-g.html">Levi G</a>      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-files-o"></i>
+        <a href="/tag/server.html">#server</a>,         <a href="/tag/install.html">#install</a>,         <a href="/tag/gitlab.html">#gitlab</a>,         <a href="/tag/docker.html">#docker</a>      </li>
+    </ul>
+  </header>
+  <div class="content">
+    <h1 id="_1">软件安装</h1>
 <blockquote>
 <p>过程主要参考自 <a href="http://docs.gitlab.com/omnibus/">Omnibus GitLab 官方文档</a>中 <a href="http://docs.gitlab.com/omnibus/docker/#install-gitlab-using-docker-compose">install GitLab using docker-compose</a> 章节。</p>
 </blockquote>
 <h2 id="_2">设置项选择</h2>
-<p>|设置项|值|备注|
-|-|-|-|
-|安装版本|<code>gitlab-ce</code>||
-|服务器 IP|<code>192.168.3.12</code>|Docker 容器|
-|工作目录|<code>~/docker-test</code>|容器(集)配置所在路径，此次安装主要工作路径|
-|服务目录|<code>~/gitlab</code>|GitLab 服务使用的文件将保存在此处|
-|HTTP 端口|<code>80</code>|唯一 Web 服务，可以独占端口|
-|SSH 端口|<code>2201</code>|Docker 主机使用了缺省的 22 端口|
-|访问地址|<code>http://192.168.3.12</code>||</p>
+<table>
+<thead>
+<tr>
+<th>设置项</th>
+<th>值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>安装版本</td>
+<td><code>gitlab-ce</code></td>
+<td></td>
+</tr>
+<tr>
+<td>服务器 IP</td>
+<td><code>192.168.3.12</code></td>
+<td>Docker 容器</td>
+</tr>
+<tr>
+<td>工作目录</td>
+<td><code>~/docker-test</code></td>
+<td>容器(集)配置所在路径，此次安装主要工作路径</td>
+</tr>
+<tr>
+<td>服务目录</td>
+<td><code>~/gitlab</code></td>
+<td>GitLab 服务使用的文件将保存在此处</td>
+</tr>
+<tr>
+<td>HTTP 端口</td>
+<td><code>80</code></td>
+<td>唯一 Web 服务，可以独占端口</td>
+</tr>
+<tr>
+<td>SSH 端口</td>
+<td><code>2201</code></td>
+<td>Docker 主机使用了缺省的 22 端口</td>
+</tr>
+<tr>
+<td>访问地址</td>
+<td><code>http://192.168.3.12</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2 id="_3">系统准备</h2>
 <ol>
 <li>
@@ -139,7 +139,7 @@
 </li>
 </ul>
 </blockquote>
-<pre><code># 确保 apt 已更新
+<div class="highlight"><pre><span></span># 确保 apt 已更新
 sudo apt-get update
 sudo apt-get install apt-transport-https ca-certificates
 
@@ -149,7 +149,7 @@ sudo apt-key adv \
 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 
 # 更新源列表
-echo 'deb https://apt.dockerproject.org/repo ubuntu-xenial main' &gt; docker.list
+echo &#39;deb https://apt.dockerproject.org/repo ubuntu-xenial main&#39; &gt; docker.list
 sudo mv -f docker.list /etc/apt/sources.list.d/docker.list
 
 # 更新软件源
@@ -161,7 +161,9 @@ sudo apt-get install linux-image-extra-$(uname -r)
 # 安装并启动 Docker
 sudo apt-get install docker-engine
 sudo service docker start
-</code></pre>
+</pre></div>
+
+
 </li>
 <li>
 <p>环境准备完成。</p>
@@ -171,33 +173,37 @@ sudo service docker start
 <ol>
 <li>
 <p>创建并进入工作路径。</p>
-<pre><code>mkdir -p ~/docker-test
+<div class="highlight"><pre><span></span>mkdir -p ~/docker-test
 cd ~/docker-test
 sudo mkdir -p ~/gitlab
 ln -s ~/gitlab gitlab
-</code></pre>
+</pre></div>
+
+
 </li>
 <li>
 <p>创建 <code>docker-compose.yml</code>。</p>
-<pre><code>cat &gt;docker-compose.yml &lt;&lt;TEXT
+<div class="highlight"><pre><span></span>cat &gt;docker-compose.yml &lt;&lt;TEXT
 web:
-  image: 'gitlab/gitlab-ce:latest'
+  image: &#39;gitlab/gitlab-ce:latest&#39;
   restart: always
-  hostname: '192.168.3.12'
+  hostname: &#39;192.168.3.12&#39;
   environment:
     GITLAB_OMNIBUS_CONFIG: |
-      external_url 'http://192.168.3.12'
+      external_url &#39;http://192.168.3.12&#39;
       # Add any other gitlab.rb configuration here, each on its own line
   ports:
-    - '80:80'
-    - '443:443'
-    - '2201:22'
+    - &#39;80:80&#39;
+    - &#39;443:443&#39;
+    - &#39;2201:22&#39;
   volumes:
-    - '`readlink -f gitlab`/config:/etc/gitlab'
-    - '`readlink -f gitlab`/logs:/var/log/gitlab'
-    - '`readlink -f gitlab`/data:/var/opt/gitlab'
+    - &#39;`readlink -f gitlab`/config:/etc/gitlab&#39;
+    - &#39;`readlink -f gitlab`/logs:/var/log/gitlab&#39;
+    - &#39;`readlink -f gitlab`/data:/var/opt/gitlab&#39;
 TEXT
-</code></pre>
+</pre></div>
+
+
 </li>
 <li>
 <p>首次启动 GitLab 服务。</p>
@@ -207,8 +213,10 @@ TEXT
 <li>每次启动 GitLab 需等待约 5 分钟才可以开始访问，中间如果在后台做操作可能会使安装失败。</li>
 </ul>
 </blockquote>
-<pre><code>sudo docker-compose up -d
-</code></pre>
+<div class="highlight"><pre><span></span>sudo docker-compose up -d
+</pre></div>
+
+
 </li>
 <li>
 <p>访问 GitLab 设置 <code>root</code> 用户的初始密码。</p>
@@ -216,8 +224,10 @@ TEXT
 </li>
 <li>
 <p>停止 GitLab 服务。</p>
-<pre><code>sudo docker-compose stop
-</code></pre>
+<div class="highlight"><pre><span></span>sudo docker-compose stop
+</pre></div>
+
+
 </li>
 <li>
 <p>修改配置文件 <code>~/gitlab/config/gitlab.rb</code> 。</p>
@@ -227,13 +237,17 @@ TEXT
 <li>文件中配置的详细说明，参见<a href="https://gitlab.com/gitlab-org/omnibus-gitlab/tree/master/doc/settings">文档</a>。此文件中大多段落也有该段落的文档链接。</li>
 </ul>
 </blockquote>
-<pre><code>gitlab_rails['gitlab_shell_ssh_port'] = 2201 # default 22
-</code></pre>
+<div class="highlight"><pre><span></span>gitlab_rails[&#39;gitlab_shell_ssh_port&#39;] = 2201 # default 22
+</pre></div>
+
+
 </li>
 <li>
 <p>启动 GitLab 服务。</p>
-<pre><code>sudo docker-compose up -d
-</code></pre>
+<div class="highlight"><pre><span></span>sudo docker-compose up -d
+</pre></div>
+
+
 </li>
 <li>
 <p>安装完毕，已可正常使用。</p>
@@ -243,125 +257,68 @@ TEXT
 <ul>
 <li>
 <p>启动 GitLab 服务。</p>
-<pre><code>sudo docker-compose up -d
-</code></pre>
+<div class="highlight"><pre><span></span>sudo docker-compose up -d
+</pre></div>
+
+
 </li>
 <li>
 <p>停止 GitLab 服务。</p>
-<pre><code>sudo docker-compose stop
-</code></pre>
+<div class="highlight"><pre><span></span>sudo docker-compose stop
+</pre></div>
+
+
 </li>
 <li>
 <p>销毁 GitLab 服务。（停止服务并删除容器）</p>
-<pre><code>sudo docker-compose down
-</code></pre>
+<div class="highlight"><pre><span></span>sudo docker-compose down
+</pre></div>
+
+
 </li>
 <li>
 <p>升级 GitLab 服务。</p>
 <p>参见官方文档中 <a href="http://docs.gitlab.com/omnibus/docker/#update-gitlab-using-docker-compose">Update GitLab using Docker compose</a> 章节。</p>
 </li>
 </ul>
-	<hr/>
-	<h6>Written by <a href="/author/levi-g.html">Levi G</a> in <a href="/category/system.html">system</a> on 五 12 八月 2016. Tags: <a href="/tag/server.html">server</a>, <a href="/tag/install.html">install</a>, <a href="/tag/gitlab.html">gitlab</a>, <a href="/tag/docker.html">docker</a>, </h6>
+  </div>
 </article>
-
-<hr/>
-<div class="row">
-	<div class="small-12 columns">
-		<h3>Comments</h3>
-		<div id="disqus_thread"></div>
+<hr>
+<div id="disqus_thread"></div>
 <script>
-    /**
-     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-     */
-    //*
-    var disqus_config = function () {
-        this.page.url = gitlab-docker-compose-install.html;  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = gitlab-docker-compose-install; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    //*/
-    (function() {  // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-        
-	s.src = '//blog-levi-g-info.disqus.com/embed.js';
-        
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-			})();
-		</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-	</div>
-</div>
-						</div>
-						<!-- End Main Content -->
-						<!-- Sidebar -->
-						<aside class="medium-3 hide-for-small-only columns">
-							<div class="panel">
-								<h5>Links</h5>
-								<ul class="side-nav">
-									<li><a href="https://chou.it">Lex Chow的博客</a></li>
-									<li><a href="http://getpelican.com/">Pelican</a></li>
-									<li><a href="http://python.org/">Python.org</a></li>
-									<li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-									<li><a href="#">You can modify those links in your config file</a></li>
-								</ul>
-							</div>
+  var disqus_config = function() {
+    this.page.url = '/gitlab-docker-compose-install.html';
+    this.page.identifier = 'gitlab-docker-compose-install';
+  };
+  (function() {
+    var d = document;
+    var s = d.createElement('script');
+    s.src = '//blog-levi-g-info.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript class="text-muted">
+  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    </div>
+  </div>
 
-							<div class="panel">
-								<h5>Tags</h5>
-								<ul class="tag-cloud">
-									<li><a href="/tag/sip.html" class="tag-4">sip</a></li>
-									<li><a href="/tag/install.html" class="tag-4">install</a></li>
-									<li><a href="/tag/pelican.html" class="tag-1">pelican</a></li>
-									<li><a href="/tag/try.html" class="tag-2">try</a></li>
-									<li><a href="/tag/math.html" class="tag-4">math</a></li>
-									<li><a href="/tag/rules.html" class="tag-4">rules</a></li>
-									<li><a href="/tag/gitlab.html" class="tag-4">gitlab</a></li>
-									<li><a href="/tag/linux.html" class="tag-4">linux</a></li>
-									<li><a href="/tag/publishing.html" class="tag-4">publishing</a></li>
-									<li><a href="/tag/os-x.html" class="tag-4">os x</a></li>
-									<li><a href="/tag/puzzle.html" class="tag-4">puzzle</a></li>
-									<li><a href="/tag/kernel_task.html" class="tag-4">kernel_task</a></li>
-									<li><a href="/tag/game.html" class="tag-4">game</a></li>
-									<li><a href="/tag/server.html" class="tag-1">server</a></li>
-									<li><a href="/tag/vagrant.html" class="tag-4">vagrant</a></li>
-									<li><a href="/tag/virtualization.html" class="tag-4">virtualization</a></li>
-									<li><a href="/tag/test.html" class="tag-1">test</a></li>
-									<li><a href="/tag/el-capitan.html" class="tag-4">el capitan</a></li>
-									<li><a href="/tag/udev.html" class="tag-4">udev</a></li>
-									<li><a href="/tag/docker.html" class="tag-4">docker</a></li>
-								</ul>
-							</div>
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+       <ul class="col-sm-6 list-inline">
+          <li class="list-inline-item"><a href="/authors.html">Authors</a></li>
+          <li class="list-inline-item"><a href="/archives.html">Archives</a></li>
+          <li class="list-inline-item"><a href="/categories.html">Categories</a></li>
+          <li class="list-inline-item"><a href="/tags.html">Tags</a></li>
+        </ul>
+        <p class="col-sm-6 text-sm-right text-muted">
+          Generated by <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a> / <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">&#x2728;</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
 
-
-							<div class="panel">
-								<h5>Social</h5>
-								<ul class="side-nav">
-								</ul>
-							</div>
-						</aside>
-						<!-- End Sidebar -->
-					</div>
-
-					<!-- Footer -->
-					<footer class="row">
-						<div class="medium-9 small-12">
-							<hr/>
-							<p class="text-center">Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://foundation.zurb.com/">Zurb Foundation</a>. Theme by <a href="http://hamaluik.com">Kenton Hamaluik</a>.</p>
-						</div>
-					</footer>
-					<!-- End Footer -->
-				</section>
-				<a class="exit-off-canvas"></a>
-			</div><!--off-canvas inner-->
-		</div><!--off-canvas wrap-->
-
-		<script src="/theme/js/jquery.js"></script>
-		<script src="/theme/js/foundation.min.js"></script>
-		<script>
-			$(document).foundation();
-		</script>
-	</body>
 </html>

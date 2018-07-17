@@ -1,198 +1,89 @@
-<!doctype html>
-<html class="no-js" lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!DOCTYPE html>
+<html lang="chinese (simplified)">
 
-		<title>Happy Coding</title>
-		<meta name="description" content="">
-		<meta name="author" content="Levi G.">
+<head>
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<link rel="stylesheet" href="/theme/css/foundation.css" />
-		<link rel="stylesheet" href="/theme/css/pygment/monokai.css" />
-		<link rel="stylesheet" href="/theme/css/custom.css" />
-
-
-		<script src="/theme/js/modernizr.js"></script>
-
-		<!-- Feeds -->
-
-
-		<!-- mathjax config similar to math.stackexchange -->
-		<script type="text/x-mathjax-config">
-		MathJax.Hub.Config({
-			jax: ["input/TeX", "output/HTML-CSS"],
-			tex2jax: {
-				inlineMath: [ ['$', '$'] ],
-				displayMath: [ ['$$', '$$']],
-				processEscapes: true,
-				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-			},
-			messageStyle: "none",
-			"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
-		});
-		</script>
-		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-	</head>
-	<body>
-		<div class="off-canvas-wrap">
-			<div class="inner-wrap">
-				<!-- mobile top bar to activate nav -->
-				<nav class="tab-bar show-for-small">
-					<section class="left-small">
-						<a class="left-off-canvas-toggle menu-icon" ><span></span></a>
-					</section>
-
-					<section class="middle tab-bar-section">
-						<h1 class="title">Happy&nbsp;Coding</h1>
-					</section>
-				</nav>
-
-				<!-- mobile side bar nav -->
-				<aside class="left-off-canvas-menu">
-					<ul class="off-canvas-list">
-						<li><a href="">Home</a></li>
-						<li><label>Categories</label></li>
-							<li ><a href="/category/blogging.html">blogging</a></li>
-							<li ><a href="/category/linux.html">Linux</a></li>
-							<li ><a href="/category/server.html">Server</a></li>
-							<li ><a href="/category/system.html">system</a></li>
-							<li ><a href="/category/test.html">Test</a></li>
-
-						<li><label>Links</label></li>
-							<li><a href="https://chou.it">Lex Chow的博客</a></li>
-							<li><a href="http://getpelican.com/">Pelican</a></li>
-							<li><a href="http://python.org/">Python.org</a></li>
-							<li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-							<li><a href="#">You can modify those links in your config file</a></li>
+  <title>#udev Articles | Happy Coding
+</title>
+  <link rel="canonical" href="/tag/udev.html">
 
 
 
-						<li><label>Social</label></li>
-					</ul>	
-				</aside>
+  <link rel="stylesheet" href="/theme/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/theme/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/theme/css/pygments/default.min.css">
+  <link rel="stylesheet" href="/theme/css/style.css">
 
-				<!-- top bar nav -->
-				<nav class="top-bar hide-for-small-only" data-topbar>
-					<ul class="title-area">
-						<li class="name">
-							<h1><a href="/">Happy Coding</a></h1>
-						</li>
-					</ul>
 
-					<section class="top-bar-section">
-						<ul class="left">
-								<li ><a href="/category/blogging.html">blogging</a></li>
-								<li ><a href="/category/linux.html">Linux</a></li>
-								<li ><a href="/category/server.html">Server</a></li>
-								<li ><a href="/category/system.html">system</a></li>
-								<li ><a href="/category/test.html">Test</a></li>
-						</ul>
-                        <ul class="right">                                                                                                                                           
-                                                                                                                                             
-                        </ul>  
-					</section>
-				</nav>
+</head>
 
-				<!-- Main Page Content and Sidebar -->
-				<section class="main-section">
-					<div class="row">
-						<!-- Main Content -->
-						<div class="medium-9 small-12 columns" role="content">
-							<div class="row">
-								<div class="small-12 columns">
-									<h2>Posts Tagged With 'udev'</h2>
-								</div>
-							</div>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1 class="title"><a href="">Happy Coding</a></h1>
+          <ul class="list-inline">
+            <li class="list-inline-item"><a href="https://chou.it" target="_blank">Lex Chow的博客</a></li>
+            <li class="list-inline-item"><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
+            <li class="list-inline-item"><a href="http://python.org/" target="_blank">Python.org</a></li>
+            <li class="list-inline-item"><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<article>
-	<h3><a href="/writing-udev-rules.html">编写 udev 规则</a></h3>
-	<h6>Written by <a href="/author/levi-g.html">Levi G</a> in <a href="/category/linux.html">Linux</a> on 四 15 十二月 2016. Tags: <a href="/tag/linux.html">linux</a>, <a href="/tag/udev.html">udev</a>, <a href="/tag/rules.html">rules</a>, </h6>
-	<p>by Daniel Drake (dsd)
-Version 0.74</p>
-<p>本文最新版本可在此处找到：</p>
-<ul>
-<li><a href="http://www.reactivated.net/writing_udev_rules.html">http://www.reactivated.net/writing_udev_rules.html</a> (英文版)</li>
-<li><a href="http://blog.levi-g.info/writing-udev-rules.html">http://blog.levi-g.info/writing-udev-rules.html</a> (中文版)</li>
-</ul>
-<h2 id="_1">目录</h2>
-
-<h2 id="_2">介绍</h2>
-<h3 id="_3">关于本文档</h3>
-<p>udev 面向 2.6 及以上的 Linux 内核，提供带有固定设备命名的，动态 /dev 目录的，用户空间解决方案。之前的 /dev 实现 <em>devfs</em> 现已被废弃，udev 成为继任者。udev vs devfs 是一个敏感的谈话内容，在进行比较之前你应该读一下<a href="http://kernel.org/pub/linux/utils/kernel/hotplug/udev_vs_devfs">这个文档 ...</a></p>
-		<p class="continue"><a href="/writing-udev-rules.html">Continue reading &raquo;</a></p>
+  <div class="main">
+    <div class="container">
+      <h1>#udev Articles
+</h1>
+      <hr>
+<article class="row teaser">
+  <header class="col-sm-4 text-muted">
+    <ul>
+      <li title="2016-12-15T19:29:00+08:00">
+        <i class="fa fa-clock-o"></i>
+        四 15 十二月 2016
+      </li>
+      <li>
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li>
+        <i class="fa fa-user-o"></i>
+        <a href="/author/levi-g.html">Levi G</a>      </li>
+    </ul>
+  </header>
+  <div class="col-sm-8">
+    <h4 class="title"><a href="/writing-udev-rules.html">编写 udev 规则</a></h4>
+    <div class="content">
+      by Daniel Drake (dsd) Version 0.74 本文最新版本可在此处找到： http://www.reactivated.net/writing_udev_rules.html (英文版) http://blog.levi-g.info/writing-udev-rules.html (中文版) 目录 目录 介绍 关于本文档 更新历史 概念 语义: devfs, sysfs, nodes 等 为什么？ 内置固定命名方案 规则书写 规则文件和语义 规则语法 基本规则 匹配 sysfs 属性 设备级联 字符串替换 字符串匹配 从 sysfs 中查找信息 sysfs 树 …
+    </div>
+  </div>
 </article>
-<hr />
+    </div>
+  </div>
 
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+       <ul class="col-sm-6 list-inline">
+          <li class="list-inline-item"><a href="/authors.html">Authors</a></li>
+          <li class="list-inline-item"><a href="/archives.html">Archives</a></li>
+          <li class="list-inline-item"><a href="/categories.html">Categories</a></li>
+          <li class="list-inline-item"><a href="/tags.html">Tags</a></li>
+        </ul>
+        <p class="col-sm-6 text-sm-right text-muted">
+          Generated by <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a> / <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">&#x2728;</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
 
-						</div>
-						<!-- End Main Content -->
-						<!-- Sidebar -->
-						<aside class="medium-3 hide-for-small-only columns">
-							<div class="panel">
-								<h5>Links</h5>
-								<ul class="side-nav">
-									<li><a href="https://chou.it">Lex Chow的博客</a></li>
-									<li><a href="http://getpelican.com/">Pelican</a></li>
-									<li><a href="http://python.org/">Python.org</a></li>
-									<li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-									<li><a href="#">You can modify those links in your config file</a></li>
-								</ul>
-							</div>
-
-							<div class="panel">
-								<h5>Tags</h5>
-								<ul class="tag-cloud">
-									<li><a href="/tag/sip.html" class="tag-4">sip</a></li>
-									<li><a href="/tag/install.html" class="tag-4">install</a></li>
-									<li><a href="/tag/pelican.html" class="tag-1">pelican</a></li>
-									<li><a href="/tag/try.html" class="tag-2">try</a></li>
-									<li><a href="/tag/math.html" class="tag-4">math</a></li>
-									<li><a href="/tag/rules.html" class="tag-4">rules</a></li>
-									<li><a href="/tag/gitlab.html" class="tag-4">gitlab</a></li>
-									<li><a href="/tag/linux.html" class="tag-4">linux</a></li>
-									<li><a href="/tag/publishing.html" class="tag-4">publishing</a></li>
-									<li><a href="/tag/os-x.html" class="tag-4">os x</a></li>
-									<li><a href="/tag/puzzle.html" class="tag-4">puzzle</a></li>
-									<li><a href="/tag/kernel_task.html" class="tag-4">kernel_task</a></li>
-									<li><a href="/tag/game.html" class="tag-4">game</a></li>
-									<li><a href="/tag/server.html" class="tag-1">server</a></li>
-									<li><a href="/tag/vagrant.html" class="tag-4">vagrant</a></li>
-									<li><a href="/tag/virtualization.html" class="tag-4">virtualization</a></li>
-									<li><a href="/tag/test.html" class="tag-1">test</a></li>
-									<li><a href="/tag/el-capitan.html" class="tag-4">el capitan</a></li>
-									<li><a href="/tag/udev.html" class="tag-4">udev</a></li>
-									<li><a href="/tag/docker.html" class="tag-4">docker</a></li>
-								</ul>
-							</div>
-
-
-							<div class="panel">
-								<h5>Social</h5>
-								<ul class="side-nav">
-								</ul>
-							</div>
-						</aside>
-						<!-- End Sidebar -->
-					</div>
-
-					<!-- Footer -->
-					<footer class="row">
-						<div class="medium-9 small-12">
-							<hr/>
-							<p class="text-center">Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://foundation.zurb.com/">Zurb Foundation</a>. Theme by <a href="http://hamaluik.com">Kenton Hamaluik</a>.</p>
-						</div>
-					</footer>
-					<!-- End Footer -->
-				</section>
-				<a class="exit-off-canvas"></a>
-			</div><!--off-canvas inner-->
-		</div><!--off-canvas wrap-->
-
-		<script src="/theme/js/jquery.js"></script>
-		<script src="/theme/js/foundation.min.js"></script>
-		<script>
-			$(document).foundation();
-		</script>
-	</body>
 </html>
