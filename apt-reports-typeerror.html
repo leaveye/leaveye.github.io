@@ -1,70 +1,58 @@
 <!DOCTYPE html>
-<html lang="chinese (simplified)">
-
+<html lang="en-CA">
 <head>
-  <!-- Required meta tags always come first -->
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <title>APT 返回 TypeError 的错误 | Happy Coding
-</title>
-  <link rel="canonical" href="/apt-reports-typeerror.html">
-
-
-
-  <link rel="stylesheet" href="/theme/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/theme/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/theme/css/pygments/default.min.css">
-  <link rel="stylesheet" href="/theme/css/style.css">
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>APT 返回 TypeError 的错误</title>
+<!--
+The blog's design is based on Alan Orth's blog: http://mjanja.co.ke/
+-->
+<link href="/theme/css/main.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/theme/css/style.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel='stylesheet' id='decode-font-stylesheet-css'  href='https://fonts.googleapis.com/css?family=Oxygen&#038;ver=3.6' type='text/css' media='all' />
+<link href="/theme/css/pygment.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/theme/css/vorona.css" rel="stylesheet" type="text/css" media="all" />
 
 
-<meta name="description" content="最近在为公司整理工作环境，部署 OMV 4 时，发现 apt update 指令会引发如下错误： Exception ignored in: <function WeakValueDictionary.__init__.<locals>.remove at 0x............> Traceback (most recent call last): File "/usr/lib/python3.5/weakref.py", line 117, in remove TypeError: 'NoneType' object is not callable Exception ignored in: <function WeakValueDictionary.__init__.<locals>.remove at …">
+<link href="/None" type="application/atom+xml" rel="alternate" title="Happy Coding ATOM Feed" />
 </head>
+<body class="home blog custom-background">
+	
+<div id="page" class="hfeed site sidebar-style-closing sidebar-style-left">
+    <header id="masthead" class="site-header" role="banner">
+	<div class="site-branding">
+	    <h1 class="site-title">
+		<a href="" title="Happy Coding" rel="home">Happy Coding</a>
+	    </h1>
+	    
+	</div>
+	<div class="sociallinks">
+	    <ul>
+	    </ul>
+	</div>
+	<nav id="site-navigation" class="main-navigation" role="navigation">
+	    <div class="screen-reader-text skip-link"><a href="#content" title="Skip to content">Skip to content</a></div>
+	    <div class="menu"><ul>
+		<li ><a href="" title="Home">Home</a></li>
+        
+		<li ><a href="/archives.html">Archives</a></li>
+       
+	    </ul></div>
+	</nav>
+    </header>
 
-<body>
-  <header class="header">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <h1 class="title"><a href="">Happy Coding</a></h1>
-          <ul class="list-inline">
-            <li class="list-inline-item"><a href="https://chou.it" target="_blank">Lex Chow的博客</a></li>
-            <li class="list-inline-item"><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
-            <li class="list-inline-item"><a href="http://python.org/" target="_blank">Python.org</a></li>
-            <li class="list-inline-item"><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </header>
+    <div id="content" class="site-content">
+	<section id="primary" class="content-area">
+	    <main id="main" class="site-main" role="main">
 
-  <div class="main">
-    <div class="container">
-      <h1>APT 返回 TypeError 的错误
-</h1>
-      <hr>
-<article class="article">
-  <header>
-    <ul class="list-inline">
-      <li class="list-inline-item text-muted" title="2018-06-22T09:43:00+08:00">
-        <i class="fa fa-clock-o"></i>
-        五 22 六月 2018
-      </li>
-      <li class="list-inline-item">
-        <i class="fa fa-folder-open-o"></i>
-        <a href="/category/linux.html">Linux</a>
-      </li>
-      <li class="list-inline-item">
-        <i class="fa fa-user-o"></i>
-        <a href="/author/levi-g.html">Levi G</a>      </li>
-      <li class="list-inline-item">
-        <i class="fa fa-files-o"></i>
-        <a href="/tag/server.html">#server</a>,         <a href="/tag/install.html">#install</a>,         <a href="/tag/apt.html">#apt</a>      </li>
-    </ul>
-  </header>
-  <div class="content">
-    <p>最近在为公司整理工作环境，部署 OMV 4 时，发现 <code>apt update</code> 指令会引发如下错误：</p>
+        <article class="post type-post status-publish format-standard hentry">
+            <header class="entry-header">
+                <div class="entry-title">
+                    <a href="/apt-reports-typeerror.html"><h2>APT 返回 TypeError 的错误</h2></a>
+                </div>
+            </header>
+            <div class="entry-content"><p>最近在为公司整理工作环境，部署 OMV 4 时，发现 <code>apt update</code> 指令会引发如下错误：</p>
 <div class="highlight"><pre><span></span>Exception ignored in: &lt;function WeakValueDictionary.__init__.&lt;locals&gt;.remove at 0x............&gt;
 Traceback (most recent call last):
   File &quot;/usr/lib/python3.5/weakref.py&quot;, line 117, in remove
@@ -96,45 +84,68 @@ TypeError: &#39;NoneType&#39; object is not callable
          self._remove = remove
          # A list of keys to be removed
          self._pending_removals = []
-</pre></div>
-  </div>
-</article>
-<hr>
-<div id="disqus_thread"></div>
-<script>
-  var disqus_config = function() {
-    this.page.url = '/apt-reports-typeerror.html';
-    this.page.identifier = 'apt-reports-typeerror';
-  };
-  (function() {
-    var d = document;
-    var s = d.createElement('script');
-    s.src = '//blog-levi-g-info.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-</script>
-<noscript class="text-muted">
-  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
-</noscript>
+</pre></div></div>
+            <footer class="entry-meta">
+                <p class="date">
+                    <span class="posted-on">Posted On <time class="entry-date published" datetime="2018-06-22 09:43">五 22 六月 2018</time></span>
+                    <span class="byline"> by <span class="author vcard">Levi G</span></span>
+                </p>
+                <p class="categories">Category:
+                    <a href="/category/linux.html" rel="tag">Linux</a>
+                </p>
+                <p class="tags">Tags:                     <span><a href="/tag/server.html" rel="tag">server</a> / </span>                    <span><a href="/tag/install.html" rel="tag">install</a> / </span>                    <span><a href="/tag/apt.html" rel="tag">apt</a> / </span>                </p>
+            </footer>
+        </article>
+    <div class="blogItem">
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'blog-levi-g-info';
+        (function() {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] ||
+             document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>
+        Please enable JavaScript to view the
+        <a href="http://disqus.com/?ref_noscript=blog-levi-g-info">
+            comments powered by Disqus.
+        </a>
+    </noscript>
+    <a href="http://disqus.com" class="dsq-brlink">
+        blog comments powered by <span class="logo-disqus">Disqus</span>
+    </a>
     </div>
-  </div>
+	    </main>
+	</section>
+    </div><!-- #content -->
 
-  <footer class="footer">
-    <div class="container">
-      <div class="row">
-       <ul class="col-sm-6 list-inline">
-          <li class="list-inline-item"><a href="/authors.html">Authors</a></li>
-          <li class="list-inline-item"><a href="/archives.html">Archives</a></li>
-          <li class="list-inline-item"><a href="/categories.html">Categories</a></li>
-          <li class="list-inline-item"><a href="/tags.html">Tags</a></li>
-        </ul>
-        <p class="col-sm-6 text-sm-right text-muted">
-          Generated by <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a> / <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">&#x2728;</a>
-        </p>
-      </div>
-    </div>
-  </footer>
+    <footer id="colophon" class="site-footer" role="contentinfo">
+	<!-- <div class="site-colophon">
+	    <p>Copyright (c) 2013 Aleksey Vorona.</p>
+        </div>
+		-->
+        <address id="about" class="site-colophon">
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a href="http://python.org">Python</a>.<br>
+		The theme is <a href="http://github.com/voronaam/Decode-pelican">Decode</a>, ported by <a href="http://vorona.ca">Aleksey Vorona</a> and <a href="https://github.com/kmathenge">Ken Mathenge</a>, thanks!
+        </address>
+    </footer>
+</div><!-- #page -->
+    <script type="text/javascript">
+        var disqus_shortname = 'blog-levi-g-info';
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] ||
+             document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+	
 </body>
-
 </html>

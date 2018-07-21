@@ -1,281 +1,451 @@
 <!DOCTYPE html>
-<html lang="chinese (simplified)">
-
+<html lang="en-CA">
 <head>
-  <!-- Required meta tags always come first -->
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <title>Happy Coding | 
-</title>
-  <link rel="canonical" href="/index.html">
-
-
-
-  <link rel="stylesheet" href="/theme/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/theme/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/theme/css/pygments/default.min.css">
-  <link rel="stylesheet" href="/theme/css/style.css">
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Happy Coding</title>
+<!--
+The blog's design is based on Alan Orth's blog: http://mjanja.co.ke/
+-->
+<link href="/theme/css/main.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/theme/css/style.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel='stylesheet' id='decode-font-stylesheet-css'  href='https://fonts.googleapis.com/css?family=Oxygen&#038;ver=3.6' type='text/css' media='all' />
+<link href="/theme/css/pygment.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/theme/css/vorona.css" rel="stylesheet" type="text/css" media="all" />
 
 
+<link href="/None" type="application/atom+xml" rel="alternate" title="Happy Coding ATOM Feed" />
 </head>
+<body class="home blog custom-background">
+	
+<div id="page" class="hfeed site sidebar-style-closing sidebar-style-left">
+    <header id="masthead" class="site-header" role="banner">
+	<div class="site-branding">
+	    <h1 class="site-title">
+		<a href="" title="Happy Coding" rel="home">Happy Coding</a>
+	    </h1>
+	    
+	</div>
+	<div class="sociallinks">
+	    <ul>
+	    </ul>
+	</div>
+	<nav id="site-navigation" class="main-navigation" role="navigation">
+	    <div class="screen-reader-text skip-link"><a href="#content" title="Skip to content">Skip to content</a></div>
+	    <div class="menu"><ul>
+		<li class="current_page_item"><a href="" title="Home">Home</a></li>
+        
+		<li ><a href="/archives.html">Archives</a></li>
+       
+	    </ul></div>
+	</nav>
+    </header>
 
-<body>
-  <header class="header">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <h1 class="title"><a href="">Happy Coding</a></h1>
-          <ul class="list-inline">
-            <li class="list-inline-item"><a href="https://chou.it" target="_blank">Lex Chow的博客</a></li>
-            <li class="list-inline-item"><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
-            <li class="list-inline-item"><a href="http://python.org/" target="_blank">Python.org</a></li>
-            <li class="list-inline-item"><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
-          </ul>
+    <div id="content" class="site-content">
+	<section id="primary" class="content-area">
+	    <main id="main" class="site-main" role="main">
+ 
+	<article class="post type-post status-publish format-standard hentry">
+	    <header class="entry-header">
+		<div class="entry-title">
+		    <a href="/apt-reports-typeerror.html"><h2>APT 返回 TypeError 的错误</h2></a>
+		</div>
+	    </header>
+	    <div class="entry-content"><p>最近在为公司整理工作环境，部署 OMV 4 时，发现 <code>apt update</code> 指令会引发如下错误：</p>
+<div class="highlight"><pre><span></span>Exception ignored in: &lt;function WeakValueDictionary.__init__.&lt;locals&gt;.remove at 0x............&gt;
+Traceback (most recent call last):
+  File &quot;/usr/lib/python3.5/weakref.py&quot;, line 117, in remove
+TypeError: &#39;NoneType&#39; object is not callable
+Exception ignored in: &lt;function WeakValueDictionary.__init__.&lt;locals&gt;.remove at …</pre></div> <a class="btn primary xsmall" href="/apt-reports-typeerror.html">Read more…</a></div>
+	    <footer class="entry-meta">
+		<p class="date">
+		    <span class="posted-on">Posted On <time class="entry-date published" datetime="2018-06-22 09:43">五 22 六月 2018</time></span>
+		    <span class="byline"> by <span class="author vcard">Levi G</span></span>
+		</p>
+		<p class="categories">Category:
+		    <a href="/category/linux.html" rel="tag">Linux</a>
+		</p>
+		<p class="tags">Tags: 		    <span><a href="/tag/server.html" rel="tag">server</a> / </span>		    <span><a href="/tag/install.html" rel="tag">install</a> / </span>		    <span><a href="/tag/apt.html" rel="tag">apt</a> / </span>		</p>
+	    </footer>
+	</article>
+	<article class="post type-post status-publish format-standard hentry">
+	    <header class="entry-header">
+		<div class="entry-title">
+		    <a href="/calibration-by-chromapure.html"><h2>【译】小白也能用 ChromaPure 做灰阶与颜色校准</h2></a>
+		</div>
+	    </header>
+	    <div class="entry-content"><p>原文：<a href="http://www.curtpalme.com/forum/viewtopic.php?t=35322">CHROMAPURE GRAYSCALE &amp; COLOR CALIBRATION FOR DUMMIES</a>
+参考了<a href="http://www.curtpalme.com/forum/viewtopic.php?t=10457">旧版本</a>的<a href="http://www.isf.com.tw/tech_article/kal_guide.html">翻译</a>。</p>
+<p><img alt="题图" src="http://www.curtpalme.com/images/728x90/chromapure_header_wide_modified640.jpg">
+<strong><em>本文由 <a href="http://www.curtpalme.com/">CurtPalme.com 家庭影院</a>的编辑 <a href="http://www.curtpalme.com/forum/profile.php?mode=viewprofile&amp;u=3">Kal</a> 编写。</em></strong>
+<strong><em>最近更新于 2017 年 3 月 1 日（Edits for clarity）</em></strong></p>
+<p><strong><em>要获得本向导更新的通知，请查阅<a href="http://www.curtpalme.com/forum/viewtopic.php?t=35322&amp;watch=topic&amp;start=0">帖子</a>并回复（需先<a href="http://www.curtpalme.com/forum/profile.php?mode=register">注册</a>并<a href="http://www.curtpalme.com/forum/login.php">登录</a>），或登记<a href="http://www.curtpalme.com/MailingList.shtm">接收新闻消息</a>。</em></strong></p>
+<p><em>请勿再版、复制或创建本手册的 PDF 或 DOC 版本。而是简单链接到本页面（<a href="http://www.curtpalme.com/forum/viewtopic.php?t=35322">原始页面</a>），让读者可以自行打印。这样所有人都有最新的版本。</em></p>
+<p><em>All content …</em></p> <a class="btn primary xsmall" href="/calibration-by-chromapure.html">Read more…</a></div>
+	    <footer class="entry-meta">
+		<p class="date">
+		    <span class="posted-on">Posted On <time class="entry-date published" datetime="2018-04-17 02:19">二 17 四月 2018</time></span>
+		    <span class="byline"> by <span class="author vcard">Levi G</span></span>
+		</p>
+		<p class="categories">Category:
+		    <a href="/category/jia-ting-ying-yuan.html" rel="tag">家庭影院</a>
+		</p>
+		<p class="tags">Tags: 		    <span><a href="/tag/video.html" rel="tag">video</a> / </span>		    <span><a href="/tag/calibration.html" rel="tag">calibration</a> / </span>		    <span><a href="/tag/projector.html" rel="tag">projector</a> / </span>		    <span><a href="/tag/home-theater.html" rel="tag">home theater</a> / </span>		</p>
+	    </footer>
+	</article>
+	<article class="post type-post status-publish format-standard hentry">
+	    <header class="entry-header">
+		<div class="entry-title">
+		    <a href="/self-host-vagrant-boxes.html"><h2>打造 vagrant boxes 托管服务器</h2></a>
+		</div>
+	    </header>
+	    <div class="entry-content"><p>参考：</p>
+<ul>
+<li><a href="https://github.com/hollodotme/Helpers/blob/master/Tutorials/vagrant/self-hosted-vagrant-boxes-with-versioning.md">How to set up a self-hosted "vagrant cloud" with versioned, self-packaged vagrant boxes</a></li>
+<li><a href="http://kaiwangchen.github.io/2014/07/14/vagrant-box-and-repo.html">Vagrant 镜像制作与共享</a></li>
+<li>Official <a href="https://www.vagrantup.com/docs/">Vagrant Documentation</a></li>
+</ul> <a class="btn primary xsmall" href="/self-host-vagrant-boxes.html">Read more…</a></div>
+	    <footer class="entry-meta">
+		<p class="date">
+		    <span class="posted-on">Posted On <time class="entry-date published" datetime="2017-01-04 11:57">三 04 一月 2017</time></span>
+		    <span class="byline"> by <span class="author vcard">Levi G</span></span>
+		</p>
+		<p class="categories">Category:
+		    <a href="/category/fu-wu-qi.html" rel="tag">服务器</a>
+		</p>
+		<p class="tags">Tags: 		    <span><a href="/tag/devops.html" rel="tag">devops</a> / </span>		    <span><a href="/tag/vagrant.html" rel="tag">vagrant</a> / </span>		    <span><a href="/tag/virtualbox.html" rel="tag">virtualbox</a> / </span>		</p>
+	    </footer>
+	</article>
+	<article class="post type-post status-publish format-standard hentry">
+	    <header class="entry-header">
+		<div class="entry-title">
+		    <a href="/building-a-vagrant-box.html"><h2>【译】从头制作 Vagrant Box</h2></a>
+		</div>
+	    </header>
+	    <div class="entry-content"><p>译自：<a href="https://blog.engineyard.com/2014/building-a-vagrant-box">https://blog.engineyard.com/2014/building-a-vagrant-box</a><br>
+<img alt="Original LOGO" src="https://blog.engineyard.com/images/blog-images/vagrant-box.png"></p>
+<blockquote>
+<p><strong>注：</strong>本文原发布于 tylerbird.org 今年的 blog 。最近在 Engine Yard 发布大众更新版本。</p>
+</blockquote>
+<div class="toc">
+<ul>
+<li><a href="#box">为什么制作 Box</a></li>
+<li><a href="#_1">定义</a></li>
+<li><a href="#_2">大力声明</a></li>
+<li><a href="#_3">准备工作</a></li>
+<li><a href="#box_1">建立 Box</a><ul>
+<li><a href="#_4">设置虚拟硬件</a></li>
+<li><a href="#_5">安装操作系统</a></li>
+<li><a href="#_6">设置根密码</a></li>
+<li><a href="#_7">设置超级用户</a></li>
+<li><a href="#_8">更新操作系统</a></li>
+<li><a href="#vagrant">安装 Vagrant 密钥</a></li>
+<li><a href="#openssh">安装配置 OpenSSH 服务器</a></li>
+<li><a href="#guest-tools">安装 Guest Tools</a></li>
+<li><a href="#box_2">打包整个 box</a></li>
+<li><a href="#box_3">测试你的 box</a></li>
+</ul>
+</li>
+<li><a href="#packer">Packer</a></li>
+<li><a href="#_9">我们学到什么</a></li>
+</ul>
+</div>
+<p>Vagrant 的目标是简化在本地创建开发环境，接触上之后，你再也不会想用其它方式了。只用两个简单的命令，你就可以安装你的第一个 …</p> <a class="btn primary xsmall" href="/building-a-vagrant-box.html">Read more…</a></div>
+	    <footer class="entry-meta">
+		<p class="date">
+		    <span class="posted-on">Posted On <time class="entry-date published" datetime="2016-12-19 14:21">一 19 十二月 2016</time></span>
+		    <span class="byline"> by <span class="author vcard">Levi G</span></span>
+		</p>
+		<p class="categories">Category:
+		    <a href="/category/fu-wu-qi.html" rel="tag">服务器</a>
+		</p>
+		<p class="tags">Tags: 		    <span><a href="/tag/vagrant.html" rel="tag">vagrant</a> / </span>		    <span><a href="/tag/virtualization.html" rel="tag">virtualization</a> / </span>		    <span><a href="/tag/server.html" rel="tag">server</a> / </span>		</p>
+	    </footer>
+	</article>
+	<article class="post type-post status-publish format-standard hentry">
+	    <header class="entry-header">
+		<div class="entry-title">
+		    <a href="/writing-udev-rules.html"><h2>编写 udev 规则</h2></a>
+		</div>
+	    </header>
+	    <div class="entry-content"><p>by Daniel Drake (dsd)
+Version 0.74</p>
+<p>本文最新版本可在此处找到：</p>
+<ul>
+<li><a href="http://www.reactivated.net/writing_udev_rules.html">http://www.reactivated.net/writing_udev_rules.html</a> (英文版)</li>
+<li><a href="http://blog.levi-g.info/writing-udev-rules.html">http://blog.levi-g.info/writing-udev-rules.html</a> (中文版)</li>
+</ul>
+<h2 id="_1">目录</h2>
+<div class="toc">
+<ul>
+<li><a href="#_1">目录</a></li>
+<li><a href="#_2">介绍</a><ul>
+<li><a href="#_3">关于本文档</a></li>
+<li><a href="#_4">更新历史</a></li>
+</ul>
+</li>
+<li><a href="#_5">概念</a><ul>
+<li><a href="#devfs-sysfs-nodes">语义: devfs, sysfs, nodes 等</a></li>
+<li><a href="#_6">为什么？</a></li>
+<li><a href="#_7">内置固定命名方案</a></li>
+</ul>
+</li>
+<li><a href="#_8">规则书写</a><ul>
+<li><a href="#_9">规则文件和语义</a></li>
+<li><a href="#_10">规则语法</a></li>
+<li><a href="#_11">基本规则</a></li>
+<li><a href="#sysfs">匹配 sysfs 属性</a></li>
+<li><a href="#_12">设备级联</a></li>
+<li><a href="#_13">字符串替换</a></li>
+<li><a href="#_14">字符串匹配</a></li>
+</ul>
+</li>
+<li><a href="#sysfs_1">从 sysfs 中查找信息</a><ul>
+<li><a href="#sysfs_2">sysfs 树 …</a></li></ul></li></ul></div> <a class="btn primary xsmall" href="/writing-udev-rules.html">Read more…</a></div>
+	    <footer class="entry-meta">
+		<p class="date">
+		    <span class="posted-on">Posted On <time class="entry-date published" datetime="2016-12-15 19:29">四 15 十二月 2016</time></span>
+		    <span class="byline"> by <span class="author vcard">Levi G</span></span>
+		</p>
+		<p class="categories">Category:
+		    <a href="/category/linux.html" rel="tag">Linux</a>
+		</p>
+		<p class="tags">Tags: 		    <span><a href="/tag/linux.html" rel="tag">linux</a> / </span>		    <span><a href="/tag/udev.html" rel="tag">udev</a> / </span>		    <span><a href="/tag/rules.html" rel="tag">rules</a> / </span>		</p>
+	    </footer>
+	</article>
+	<article class="post type-post status-publish format-standard hentry">
+	    <header class="entry-header">
+		<div class="entry-title">
+		    <a href="/gitlab-docker-compose-install.html"><h2>使用 Docker Compose 搭建本地 GitLab 服务器</h2></a>
+		</div>
+	    </header>
+	    <div class="entry-content"><h1 id="_1">软件安装</h1>
+<blockquote>
+<p>过程主要参考自 <a href="http://docs.gitlab.com/omnibus/">Omnibus GitLab 官方文档</a>中 <a href="http://docs.gitlab.com/omnibus/docker/#install-gitlab-using-docker-compose">install GitLab using docker-compose</a> 章节。</p>
+</blockquote>
+<h2 id="_2">设置项选择</h2>
+<table>
+<thead>
+<tr>
+<th>设置项</th>
+<th>值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>安装版本</td>
+<td><code>gitlab-ce</code></td>
+<td></td>
+</tr>
+<tr>
+<td>服务器 IP</td>
+<td><code>192.168.3.12</code></td>
+<td>Docker 容器</td>
+</tr>
+<tr>
+<td>工作目录</td>
+<td><code>~/docker-test</code></td>
+<td>容器(集)配置所在路径，此次安装主要工作路径</td>
+</tr>
+<tr>
+<td>服务目录</td>
+<td><code>~/gitlab</code></td>
+<td>GitLab 服务使用的文件将保存在此处</td>
+</tr>
+<tr>
+<td>HTTP 端口</td>
+<td><code>80</code></td>
+<td>唯一 Web 服务，可以独占端口</td>
+</tr>
+<tr>
+<td>SSH 端口</td>
+<td><code>2201</code></td>
+<td>Docker 主机使用了缺省的 22 端口</td>
+</tr>
+<tr>
+<td>访问地址 …</td></tr></tbody></table> <a class="btn primary xsmall" href="/gitlab-docker-compose-install.html">Read more…</a></div>
+	    <footer class="entry-meta">
+		<p class="date">
+		    <span class="posted-on">Posted On <time class="entry-date published" datetime="2016-08-12 10:34">五 12 八月 2016</time></span>
+		    <span class="byline"> by <span class="author vcard">Levi G</span></span>
+		</p>
+		<p class="categories">Category:
+		    <a href="/category/fu-wu-qi.html" rel="tag">服务器</a>
+		</p>
+		<p class="tags">Tags: 		    <span><a href="/tag/server.html" rel="tag">server</a> / </span>		    <span><a href="/tag/install.html" rel="tag">install</a> / </span>		    <span><a href="/tag/gitlab.html" rel="tag">gitlab</a> / </span>		    <span><a href="/tag/docker.html" rel="tag">docker</a> / </span>		</p>
+	    </footer>
+	</article>
+	<article class="post type-post status-publish format-standard hentry">
+	    <header class="entry-header">
+		<div class="entry-title">
+		    <a href="/the-witness-puzzles.html"><h2>见证者游戏谜题解析</h2></a>
+		</div>
+	    </header>
+	    <div class="entry-content"><p><img alt="image" src="images/the-witness-puzzles_maze.png"></p>
+<h1 id="_1">略作定义</h1>
+<p>所有谜题都可以这样描述：</p>
+<ul>
+<li>谜题题板是在一个平面或空间曲面上的格线阵列。</li>
+<li>谜题解答是无交叉的一笔画图形。<ul>
+<li>一笔画轨迹必须在题板给出的格线上。以圆点为起点，以方格阵列凸点为终点。</li>
+<li>一笔画轨迹本身必须满足阵列中图形的限定条件。</li>
+<li>一笔画轨迹将题板划分成一个或多个联通区域，每个联通区域必须满足阵列中图形的限定条件。</li>
+</ul>
+</li>
+</ul>
+<h1 id="_2">不同图形的限定含义</h1>
+<table>
+<thead>
+<tr>
+<th>图形</th>
+<th>位置</th>
+<th>限定</th>
+<th>图例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>格线</td>
+<td>-</td>
+<td>一笔画路径。</td>
+<td></td>
+</tr>
+<tr>
+<td>圆点</td>
+<td>格线交点</td>
+<td>一笔画起点。</td>
+<td></td>
+</tr>
+<tr>
+<td>出口</td>
+<td>边界格线交点延伸到图形外</td>
+<td>一笔画终点。</td>
+<td></td>
+</tr>
+<tr>
+<td>圆角方形</td>
+<td>方格内</td>
+<td>所在连通区域内不可出现其它颜色的圆角方形。</td>
+<td><img alt="image" src="images/the-witness-puzzles_square-black.png"></td>
+</tr>
+<tr>
+<td>正六边形</td>
+<td>格线交点或格线上</td>
+<td>一笔画必须经过此点。黑色可由任一颜色一笔画轨迹经过；其它颜色必须由同色轨迹经过。</td>
+<td><img alt="image" src="images/the-witness-puzzles_hex.png"></td>
+</tr>
+<tr>
+<td>对称</td>
+<td>题板整体是轴对称或中心对称的</td>
+<td>一笔画出多条轨迹。对称性与题板本身相同。</td>
+<td><img alt="image" src="images/the-witness-puzzles_symmetry.png"></td>
+</tr>
+<tr>
+<td>俄罗斯方块/<br/>多联骨牌</td>
+<td>方格内</td>
+<td>所在连通区域的形状必须可由其中的所有俄罗斯方块拼成。</td>
+<td><img alt="image" src="images/the-witness-puzzles_tetris.png"></td>
+</tr>
+<tr>
+<td>空心俄罗斯方块/<br/>反多联骨牌</td>
+<td>方格内</td>
+<td>修正所在联通区域内的某块俄罗斯方块，将之挖去空心俄罗斯方块形状的一部分。</td>
+<td><img alt="image" src="images/the-witness-puzzles_tetris2.png"></td>
+</tr>
+<tr>
+<td>八角星/太阳</td>
+<td>方格内</td>
+<td>所在联通区域必须存在且仅有一个同一颜色的特定图形（圆角方形、八角星 …</td></tr></tbody></table> <a class="btn primary xsmall" href="/the-witness-puzzles.html">Read more…</a></div>
+	    <footer class="entry-meta">
+		<p class="date">
+		    <span class="posted-on">Posted On <time class="entry-date published" datetime="2016-02-17 14:34">三 17 二月 2016</time></span>
+		    <span class="byline"> by <span class="author vcard">Levi G</span></span>
+		</p>
+		<p class="categories">Category:
+		    <a href="/category/you-xi.html" rel="tag">游戏</a>
+		</p>
+		<p class="tags">Tags: 		    <span><a href="/tag/game.html" rel="tag">game</a> / </span>		    <span><a href="/tag/puzzle.html" rel="tag">puzzle</a> / </span>		    <span><a href="/tag/math.html" rel="tag">math</a> / </span>		</p>
+	    </footer>
+	</article>
+	<article class="post type-post status-publish format-standard hentry">
+	    <header class="entry-header">
+		<div class="entry-title">
+		    <a href="/upgrade-to-el-capitan.html"><h2>升级 OS X El Capitan</h2></a>
+		</div>
+	    </header>
+	    <div class="entry-content"><p>10 月 1 日发现 Apple 推送了 El Capitan 的更新。第一时间点击升级，准备体验一下。</p>
+<p>几小时后，升级包终于下载完成了，在电脑上多了个『安装 El Capitan』的软件。果断打开。</p>
+<p>回答确认了安装程序的一系列问题，并且第一次重启电脑后，进度条走的非常慢，最后卡在 30% 左右不动了。</p>
+<p>担心了 1 个小时变砖的问题，决定还是强行关机。重启后没有继续安装，而是自动进入到升级前的系统。庆幸了一下。再次点击安装软件，重启进入安装过程。</p>
+<p>这次虽然进度条依旧很慢，但是顺利完成了安装过程。登录系统后，发现又再次出现了一年前修复的 <code>kernel_task</code> 进程 CPU 占用率暴高的问题。搜索到了<a href="http://www.zhihu.com/question/19611376">结果</a>，准备照此办理。</p>
+<p>查询到我的设备型号是 <code>MacBookPro8,2</code>，要删除的文件没有权限：</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">pwd …</span></pre></div> <a class="btn primary xsmall" href="/upgrade-to-el-capitan.html">Read more…</a></div>
+	    <footer class="entry-meta">
+		<p class="date">
+		    <span class="posted-on">Posted On <time class="entry-date published" datetime="2015-10-03 14:27">六 03 十月 2015</time></span>
+		    <span class="byline"> by <span class="author vcard">Levi G</span></span>
+		</p>
+		<p class="categories">Category:
+		    <a href="/category/macos.html" rel="tag">macOS</a>
+		</p>
+		<p class="tags">Tags: 		    <span><a href="/tag/os-x.html" rel="tag">os x</a> / </span>		    <span><a href="/tag/el-capitan.html" rel="tag">el capitan</a> / </span>		    <span><a href="/tag/kernel_task.html" rel="tag">kernel_task</a> / </span>		    <span><a href="/tag/sip.html" rel="tag">sip</a> / </span>		</p>
+	    </footer>
+	</article>
+	<article class="post type-post status-publish format-standard hentry">
+	    <header class="entry-header">
+		<div class="entry-title">
+		    <a href="/move-blog.html"><h2>迁移Blog</h2></a>
+		</div>
+	    </header>
+	    <div class="entry-content"><p>之前的 blog 放在朋友的主机上，还没写上几个字呢，在换主机的过程中数据就丢失了。</p>
+<blockquote>
+<p>反正没花力气，所以也不用心疼……<br>
+—— <a href="/author/levi-g.html">Levi G.</a></p>
+</blockquote>
+<h2 id="_1">选择</h2>
+<p>三天前决定并开始动手，把 blog 放 Github 上面。用了半天的时间，比较过 jekyll 和 pelican 后，还是选择了 pelican 。毕竟 python 在安装上还是要比 Ruby 方便许多的。这对于我这样时不时换工作机的人还是个很大的优势。</p>
+<p>我对 blog 的需求其实还挺烦人的。语法高亮、主题定制是基本的，<span class="math">\(\LaTeX\)</span> 是必须的，要是有 graphviz 、序列图的支持就更好了。</p>
+<p>现在的各种工具，语法高亮、主题定制都是必备功能了，产生差异的就只是配套内容的多寡了。粗略看了下 <a href="https://github.com/getpelican/pelican-themes" title="pelican 主题包">pelican-themes</a> 虽然没有 <a href="http://jekyllthemes.org" title="Jekyll 主题包">Jekyll Themes</a> 看上去那么完整 …</p> <a class="btn primary xsmall" href="/move-blog.html">Read more…</a></div>
+	    <footer class="entry-meta">
+		<p class="date">
+		    <span class="posted-on">Posted On <time class="entry-date published" datetime="2015-06-17 13:37">三 17 六月 2015</time></span>
+		    <span class="byline"> by <span class="author vcard">Levi G</span></span>
+		</p>
+		<p class="categories">Category:
+		    <a href="/category/bo-ke.html" rel="tag">博客</a>
+		</p>
+		<p class="tags">Tags: 		    <span><a href="/tag/pelican.html" rel="tag">pelican</a> / </span>		    <span><a href="/tag/server.html" rel="tag">server</a> / </span>		</p>
+	    </footer>
+	</article>
+	<div style="clear: both;">&nbsp;</div>
+	    </main>
+	</section>
+    </div><!-- #content -->
+
+    <footer id="colophon" class="site-footer" role="contentinfo">
+	<!-- <div class="site-colophon">
+	    <p>Copyright (c) 2013 Aleksey Vorona.</p>
         </div>
-      </div>
-    </div>
-  </header>
-
-  <div class="main">
-    <div class="container">
-      <h1>Articles
-</h1>
-      <hr>
-<article class="row teaser">
-  <header class="col-sm-4 text-muted">
-    <ul>
-      <li title="2018-06-22T09:43:00+08:00">
-        <i class="fa fa-clock-o"></i>
-        五 22 六月 2018
-      </li>
-      <li>
-        <i class="fa fa-folder-open-o"></i>
-        <a href="/category/linux.html">Linux</a>
-      </li>
-      <li>
-        <i class="fa fa-user-o"></i>
-        <a href="/author/levi-g.html">Levi G</a>      </li>
-    </ul>
-  </header>
-  <div class="col-sm-8">
-    <h4 class="title"><a href="/apt-reports-typeerror.html">APT 返回 TypeError 的错误</a></h4>
-    <div class="content">
-      最近在为公司整理工作环境，部署 OMV 4 时，发现 apt update 指令会引发如下错误： Exception ignored in: <function WeakValueDictionary.__init__.<locals>.remove at 0x............> Traceback (most recent call last): File "/usr/lib/python3.5/weakref.py", line 117, in remove TypeError: 'NoneType' object is not callable Exception ignored in: <function WeakValueDictionary.__init__.<locals>.remove at …
-    </div>
-  </div>
-</article>
-<hr>
-<article class="row teaser">
-  <header class="col-sm-4 text-muted">
-    <ul>
-      <li title="2018-04-17T02:19:00+08:00">
-        <i class="fa fa-clock-o"></i>
-        二 17 四月 2018
-      </li>
-      <li>
-        <i class="fa fa-folder-open-o"></i>
-        <a href="/category/jia-ting-ying-yuan.html">家庭影院</a>
-      </li>
-      <li>
-        <i class="fa fa-user-o"></i>
-        <a href="/author/levi-g.html">Levi G</a>      </li>
-    </ul>
-  </header>
-  <div class="col-sm-8">
-    <h4 class="title"><a href="/calibration-by-chromapure.html">【译】小白也能用 ChromaPure 做灰阶与颜色校准</a></h4>
-    <div class="content">
-      原文：CHROMAPURE GRAYSCALE & COLOR CALIBRATION FOR DUMMIES 参考了旧版本的翻译。 本文由 CurtPalme.com 家庭影院的编辑 Kal 编写。 最近更新于 2017 年 3 月 1 日（Edits for clarity） 要获得本向导更新的通知，请查阅帖子并回复（需先注册并登录），或登记接收新闻消息。 请勿再版、复制或创建本手册的 PDF 或 DOC 版本。而是简单链接到本页面（原始页面），让读者可以自行打印。这样所有人都有最新的版本。 All content …
-    </div>
-  </div>
-</article>
-<hr>
-<article class="row teaser">
-  <header class="col-sm-4 text-muted">
-    <ul>
-      <li title="2017-01-04T11:57:02+08:00">
-        <i class="fa fa-clock-o"></i>
-        三 04 一月 2017
-      </li>
-      <li>
-        <i class="fa fa-folder-open-o"></i>
-        <a href="/category/fu-wu-qi.html">服务器</a>
-      </li>
-      <li>
-        <i class="fa fa-user-o"></i>
-        <a href="/author/levi-g.html">Levi G</a>      </li>
-    </ul>
-  </header>
-  <div class="col-sm-8">
-    <h4 class="title"><a href="/self-host-vagrant-boxes.html">打造 vagrant boxes 托管服务器</a></h4>
-    <div class="content">
-      参考： How to set up a self-hosted "vagrant cloud" with versioned, self-packaged vagrant boxes Vagrant 镜像制作与共享 Official Vagrant Documentation
-    </div>
-  </div>
-</article>
-<hr>
-<article class="row teaser">
-  <header class="col-sm-4 text-muted">
-    <ul>
-      <li title="2016-12-19T14:21:00+08:00">
-        <i class="fa fa-clock-o"></i>
-        一 19 十二月 2016
-      </li>
-      <li>
-        <i class="fa fa-folder-open-o"></i>
-        <a href="/category/fu-wu-qi.html">服务器</a>
-      </li>
-      <li>
-        <i class="fa fa-user-o"></i>
-        <a href="/author/levi-g.html">Levi G</a>      </li>
-    </ul>
-  </header>
-  <div class="col-sm-8">
-    <h4 class="title"><a href="/building-a-vagrant-box.html">【译】从头制作 Vagrant Box</a></h4>
-    <div class="content">
-      译自：https://blog.engineyard.com/2014/building-a-vagrant-box 注：本文原发布于 tylerbird.org 今年的 blog 。最近在 Engine Yard 发布大众更新版本。 为什么制作 Box 定义 大力声明 准备工作 建立 Box 设置虚拟硬件 安装操作系统 设置根密码 设置超级用户 更新操作系统 安装 Vagrant 密钥 安装配置 OpenSSH 服务器 安装 Guest Tools 打包整个 box 测试你的 box Packer 我们学到什么 Vagrant 的目标是简化在本地创建开发环境，接触上之后，你再也不会想用其它方式了。只用两个简单的命令，你就可以安装你的第一个 …
-    </div>
-  </div>
-</article>
-<hr>
-<article class="row teaser">
-  <header class="col-sm-4 text-muted">
-    <ul>
-      <li title="2016-12-15T19:29:00+08:00">
-        <i class="fa fa-clock-o"></i>
-        四 15 十二月 2016
-      </li>
-      <li>
-        <i class="fa fa-folder-open-o"></i>
-        <a href="/category/linux.html">Linux</a>
-      </li>
-      <li>
-        <i class="fa fa-user-o"></i>
-        <a href="/author/levi-g.html">Levi G</a>      </li>
-    </ul>
-  </header>
-  <div class="col-sm-8">
-    <h4 class="title"><a href="/writing-udev-rules.html">编写 udev 规则</a></h4>
-    <div class="content">
-      by Daniel Drake (dsd) Version 0.74 本文最新版本可在此处找到： http://www.reactivated.net/writing_udev_rules.html (英文版) http://blog.levi-g.info/writing-udev-rules.html (中文版) 目录 目录 介绍 关于本文档 更新历史 概念 语义: devfs, sysfs, nodes 等 为什么？ 内置固定命名方案 规则书写 规则文件和语义 规则语法 基本规则 匹配 sysfs 属性 设备级联 字符串替换 字符串匹配 从 sysfs 中查找信息 sysfs 树 …
-    </div>
-  </div>
-</article>
-<hr>
-<article class="row teaser">
-  <header class="col-sm-4 text-muted">
-    <ul>
-      <li title="2016-08-12T10:34:00+08:00">
-        <i class="fa fa-clock-o"></i>
-        五 12 八月 2016
-      </li>
-      <li>
-        <i class="fa fa-folder-open-o"></i>
-        <a href="/category/fu-wu-qi.html">服务器</a>
-      </li>
-      <li>
-        <i class="fa fa-user-o"></i>
-        <a href="/author/levi-g.html">Levi G</a>      </li>
-    </ul>
-  </header>
-  <div class="col-sm-8">
-    <h4 class="title"><a href="/gitlab-docker-compose-install.html">使用 Docker Compose 搭建本地 GitLab 服务器</a></h4>
-    <div class="content">
-      软件安装 过程主要参考自 Omnibus GitLab 官方文档中 install GitLab using docker-compose 章节。 设置项选择 设置项 值 备注 安装版本 gitlab-ce 服务器 IP 192.168.3.12 Docker 容器 工作目录 ~/docker-test 容器(集)配置所在路径，此次安装主要工作路径 服务目录 ~/gitlab GitLab 服务使用的文件将保存在此处 HTTP 端口 80 唯一 Web 服务，可以独占端口 SSH 端口 2201 Docker 主机使用了缺省的 22 端口 访问地址 …
-    </div>
-  </div>
-</article>
-<hr>
-<article class="row teaser">
-  <header class="col-sm-4 text-muted">
-    <ul>
-      <li title="2016-02-17T14:34:00+08:00">
-        <i class="fa fa-clock-o"></i>
-        三 17 二月 2016
-      </li>
-      <li>
-        <i class="fa fa-folder-open-o"></i>
-        <a href="/category/you-xi.html">游戏</a>
-      </li>
-      <li>
-        <i class="fa fa-user-o"></i>
-        <a href="/author/levi-g.html">Levi G</a>      </li>
-    </ul>
-  </header>
-  <div class="col-sm-8">
-    <h4 class="title"><a href="/the-witness-puzzles.html">见证者游戏谜题解析</a></h4>
-    <div class="content">
-      略作定义 所有谜题都可以这样描述： 谜题题板是在一个平面或空间曲面上的格线阵列。 谜题解答是无交叉的一笔画图形。 一笔画轨迹必须在题板给出的格线上。以圆点为起点，以方格阵列凸点为终点。 一笔画轨迹本身必须满足阵列中图形的限定条件。 一笔画轨迹将题板划分成一个或多个联通区域，每个联通区域必须满足阵列中图形的限定条件。 不同图形的限定含义 图形 位置 限定 图例 格线 - 一笔画路径。 圆点 格线交点 一笔画起点。 出口 边界格线交点延伸到图形外 一笔画终点。 圆角方形 方格内 所在连通区域内不可出现其它颜色的圆角方形。 正六边形 格线交点或格线上 一笔画必须经过此点。黑色可由任一颜色一笔画轨迹经过；其它颜色必须由同色轨迹经过。 对称 题板整体是轴对称或中心对称的 一笔画出多条轨迹。对称性与题板本身相同。 俄罗斯方块/多联骨牌 方格内 所在连通区域的形状必须可由其中的所有俄罗斯方块拼成。 空心俄罗斯方块/反多联骨牌 方格内 修正所在联通区域内的某块俄罗斯方块，将之挖去空心俄罗斯方块形状的一部分。 八角星/太阳 方格内 所在联通区域必须存在且仅有一个同一颜色的特定图形（圆角方形、八角星 …
-    </div>
-  </div>
-</article>
-<hr>
-<article class="row teaser">
-  <header class="col-sm-4 text-muted">
-    <ul>
-      <li title="2015-10-03T14:27:31+08:00">
-        <i class="fa fa-clock-o"></i>
-        六 03 十月 2015
-      </li>
-      <li>
-        <i class="fa fa-folder-open-o"></i>
-        <a href="/category/macos.html">macOS</a>
-      </li>
-      <li>
-        <i class="fa fa-user-o"></i>
-        <a href="/author/levi-g.html">Levi G</a>      </li>
-    </ul>
-  </header>
-  <div class="col-sm-8">
-    <h4 class="title"><a href="/upgrade-to-el-capitan.html">升级 OS X El Capitan</a></h4>
-    <div class="content">
-      10 月 1 日发现 Apple 推送了 El Capitan 的更新。第一时间点击升级，准备体验一下。 几小时后，升级包终于下载完成了，在电脑上多了个『安装 El Capitan』的软件。果断打开。 回答确认了安装程序的一系列问题，并且第一次重启电脑后，进度条走的非常慢，最后卡在 30% 左右不动了。 担心了 1 个小时变砖的问题，决定还是强行关机。重启后没有继续安装，而是自动进入到升级前的系统。庆幸了一下。再次点击安装软件，重启进入安装过程。 这次虽然进度条依旧很慢，但是顺利完成了安装过程。登录系统后，发现又再次出现了一年前修复的 kernel_task 进程 CPU 占用率暴高的问题。搜索到了结果，准备照此办理。 查询到我的设备型号是 MacBookPro8,2，要删除的文件没有权限： $ pwd …
-    </div>
-  </div>
-</article>
-<hr>
-<article class="row teaser">
-  <header class="col-sm-4 text-muted">
-    <ul>
-      <li title="2015-06-17T13:37:00+08:00">
-        <i class="fa fa-clock-o"></i>
-        三 17 六月 2015
-      </li>
-      <li>
-        <i class="fa fa-folder-open-o"></i>
-        <a href="/category/bo-ke.html">博客</a>
-      </li>
-      <li>
-        <i class="fa fa-user-o"></i>
-        <a href="/author/levi-g.html">Levi G</a>      </li>
-    </ul>
-  </header>
-  <div class="col-sm-8">
-    <h4 class="title"><a href="/move-blog.html">迁移Blog</a></h4>
-    <div class="content">
-      之前的 blog 放在朋友的主机上，还没写上几个字呢，在换主机的过程中数据就丢失了。 反正没花力气，所以也不用心疼…… —— Levi G. 选择 三天前决定并开始动手，把 blog 放 Github 上面。用了半天的时间，比较过 jekyll 和 pelican 后，还是选择了 pelican 。毕竟 python 在安装上还是要比 Ruby 方便许多的。这对于我这样时不时换工作机的人还是个很大的优势。 我对 blog 的需求其实还挺烦人的。语法高亮、主题定制是基本的，\(\LaTeX\) 是必须的，要是有 graphviz 、序列图的支持就更好了。 现在的各种工具，语法高亮、主题定制都是必备功能了，产生差异的就只是配套内容的多寡了。粗略看了下 pelican-themes 虽然没有 Jekyll Themes 看上去那么完整 …
-    </div>
-  </div>
-</article>
-    </div>
-  </div>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="row">
-       <ul class="col-sm-6 list-inline">
-          <li class="list-inline-item"><a href="/authors.html">Authors</a></li>
-          <li class="list-inline-item"><a href="/archives.html">Archives</a></li>
-          <li class="list-inline-item"><a href="/categories.html">Categories</a></li>
-          <li class="list-inline-item"><a href="/tags.html">Tags</a></li>
-        </ul>
-        <p class="col-sm-6 text-sm-right text-muted">
-          Generated by <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a> / <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">&#x2728;</a>
-        </p>
-      </div>
-    </div>
-  </footer>
+		-->
+        <address id="about" class="site-colophon">
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a href="http://python.org">Python</a>.<br>
+		The theme is <a href="http://github.com/voronaam/Decode-pelican">Decode</a>, ported by <a href="http://vorona.ca">Aleksey Vorona</a> and <a href="https://github.com/kmathenge">Ken Mathenge</a>, thanks!
+        </address>
+    </footer>
+</div><!-- #page -->
+    <script type="text/javascript">
+        var disqus_shortname = 'blog-levi-g-info';
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] ||
+             document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+	
 </body>
-
 </html>

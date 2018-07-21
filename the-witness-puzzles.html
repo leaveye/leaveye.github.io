@@ -1,70 +1,58 @@
 <!DOCTYPE html>
-<html lang="chinese (simplified)">
-
+<html lang="en-CA">
 <head>
-  <!-- Required meta tags always come first -->
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <title>见证者游戏谜题解析 | Happy Coding
-</title>
-  <link rel="canonical" href="/the-witness-puzzles.html">
-
-
-
-  <link rel="stylesheet" href="/theme/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/theme/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/theme/css/pygments/default.min.css">
-  <link rel="stylesheet" href="/theme/css/style.css">
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>见证者游戏谜题解析</title>
+<!--
+The blog's design is based on Alan Orth's blog: http://mjanja.co.ke/
+-->
+<link href="/theme/css/main.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/theme/css/style.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel='stylesheet' id='decode-font-stylesheet-css'  href='https://fonts.googleapis.com/css?family=Oxygen&#038;ver=3.6' type='text/css' media='all' />
+<link href="/theme/css/pygment.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/theme/css/vorona.css" rel="stylesheet" type="text/css" media="all" />
 
 
-<meta name="description" content="略作定义 所有谜题都可以这样描述： 谜题题板是在一个平面或空间曲面上的格线阵列。 谜题解答是无交叉的一笔画图形。 一笔画轨迹必须在题板给出的格线上。以圆点为起点，以方格阵列凸点为终点。 一笔画轨迹本身必须满足阵列中图形的限定条件。 一笔画轨迹将题板划分成一个或多个联通区域，每个联通区域必须满足阵列中图形的限定条件。 不同图形的限定含义 图形 位置 限定 图例 格线 - 一笔画路径。 圆点 格线交点 一笔画起点。 出口 边界格线交点延伸到图形外 一笔画终点。 圆角方形 方格内 所在连通区域内不可出现其它颜色的圆角方形。 正六边形 格线交点或格线上 一笔画必须经过此点。黑色可由任一颜色一笔画轨迹经过；其它颜色必须由同色轨迹经过。 对称 题板整体是轴对称或中心对称的 一笔画出多条轨迹。对称性与题板本身相同。 俄罗斯方块/多联骨牌 方格内 所在连通区域的形状必须可由其中的所有俄罗斯方块拼成。 空心俄罗斯方块/反多联骨牌 方格内 修正所在联通区域内的某块俄罗斯方块，将之挖去空心俄罗斯方块形状的一部分。 八角星/太阳 方格内 所在联通区域必须存在且仅有一个同一颜色的特定图形（圆角方形、八角星 …">
+<link href="/None" type="application/atom+xml" rel="alternate" title="Happy Coding ATOM Feed" />
 </head>
+<body class="home blog custom-background">
+	
+<div id="page" class="hfeed site sidebar-style-closing sidebar-style-left">
+    <header id="masthead" class="site-header" role="banner">
+	<div class="site-branding">
+	    <h1 class="site-title">
+		<a href="" title="Happy Coding" rel="home">Happy Coding</a>
+	    </h1>
+	    
+	</div>
+	<div class="sociallinks">
+	    <ul>
+	    </ul>
+	</div>
+	<nav id="site-navigation" class="main-navigation" role="navigation">
+	    <div class="screen-reader-text skip-link"><a href="#content" title="Skip to content">Skip to content</a></div>
+	    <div class="menu"><ul>
+		<li ><a href="" title="Home">Home</a></li>
+        
+		<li ><a href="/archives.html">Archives</a></li>
+       
+	    </ul></div>
+	</nav>
+    </header>
 
-<body>
-  <header class="header">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <h1 class="title"><a href="">Happy Coding</a></h1>
-          <ul class="list-inline">
-            <li class="list-inline-item"><a href="https://chou.it" target="_blank">Lex Chow的博客</a></li>
-            <li class="list-inline-item"><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
-            <li class="list-inline-item"><a href="http://python.org/" target="_blank">Python.org</a></li>
-            <li class="list-inline-item"><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </header>
+    <div id="content" class="site-content">
+	<section id="primary" class="content-area">
+	    <main id="main" class="site-main" role="main">
 
-  <div class="main">
-    <div class="container">
-      <h1>见证者游戏谜题解析
-</h1>
-      <hr>
-<article class="article">
-  <header>
-    <ul class="list-inline">
-      <li class="list-inline-item text-muted" title="2016-02-17T14:34:00+08:00">
-        <i class="fa fa-clock-o"></i>
-        三 17 二月 2016
-      </li>
-      <li class="list-inline-item">
-        <i class="fa fa-folder-open-o"></i>
-        <a href="/category/you-xi.html">游戏</a>
-      </li>
-      <li class="list-inline-item">
-        <i class="fa fa-user-o"></i>
-        <a href="/author/levi-g.html">Levi G</a>      </li>
-      <li class="list-inline-item">
-        <i class="fa fa-files-o"></i>
-        <a href="/tag/game.html">#game</a>,         <a href="/tag/puzzle.html">#puzzle</a>,         <a href="/tag/math.html">#math</a>      </li>
-    </ul>
-  </header>
-  <div class="content">
-    <p><img alt="image" src="images/the-witness-puzzles_maze.png"></p>
+        <article class="post type-post status-publish format-standard hentry">
+            <header class="entry-header">
+                <div class="entry-title">
+                    <a href="/the-witness-puzzles.html"><h2>见证者游戏谜题解析</h2></a>
+                </div>
+            </header>
+            <div class="entry-content"><p><img alt="image" src="images/the-witness-puzzles_maze.png"></p>
 <h1 id="_1">略作定义</h1>
 <p>所有谜题都可以这样描述：</p>
 <ul>
@@ -188,45 +176,68 @@
 <li>早有立体的五阶多联骨牌玩具卖——『动脑筋的十二块』或『伤脑筋十二块』——约二十年前我自己还用牛皮纸做过一个。购买链接自寻。</li>
 </ul>
 </li>
-</ul>
-  </div>
-</article>
-<hr>
-<div id="disqus_thread"></div>
-<script>
-  var disqus_config = function() {
-    this.page.url = '/the-witness-puzzles.html';
-    this.page.identifier = 'the-witness-puzzles';
-  };
-  (function() {
-    var d = document;
-    var s = d.createElement('script');
-    s.src = '//blog-levi-g-info.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-</script>
-<noscript class="text-muted">
-  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
-</noscript>
+</ul></div>
+            <footer class="entry-meta">
+                <p class="date">
+                    <span class="posted-on">Posted On <time class="entry-date published" datetime="2016-02-17 14:34">三 17 二月 2016</time></span>
+                    <span class="byline"> by <span class="author vcard">Levi G</span></span>
+                </p>
+                <p class="categories">Category:
+                    <a href="/category/you-xi.html" rel="tag">游戏</a>
+                </p>
+                <p class="tags">Tags:                     <span><a href="/tag/game.html" rel="tag">game</a> / </span>                    <span><a href="/tag/puzzle.html" rel="tag">puzzle</a> / </span>                    <span><a href="/tag/math.html" rel="tag">math</a> / </span>                </p>
+            </footer>
+        </article>
+    <div class="blogItem">
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'blog-levi-g-info';
+        (function() {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] ||
+             document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>
+        Please enable JavaScript to view the
+        <a href="http://disqus.com/?ref_noscript=blog-levi-g-info">
+            comments powered by Disqus.
+        </a>
+    </noscript>
+    <a href="http://disqus.com" class="dsq-brlink">
+        blog comments powered by <span class="logo-disqus">Disqus</span>
+    </a>
     </div>
-  </div>
+	    </main>
+	</section>
+    </div><!-- #content -->
 
-  <footer class="footer">
-    <div class="container">
-      <div class="row">
-       <ul class="col-sm-6 list-inline">
-          <li class="list-inline-item"><a href="/authors.html">Authors</a></li>
-          <li class="list-inline-item"><a href="/archives.html">Archives</a></li>
-          <li class="list-inline-item"><a href="/categories.html">Categories</a></li>
-          <li class="list-inline-item"><a href="/tags.html">Tags</a></li>
-        </ul>
-        <p class="col-sm-6 text-sm-right text-muted">
-          Generated by <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a> / <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">&#x2728;</a>
-        </p>
-      </div>
-    </div>
-  </footer>
+    <footer id="colophon" class="site-footer" role="contentinfo">
+	<!-- <div class="site-colophon">
+	    <p>Copyright (c) 2013 Aleksey Vorona.</p>
+        </div>
+		-->
+        <address id="about" class="site-colophon">
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a href="http://python.org">Python</a>.<br>
+		The theme is <a href="http://github.com/voronaam/Decode-pelican">Decode</a>, ported by <a href="http://vorona.ca">Aleksey Vorona</a> and <a href="https://github.com/kmathenge">Ken Mathenge</a>, thanks!
+        </address>
+    </footer>
+</div><!-- #page -->
+    <script type="text/javascript">
+        var disqus_shortname = 'blog-levi-g-info';
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] ||
+             document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+	
 </body>
-
 </html>

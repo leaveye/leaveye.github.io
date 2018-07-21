@@ -1,137 +1,210 @@
 <!DOCTYPE html>
-<html lang="chinese (simplified)">
-
+<html lang="en-CA">
 <head>
-  <!-- Required meta tags always come first -->
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <title>服务器 Articles | Happy Coding
-</title>
-  <link rel="canonical" href="/category/fu-wu-qi.html">
-
-
-
-  <link rel="stylesheet" href="/theme/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/theme/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/theme/css/pygments/default.min.css">
-  <link rel="stylesheet" href="/theme/css/style.css">
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Happy Coding - 服务器</title>
+<!--
+The blog's design is based on Alan Orth's blog: http://mjanja.co.ke/
+-->
+<link href="/theme/css/main.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/theme/css/style.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel='stylesheet' id='decode-font-stylesheet-css'  href='https://fonts.googleapis.com/css?family=Oxygen&#038;ver=3.6' type='text/css' media='all' />
+<link href="/theme/css/pygment.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/theme/css/vorona.css" rel="stylesheet" type="text/css" media="all" />
 
 
+<link href="/None" type="application/atom+xml" rel="alternate" title="Happy Coding ATOM Feed" />
 </head>
+<body class="home blog custom-background">
+	
+<div id="page" class="hfeed site sidebar-style-closing sidebar-style-left">
+    <header id="masthead" class="site-header" role="banner">
+	<div class="site-branding">
+	    <h1 class="site-title">
+		<a href="" title="Happy Coding" rel="home">Happy Coding</a>
+	    </h1>
+	    
+	</div>
+	<div class="sociallinks">
+	    <ul>
+	    </ul>
+	</div>
+	<nav id="site-navigation" class="main-navigation" role="navigation">
+	    <div class="screen-reader-text skip-link"><a href="#content" title="Skip to content">Skip to content</a></div>
+	    <div class="menu"><ul>
+		<li ><a href="" title="Home">Home</a></li>
+        
+		<li ><a href="/archives.html">Archives</a></li>
+       
+	    </ul></div>
+	</nav>
+    </header>
 
-<body>
-  <header class="header">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <h1 class="title"><a href="">Happy Coding</a></h1>
-          <ul class="list-inline">
-            <li class="list-inline-item"><a href="https://chou.it" target="_blank">Lex Chow的博客</a></li>
-            <li class="list-inline-item"><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
-            <li class="list-inline-item"><a href="http://python.org/" target="_blank">Python.org</a></li>
-            <li class="list-inline-item"><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
-          </ul>
+    <div id="content" class="site-content">
+	<section id="primary" class="content-area">
+	    <main id="main" class="site-main" role="main">
+ 
+	<article class="post type-post status-publish format-standard hentry">
+	    <header class="entry-header">
+		<div class="entry-title">
+		    <a href="/self-host-vagrant-boxes.html"><h2>打造 vagrant boxes 托管服务器</h2></a>
+		</div>
+	    </header>
+	    <div class="entry-content"><p>参考：</p>
+<ul>
+<li><a href="https://github.com/hollodotme/Helpers/blob/master/Tutorials/vagrant/self-hosted-vagrant-boxes-with-versioning.md">How to set up a self-hosted "vagrant cloud" with versioned, self-packaged vagrant boxes</a></li>
+<li><a href="http://kaiwangchen.github.io/2014/07/14/vagrant-box-and-repo.html">Vagrant 镜像制作与共享</a></li>
+<li>Official <a href="https://www.vagrantup.com/docs/">Vagrant Documentation</a></li>
+</ul> <a class="btn primary xsmall" href="/self-host-vagrant-boxes.html">Read more…</a></div>
+	    <footer class="entry-meta">
+		<p class="date">
+		    <span class="posted-on">Posted On <time class="entry-date published" datetime="2017-01-04 11:57">三 04 一月 2017</time></span>
+		    <span class="byline"> by <span class="author vcard">Levi G</span></span>
+		</p>
+		<p class="categories">Category:
+		    <a href="/category/fu-wu-qi.html" rel="tag">服务器</a>
+		</p>
+		<p class="tags">Tags: 		    <span><a href="/tag/devops.html" rel="tag">devops</a> / </span>		    <span><a href="/tag/vagrant.html" rel="tag">vagrant</a> / </span>		    <span><a href="/tag/virtualbox.html" rel="tag">virtualbox</a> / </span>		</p>
+	    </footer>
+	</article>
+	<article class="post type-post status-publish format-standard hentry">
+	    <header class="entry-header">
+		<div class="entry-title">
+		    <a href="/building-a-vagrant-box.html"><h2>【译】从头制作 Vagrant Box</h2></a>
+		</div>
+	    </header>
+	    <div class="entry-content"><p>译自：<a href="https://blog.engineyard.com/2014/building-a-vagrant-box">https://blog.engineyard.com/2014/building-a-vagrant-box</a><br>
+<img alt="Original LOGO" src="https://blog.engineyard.com/images/blog-images/vagrant-box.png"></p>
+<blockquote>
+<p><strong>注：</strong>本文原发布于 tylerbird.org 今年的 blog 。最近在 Engine Yard 发布大众更新版本。</p>
+</blockquote>
+<div class="toc">
+<ul>
+<li><a href="#box">为什么制作 Box</a></li>
+<li><a href="#_1">定义</a></li>
+<li><a href="#_2">大力声明</a></li>
+<li><a href="#_3">准备工作</a></li>
+<li><a href="#box_1">建立 Box</a><ul>
+<li><a href="#_4">设置虚拟硬件</a></li>
+<li><a href="#_5">安装操作系统</a></li>
+<li><a href="#_6">设置根密码</a></li>
+<li><a href="#_7">设置超级用户</a></li>
+<li><a href="#_8">更新操作系统</a></li>
+<li><a href="#vagrant">安装 Vagrant 密钥</a></li>
+<li><a href="#openssh">安装配置 OpenSSH 服务器</a></li>
+<li><a href="#guest-tools">安装 Guest Tools</a></li>
+<li><a href="#box_2">打包整个 box</a></li>
+<li><a href="#box_3">测试你的 box</a></li>
+</ul>
+</li>
+<li><a href="#packer">Packer</a></li>
+<li><a href="#_9">我们学到什么</a></li>
+</ul>
+</div>
+<p>Vagrant 的目标是简化在本地创建开发环境，接触上之后，你再也不会想用其它方式了。只用两个简单的命令，你就可以安装你的第一个 …</p> <a class="btn primary xsmall" href="/building-a-vagrant-box.html">Read more…</a></div>
+	    <footer class="entry-meta">
+		<p class="date">
+		    <span class="posted-on">Posted On <time class="entry-date published" datetime="2016-12-19 14:21">一 19 十二月 2016</time></span>
+		    <span class="byline"> by <span class="author vcard">Levi G</span></span>
+		</p>
+		<p class="categories">Category:
+		    <a href="/category/fu-wu-qi.html" rel="tag">服务器</a>
+		</p>
+		<p class="tags">Tags: 		    <span><a href="/tag/vagrant.html" rel="tag">vagrant</a> / </span>		    <span><a href="/tag/virtualization.html" rel="tag">virtualization</a> / </span>		    <span><a href="/tag/server.html" rel="tag">server</a> / </span>		</p>
+	    </footer>
+	</article>
+	<article class="post type-post status-publish format-standard hentry">
+	    <header class="entry-header">
+		<div class="entry-title">
+		    <a href="/gitlab-docker-compose-install.html"><h2>使用 Docker Compose 搭建本地 GitLab 服务器</h2></a>
+		</div>
+	    </header>
+	    <div class="entry-content"><h1 id="_1">软件安装</h1>
+<blockquote>
+<p>过程主要参考自 <a href="http://docs.gitlab.com/omnibus/">Omnibus GitLab 官方文档</a>中 <a href="http://docs.gitlab.com/omnibus/docker/#install-gitlab-using-docker-compose">install GitLab using docker-compose</a> 章节。</p>
+</blockquote>
+<h2 id="_2">设置项选择</h2>
+<table>
+<thead>
+<tr>
+<th>设置项</th>
+<th>值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>安装版本</td>
+<td><code>gitlab-ce</code></td>
+<td></td>
+</tr>
+<tr>
+<td>服务器 IP</td>
+<td><code>192.168.3.12</code></td>
+<td>Docker 容器</td>
+</tr>
+<tr>
+<td>工作目录</td>
+<td><code>~/docker-test</code></td>
+<td>容器(集)配置所在路径，此次安装主要工作路径</td>
+</tr>
+<tr>
+<td>服务目录</td>
+<td><code>~/gitlab</code></td>
+<td>GitLab 服务使用的文件将保存在此处</td>
+</tr>
+<tr>
+<td>HTTP 端口</td>
+<td><code>80</code></td>
+<td>唯一 Web 服务，可以独占端口</td>
+</tr>
+<tr>
+<td>SSH 端口</td>
+<td><code>2201</code></td>
+<td>Docker 主机使用了缺省的 22 端口</td>
+</tr>
+<tr>
+<td>访问地址 …</td></tr></tbody></table> <a class="btn primary xsmall" href="/gitlab-docker-compose-install.html">Read more…</a></div>
+	    <footer class="entry-meta">
+		<p class="date">
+		    <span class="posted-on">Posted On <time class="entry-date published" datetime="2016-08-12 10:34">五 12 八月 2016</time></span>
+		    <span class="byline"> by <span class="author vcard">Levi G</span></span>
+		</p>
+		<p class="categories">Category:
+		    <a href="/category/fu-wu-qi.html" rel="tag">服务器</a>
+		</p>
+		<p class="tags">Tags: 		    <span><a href="/tag/server.html" rel="tag">server</a> / </span>		    <span><a href="/tag/install.html" rel="tag">install</a> / </span>		    <span><a href="/tag/gitlab.html" rel="tag">gitlab</a> / </span>		    <span><a href="/tag/docker.html" rel="tag">docker</a> / </span>		</p>
+	    </footer>
+	</article>
+	<div style="clear: both;">&nbsp;</div>
+	    </main>
+	</section>
+    </div><!-- #content -->
+
+    <footer id="colophon" class="site-footer" role="contentinfo">
+	<!-- <div class="site-colophon">
+	    <p>Copyright (c) 2013 Aleksey Vorona.</p>
         </div>
-      </div>
-    </div>
-  </header>
-
-  <div class="main">
-    <div class="container">
-      <h1>服务器 Articles
-</h1>
-      <hr>
-<article class="row teaser">
-  <header class="col-sm-4 text-muted">
-    <ul>
-      <li title="2017-01-04T11:57:02+08:00">
-        <i class="fa fa-clock-o"></i>
-        三 04 一月 2017
-      </li>
-      <li>
-        <i class="fa fa-folder-open-o"></i>
-        <a href="/category/fu-wu-qi.html">服务器</a>
-      </li>
-      <li>
-        <i class="fa fa-user-o"></i>
-        <a href="/author/levi-g.html">Levi G</a>      </li>
-    </ul>
-  </header>
-  <div class="col-sm-8">
-    <h4 class="title"><a href="/self-host-vagrant-boxes.html">打造 vagrant boxes 托管服务器</a></h4>
-    <div class="content">
-      参考： How to set up a self-hosted "vagrant cloud" with versioned, self-packaged vagrant boxes Vagrant 镜像制作与共享 Official Vagrant Documentation
-    </div>
-  </div>
-</article>
-<hr>
-<article class="row teaser">
-  <header class="col-sm-4 text-muted">
-    <ul>
-      <li title="2016-12-19T14:21:00+08:00">
-        <i class="fa fa-clock-o"></i>
-        一 19 十二月 2016
-      </li>
-      <li>
-        <i class="fa fa-folder-open-o"></i>
-        <a href="/category/fu-wu-qi.html">服务器</a>
-      </li>
-      <li>
-        <i class="fa fa-user-o"></i>
-        <a href="/author/levi-g.html">Levi G</a>      </li>
-    </ul>
-  </header>
-  <div class="col-sm-8">
-    <h4 class="title"><a href="/building-a-vagrant-box.html">【译】从头制作 Vagrant Box</a></h4>
-    <div class="content">
-      译自：https://blog.engineyard.com/2014/building-a-vagrant-box 注：本文原发布于 tylerbird.org 今年的 blog 。最近在 Engine Yard 发布大众更新版本。 为什么制作 Box 定义 大力声明 准备工作 建立 Box 设置虚拟硬件 安装操作系统 设置根密码 设置超级用户 更新操作系统 安装 Vagrant 密钥 安装配置 OpenSSH 服务器 安装 Guest Tools 打包整个 box 测试你的 box Packer 我们学到什么 Vagrant 的目标是简化在本地创建开发环境，接触上之后，你再也不会想用其它方式了。只用两个简单的命令，你就可以安装你的第一个 …
-    </div>
-  </div>
-</article>
-<hr>
-<article class="row teaser">
-  <header class="col-sm-4 text-muted">
-    <ul>
-      <li title="2016-08-12T10:34:00+08:00">
-        <i class="fa fa-clock-o"></i>
-        五 12 八月 2016
-      </li>
-      <li>
-        <i class="fa fa-folder-open-o"></i>
-        <a href="/category/fu-wu-qi.html">服务器</a>
-      </li>
-      <li>
-        <i class="fa fa-user-o"></i>
-        <a href="/author/levi-g.html">Levi G</a>      </li>
-    </ul>
-  </header>
-  <div class="col-sm-8">
-    <h4 class="title"><a href="/gitlab-docker-compose-install.html">使用 Docker Compose 搭建本地 GitLab 服务器</a></h4>
-    <div class="content">
-      软件安装 过程主要参考自 Omnibus GitLab 官方文档中 install GitLab using docker-compose 章节。 设置项选择 设置项 值 备注 安装版本 gitlab-ce 服务器 IP 192.168.3.12 Docker 容器 工作目录 ~/docker-test 容器(集)配置所在路径，此次安装主要工作路径 服务目录 ~/gitlab GitLab 服务使用的文件将保存在此处 HTTP 端口 80 唯一 Web 服务，可以独占端口 SSH 端口 2201 Docker 主机使用了缺省的 22 端口 访问地址 …
-    </div>
-  </div>
-</article>
-    </div>
-  </div>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="row">
-       <ul class="col-sm-6 list-inline">
-          <li class="list-inline-item"><a href="/authors.html">Authors</a></li>
-          <li class="list-inline-item"><a href="/archives.html">Archives</a></li>
-          <li class="list-inline-item"><a href="/categories.html">Categories</a></li>
-          <li class="list-inline-item"><a href="/tags.html">Tags</a></li>
-        </ul>
-        <p class="col-sm-6 text-sm-right text-muted">
-          Generated by <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a> / <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">&#x2728;</a>
-        </p>
-      </div>
-    </div>
-  </footer>
+		-->
+        <address id="about" class="site-colophon">
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a href="http://python.org">Python</a>.<br>
+		The theme is <a href="http://github.com/voronaam/Decode-pelican">Decode</a>, ported by <a href="http://vorona.ca">Aleksey Vorona</a> and <a href="https://github.com/kmathenge">Ken Mathenge</a>, thanks!
+        </address>
+    </footer>
+</div><!-- #page -->
+    <script type="text/javascript">
+        var disqus_shortname = 'blog-levi-g-info';
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] ||
+             document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+	
 </body>
-
 </html>
